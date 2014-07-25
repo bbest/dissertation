@@ -5,7 +5,7 @@ PhD thesis at Duke University.
 
 See the rendered thesis:
 
-- [html](http://htmlpreview.github.io/?https://raw.github.com/bbest/phd_thesis/phd_thesis.html)
+- [html](http://htmlpreview.github.io/?https://raw.githubusercontent.com/bbest/phd_thesis/master/phd_thesis.html)
 - [pdf](https://raw.githubusercontent.com/bbest/phd_thesis/master/phd_thesis.phd)
 
 ## Knitting the document
