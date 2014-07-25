@@ -25,8 +25,8 @@ harmful human activities away from known cetacean distributions is
 generally the safest and simplest way to minimize risk (Redfern et al.
 2006).
 
-![Example of complex management from Crowder et al.
-(2006)](fig/MSP-SoCal_Crowder2006-Science.png)
+![Figure 1: Example of complex management from Crowder et al.
+(2006).](fig/MSP-SoCal_Crowder2006-Science.png)
 
 The current state of marine spatial planning begs several broad
 questions of decision makers and decision support scientists. How do you
@@ -343,6 +343,11 @@ pixel’s marine mammal density estimate (xi) subtracted from the mean of
 all density estimates for the strata (μ), divided by the standard
 deviation of those density estimates (σ) and finally multiplied by the
 species weight (w).
+
+\$\$
+z\_i = \\frac{x\_i - \\mu}{\\sigma}\*w
+\$\$
+*Z*<sub>*i*</sub> = ∑<sub>*j* = 1</sub><sup>*n*</sup>*z*<sub>*i*</sub>
 
 An inverse weighting scheme based on species conservation status will be
 applied to favor representation of more endangered species (Wood and

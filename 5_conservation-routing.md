@@ -30,6 +30,11 @@ all density estimates for the strata (μ), divided by the standard
 deviation of those density estimates (σ) and finally multiplied by the
 species weight (w).
 
+\$\$
+z\_i = \\frac{x\_i - \\mu}{\\sigma}\*w
+\$\$
+*Z*<sub>*i*</sub> = ∑<sub>*j* = 1</sub><sup>*n*</sup>*z*<sub>*i*</sub>
+
 An inverse weighting scheme based on species conservation status will be
 applied to favor representation of more endangered species (Wood and
 Dragicevic 2007). These rankings were obtained from the Provincial

@@ -15,7 +15,14 @@ Vessel traffic poses the threat of ship strike and spill of oil or other toxins 
 
 To avoid encounters with marine mammals, relative hotspots of expected encounter are to be avoided, and routed around. Least-cost algorithms, such as Djikstra’s algorithm, are commonly used with the prevalence of online driving directions and many other route-optimization applications. These graph-theoretic algorithms have also been playing an increasing role in routing corridors of habitat and testing connectivity of habitat patches (Chetkiewicz et al. 2006) for both terrestrial (Urban and Keitt 2001) and marine applications (Treml et al. 2008). 
 Density surface model outputs will be assembled into a marine mammal composite risk map, or cost surface. Each density surface was normalized in order to highlight areas of high density relative to its average. The unitless standard score, or z-value (zi), per pixel (i) is calculated as the pixel’s marine mammal density estimate (xi) subtracted from the mean of all density estimates for the strata (μ), divided by the standard deviation of those density estimates (σ) and finally multiplied by the species weight (w). 
-   
+
+$$
+z_i = \frac{x_i - \mu}{\sigma}*w
+$$
+$$
+Z_i = \sum_{j=1}^{n}z_i
+$$
+
 An inverse weighting scheme based on species conservation status will be applied to favor representation of more endangered species (Wood and Dragicevic 2007). These rankings were obtained from the Provincial listing status at British Columbia’s Endangered Species and Ecosystems website . Elephant seal is listed as SNA, species “not applicable”, presumably because of its semi-migratory status in BC waters. Given that it’s status is S4 in California and Alaska to the south and north of BC, this status was used to conform with the scheme. The values on the y-axis indicate the relativised weight used in the analysis.
 The cost surface from the composite risk map provides the biological hotspot surface around which to route. The routing will be performed with Python scripts using ESRI’s ArcGIS ArcInfo version 9.3 with the Spatial Analyst toolbox. The CostPath function was used with input cost distance and back-directional raster grids generated from the CostDistance function. The 5km original density surface grids will be resampled to a 1km resolution for use as the resistance cost surface to provide finer spatial resolution and routing within the inlets. An alternative raster grid in which all cells would be assigned a cost value of 1 serves as the Euclidean linear distance optimal spatial route providing a comparison of direct routing.
 
