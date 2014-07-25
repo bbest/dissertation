@@ -59,4 +59,4 @@ factors, such as satiation or hunger, are likely candidates, perhaps not
 inferable by environmental proxy.
 
 References
-==========
+----------

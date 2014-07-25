@@ -116,4 +116,4 @@ test neighbors in space, hence testing 4 rook or 8 cardinal neighbors
 per cell.
 
 References
-==========
+----------

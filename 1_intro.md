@@ -60,7 +60,7 @@ for incorporating cetacean species distribution models into the marine
 spatial planning process.
 
 References
-==========
+----------
 
 Butchart, S. H. M., M. Walpole, B. Collen, A. van Strien, J. P. W.
 Scharlemann, R. E. A. Almond, J. E. M. Baillie, B. Bomhard, C. Brown, J.

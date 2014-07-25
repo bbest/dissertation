@@ -3,4 +3,5 @@
 .RData
 tmp
 *.html
+!phd_thesis.html
 dropbox

@@ -18,4 +18,4 @@ A simpler method is possible and desirable for easily providing marine stakehold
 I propose to do this with the North Atlantic right whale (Eubalaena glacialis) since data is easily obtained through OBIS-SEAMAP over the entire species range and existing datasets are available for habitat in the Gulf of Maine foraging grounds (Best et al. In Revision; Department of the Navy (DON) 2007) and calving grounds off Florida (Good 2008), as well as comparison with migratory model based on telemetry data (Schick et al. 2009).
 Kenney et al. (2001) conceptualized a hierarchical sensory model for right whales to hone in on prey and navigate between summer foraging grounds in the Gulf of Maine and winter calving grounds off Florida, but fell short of postulating specific cues to initiate migration. Past years of observations and environmental data could be mined to explore a more specific environmental cue than date. This would enable predictions of the onset of migration. Other unmeasurable factors, such as satiation or hunger, are likely candidates, perhaps not inferable by environmental proxy.
 
-# References
+## References

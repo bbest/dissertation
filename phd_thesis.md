@@ -60,7 +60,7 @@ for incorporating cetacean species distribution models into the marine
 spatial planning process.
 
 References
-==========
+----------
 
 Butchart, S. H. M., M. Walpole, B. Collen, A. van Strien, J. P. W.
 Scharlemann, R. E. A. Almond, J. E. M. Baillie, B. Bomhard, C. Brown, J.
@@ -243,7 +243,7 @@ test neighbors in space, hence testing 4 rook or 8 cardinal neighbors
 per cell.
 
 References
-==========
+----------
 
 
 2. Decision Mapping
@@ -282,7 +282,7 @@ instance of risk loss function applied spatially to conservation
 science.
 
 References
-==========
+----------
 
 
 3. Probabilistic Range Maps
@@ -306,7 +306,7 @@ the qualitative opinion in terms of matching to environmental signal. As
 more data becomes available it is easily updateable.
 
 References
-==========
+----------
 
 
 4. Conservation Routing
@@ -385,7 +385,7 @@ experiment using the global shipping layer from (Halpern, Walbridge, et
 al. 2008).
 
 References
-==========
+----------
 
 
 5. Predicting Seasonal Migration
@@ -449,7 +449,7 @@ factors, such as satiation or hunger, are likely candidates, perhaps not
 inferable by environmental proxy.
 
 References
-==========
+----------
 
 
 Conclusion
@@ -495,6 +495,6 @@ using downscaled output of IPCC class earth system models, and 3) Census
 funded Global Ocean Biodiversity Initiative.
 
 References
-==========
+----------
 
 

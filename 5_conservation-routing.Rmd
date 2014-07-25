@@ -22,4 +22,4 @@ Oil tanker routes were proposed for the inside waters of BC to Port Kittimat. Th
 
 The relative weights of these layers could be gleaned from the past precedent of re-routing shipping lanes in Boston Harbor based on overlap with a density of right whale observations. A similar spatial decision-making process could then be applied globally as thought experiment using the global shipping layer from (Halpern, Walbridge, et al. 2008). 
 
-# References
+## References

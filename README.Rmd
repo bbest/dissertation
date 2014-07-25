@@ -15,18 +15,20 @@ This thesis is being knitted into a scientifically reproducible document using t
 library(rmarkdown)
 
 files_Rmd = list.files(pattern=glob2rx('*.Rmd'))
-for (f_Rmd in files_Rmd)){
+for (f_Rmd in files_Rmd){
   render(f_Rmd, 'md_document')
   render(f_Rmd, 'html_document')
 }
 
-files_md = setdiff(list.files(pattern=glob2rx('*.md')), 'README.md')
-all_md <- file('phd_thesis.md', 'w') 
+files_md = setdiff(list.files(pattern=glob2rx('*.md')), c('README.md', 'phd_thesis.md'))
+all_md = 'phd_thesis.md'
+f <- file(all_md, 'w') 
 for (f_md in files_md){ 
     x <- readLines(f_md) 
-    writeLines(c(x,'',''), all_md) 
+    writeLines(c(x,'',''), f)
 } 
-close(all_md)
+close(f)
 
+render(all_md, 'html_document', output_options=list(toc='true'))
 ```
 

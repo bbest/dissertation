@@ -18,13 +18,19 @@ using the following techniques:
 
     library(rmarkdown)
 
-    setwd('~/github/phd_thesis')
-
-    # get files to process
-    # files_Rmd_exclude = c('README.Rmd')
-    # files_Rmd = setdiff(list.files(pattern=glob2rx('*.Rmd')), files_Rmd_exclude)
-
-    for (f_Rmd in list.files(pattern=glob2rx('*.Rmd'))){ # files_Rmd){ # f_Rmd = files_Rmd[1]
+    files_Rmd = list.files(pattern=glob2rx('*.Rmd'))
+    for (f_Rmd in files_Rmd){
       render(f_Rmd, 'md_document')
       render(f_Rmd, 'html_document')
     }
+
+    files_md = setdiff(list.files(pattern=glob2rx('*.md')), c('README.md', 'phd_thesis.md'))
+    all_md = 'phd_thesis.md'
+    f <- file(all_md, 'w') 
+    for (f_md in files_md){ 
+        x <- readLines(f_md) 
+        writeLines(c(x,'',''), f)
+    } 
+    close(f)
+
+    render(all_md, 'html_document', output_options=list(toc='true'))
