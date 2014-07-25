@@ -1,7 +1,12 @@
 thesis
 ======
 
-PhD thesis at Duke University
+PhD thesis at Duke University.
+
+See the rendered thesis:
+
+-   [html](http://htmlpreview.github.io/?https://raw.github.com/bbest/phd_thesis/phd_thesis.html)
+-   [pdf](https://raw.githubusercontent.com/bbest/phd_thesis/master/phd_thesis.phd)
 
 Knitting the document
 ---------------------
@@ -18,12 +23,14 @@ using the following techniques:
 
     library(rmarkdown)
 
+    # render md's
     files_Rmd = list.files(pattern=glob2rx('*.Rmd'))
     for (f_Rmd in files_Rmd){
       render(f_Rmd, 'md_document')
       render(f_Rmd, 'html_document')
     }
 
+    # concat md
     files_md = setdiff(list.files(pattern=glob2rx('*.md')), c('README.md', 'phd_thesis.md'))
     all_md = 'phd_thesis.md'
     f <- file(all_md, 'w') 
@@ -33,4 +40,7 @@ using the following techniques:
     } 
     close(f)
 
+    # render html and pdf
     render(all_md, 'html_document', output_options=list(toc='true'))
+    #render(all_md, 'pdf_document', output_options=list('toc'='true', 'latex-engine'='xelatex'))
+    system('/usr/local/bin/pandoc phd_thesis.md --to latex --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash-implicit_figures --output phd_thesis.pdf --table-of-contents --toc-depth 2 --template /Library/Frameworks/R.framework/Versions/3.1/Resources/library/rmarkdown/rmd/latex/default.tex --highlight-style tango --latex-engine xelatex --variable geometry:margin=1in')
