@@ -25,6 +25,9 @@ harmful human activities away from known cetacean distributions is
 generally the safest and simplest way to minimize risk (Redfern et al.
 2006).
 
+![Example of complex management from Crowder et al.
+(2006)](fig/MSP-SoCal_Crowder2006-Science.png)
+
 The current state of marine spatial planning begs several broad
 questions of decision makers and decision support scientists. How do you
 optimize use of ocean resources to provide long-term ecosystem services
