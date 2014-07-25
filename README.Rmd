@@ -1,0 +1,23 @@
+thesis
+======
+
+PhD thesis at Duke University
+
+## Knitting the document
+
+This thesis is being knitted into a scientifically reproducible document using the following techniques:
+
+- **markdown**. Rmarkdown.
+
+- **citations**. Zotero and pandoc. Use better bibtex Zotero extension to enable drag-and-drop of citation into document in Pandoc format.
+
+```{r run, eval=FALSE}
+library(rmarkdown)
+
+for (f_Rmd in list.files(pattern=glob2rx('*.Rmd'))){
+  render(f_Rmd, 'md_document')
+  render(f_Rmd, 'html_document')
+}
+
+```
+
