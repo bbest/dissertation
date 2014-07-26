@@ -1,0 +1,42 @@
+\documentclass[masters]{ucbthesis}
+% ^^ change to \documentclass{ucbthesis} if this is for PhD
+
+\usepackage{biblatex}
+
+% Double spacing, if you want it.
+% \def\dsp{\def\baselinestretch{2.0}\large\normalsize}
+% \dsp
+
+% If the Grad. Division insists that the first paragraph of a section
+% be indented (like the others), then include this line:
+% \usepackage{indentfirst}
+
+%%%%%%%%%%%%%%%%%%
+% If you want to use "sections" to partition your thesis
+% un-comment the following:
+% 
+% \counterwithout{section}{chapter}
+% \setsecnumdepth{subsubsection}
+% \def\sectionmark#1{\markboth{#1}{#1}}
+% \def\subsectionmark#1{\markboth{#1}{#1}}
+% \renewcommand{\thesection}{\arabic{section}}
+% \renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+% \makeatletter
+% \let\l@subsection\l@section
+% \let\l@section\l@chapter
+% \makeatother
+% 
+% \renewcommand{\thetable}{\arabic{table}}
+% \renewcommand{\thefigure}{\arabic{figure}}
+%
+%%%%%%%%%%%%%%%%%%
+
+\newtheorem{theorem}{Jibberish}
+
+\bibliography{references}
+
+\hyphenation{mar-gin-al-ia}
+
+\begin{document}
+$body$
+\end{document}
