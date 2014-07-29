@@ -1,0 +1,27 @@
+---
+title: "Dedication"
+author: "Ben Best (bbest@nceas.ucsb.edu)"
+date: July 23, 2014
+bibliography: phd_thesis.bib
+csl: nature.csl
+output:
+  html_document:
+    toc: true
+    fig_caption: true
+---
+
+
+```{r setup, include=FALSE}
+# incremental Figure Numbers
+fn = local({
+  i = 0
+  function(x) {
+    i <<- i + 1
+    paste('Figure ', i, ': ', x, sep = '')
+  }
+})
+```
+
+# Dedication
+
+I wish to thank many people...
