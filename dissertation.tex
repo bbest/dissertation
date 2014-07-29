@@ -37,7 +37,7 @@
 %Define and personal commands here
 
 %Graphics Path to find your pictures
-\graphicspath{{./Pictures/}}
+\graphicspath{{./duke_template/Pictures/}}
 
 
 %-----------------------------------------------------------------------------%
@@ -88,7 +88,7 @@
 %-----------------------------------------------------------------------------%
 % ABSTRACT -- included file should start with '\abstract'.
 %-----------------------------------------------------------------------------%
-\include{{./Abstract/abstract}}
+\include{{./duke_template/abstract}}
 
 %-----------------------------------------------------------------------------%
 % DEDICATION -- OPTIONAL.  Put the text inside the braces.
@@ -104,12 +104,12 @@
 \tableofcontents % Automatically generated
 \listoftables	% If you have any tables, automatically generated
 \listoffigures	% If you have any figures, automatically generated
-\include{{./Abbreviations/listofabbr}} % List of Abbreviations. Start file with '\abbreviations'
+\include{{./duke_template/listofabbr}} % List of Abbreviations. Start file with '\abbreviations'
 
 %-----------------------------------------------------------------------------%
 % ACKNOWLEDGEMENTS -- included file should start with '\acknowledgements'
 %-----------------------------------------------------------------------------%
-\include{{./Acknowledgements/acknowledgements}}
+\include{{./duke_template/acknowledgements}}
 
 %==============================================================================
 %-----------------------------------------------------------------------------%
@@ -118,11 +118,11 @@
 %
 %
 %-----------------------------------------------------------------------------%
-\include{{./Chapter1/introduction}}
-\include{{./Chapter2/guide-notes}} % A regular chapter, starts with '\chapter{Title}'
-\include{{./Chapter3/chRegularLook}}
-\include{{./Chapter4/chLorem}}
-\include{{./Chapter5/chLorem2}}
+\include{{./duke_template/introduction}}  % ch 1
+\include{{./duke_template/guide-notes}}   % ch 2. A regular chapter, starts with '\chapter{Title}'
+\include{{./duke_template/chRegularLook}} % ch 3
+\include{{./duke_template/chLorem}}       % ch 4
+\include{{./duke_template/chLorem2}}      % ch 5
 %==============================================================================
 
 %-----------------------------------------------------------------------------%
@@ -130,7 +130,7 @@
 %                Appendix B, Appendix C...
 %-----------------------------------------------------------------------------%
 \appendix
-\include{{./Appendix1/chLorem3}} % Start with '\chapter{Title}'
+\include{{./duke_template/chLorem3}} % appendix. Start with '\chapter{Title}'
 %You can always add more appendices here if you want
 
 %-----------------------------------------------------------------------------%
@@ -140,17 +140,17 @@
 % 'mybib.bib' you might want to change that here too :)
 %-----------------------------------------------------------------------------%
 %\nocite{*} - if you use this it will put EVERYTHING in your .bib file into the references even if you don't cite it in the text
-\bibliographystyle{./Bibliography/jasa} %Formats bibliography
+\bibliographystyle{./duke_template/jasa} % Formats bibliography
 \cleardoublepage
 \normalbaselines %Fixes spacing of bibliography
 \addcontentsline{toc}{chapter}{Bibliography} %adds Bibliography to your table of contents
-\bibliography{./Bibliography/References} %your bibliography file - change the path if needed
+\bibliography{./duke_template/References} %your bibliography file - change the path if needed
 %-----------------------------------------------------------------------------%
 
 %-----------------------------------------------------------------------------%
 % BIOGRAPHY -- Start file with '\biography'.  Mandatory for Ph.D.
 %-----------------------------------------------------------------------------%
-\include{{./Biography/biography}}
+\include{{./duke_template/biography}}
 
 %-----------------------------------------------------------------------------
 % You're done :)
