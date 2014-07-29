@@ -6,7 +6,7 @@ dissertation style.  Most of this information is standard to \LaTeX.
 
 \section{Intra-chapter divisions: Sections}
 
-Section headlines are {\verb \Large } and in the standard font. Compare them
+Section headlines are \texttt{\Large} and in the standard font. Compare them
 to subsections below.
 
 \subsection{Subsections: Wow! Italics!}
@@ -32,8 +32,8 @@ Let's look at an equation:
 \label{eq:diffeq}
 \partial{f}{t} = f(t) \quad \text{subject to} \quad f(0) = c.
 \end{equation}
-We've used the {\verb \newcommand } defined in the preamble of 
-{\verb dissertation.tex } to produce the derivative.  You can get a second
+We've used the \texttt{\newcommand} defined in the preamble of 
+\texttt{dissertation.tex} to produce the derivative.  You can get a second
 derivative like $\partial{^2 f}{t^2}$ by adding some sneaky superscripts.  Fancy.  
 
 More advanced equation formatting is available in the AMS environments.  See
@@ -96,29 +96,29 @@ and evaluation bars:
 See the source file for details.
 
 When we reference an equation with something like 
-{\verb \eqref } 
+texttt{\eqref} 
 \eqref{eq:diffeq}. If you
 click on the above references in the PDF, your viewer should scroll up to
 the above equation. It's handy. 
 Labels and references may be attached to all
-sorts of objects.  There is a {\verb \label } attached to this chapter (it
+sorts of objects.  There is a texttt{ \label } attached to this chapter (it
 appears at the top of this file), and we may reference it by
-({\verb Chapter~\ref{chap:example} }), producing
+(texttt{ Chapter~\ref{chap:example} }), producing
 ``Chapter~\ref{chap:example}''.  By default these ref's are hyperlinked as
 well.  Later, we'll see labeled and referenced figures and tables.
-Particular pages may be labeled with standard {\verb \label } commands in
-the text and referenced via {\verb \pageref }.
+Particular pages may be labeled with standard texttt{ \label } commands in
+the text and referenced via texttt{ \pageref }.
 
 You might also like the links from 
-{\verb \cite } commands to the corresponding bibliographic entry.
+texttt{ \cite } commands to the corresponding bibliographic entry.
 Go look at this imaginary book by Stephen Colbert \cite{fancy}.  If you're
-not a bibtex expert, look in \texttt{mybib.bib} at the {\verb @ARTICLE }
+not a bibtex expert, look in \texttt{mybib.bib} at the texttt{ @ARTICLE }
 that generated this entry.  It shows an example of accents on author names
 and how to preserve upper-case for letters in the title.  Other entries show
-the use of the {\verb and } keyword between author names.  You may order a
+the use of the texttt{ and } keyword between author names.  You may order a
 particular author's name as either ``first last'' or as ``last, first''.
 The actual format of the bibliography is controlled by the 
-{\verb \bibliographystyle{} } command in \texttt{dissertation.tex}.
+texttt{ \bibliographystyle{} } command in \texttt{dissertation.tex}.
 
 
 \section{Table of Contents Behavior}
@@ -135,20 +135,20 @@ the included graphic.  This is because most graphics programs pad the edges
 of images.  If you find the spacing unsatisfactory, you may always add a bit
 manually.  The text of the caption is single-spaced, and the word 'Figure'
 is set in small caps.  See Fig.~\ref{fig:example}.  Notice the use of the
-nonbreakable space ``{\verb ~ }'' between the ``Fig.'' and the reference.
+nonbreakable space ``texttt{ ~ }'' between the ``Fig.'' and the reference.
 %%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
 \includegraphics[width=3in]{dukeshield}
 \end{center}
-\caption[Short caption for table of figures.]{Longer caption for actual body
+\caption{Longer caption for actual body
 of dissertation.  Figure captions should be BELOW the figure.}
-\label{fig:example}
+% \caption[Short caption for table of figures.]{Longer caption for actual body of dissertation.  Figure captions should be BELOW the figure.}\label{fig:example}
 \end{figure}
 %%%%%%%%%%%%%%
 Figures (and tables) are examples of 'floats --- objects that \LaTeX decides
 where to place for you.  You may give \LaTeX some hints.  Change the 
-{\verb \begin{figure}[tbp] } to a {\verb \begin{figure}[b!] } to restrict the
+% texttt{ \begin{figure}[tbp] } to a texttt{ \begin{figure}[b!] } to restrict the
 placement.  Inside the [ ], you can put the following
 \begin{itemize}
 \item[t] Allow placement at the top of the page
@@ -183,7 +183,7 @@ Tables, while the { } captions appear in the body.  If you omit the [ ]
 short caption, the long caption will be used in its place.
 
 Another technical note: since this style sheet is designed for processing
-by pdflatex, {\verb \includegraphics } looks for \texttt{PDF}s,
+by pdflatex, texttt{ \includegraphics } looks for \texttt{PDF}s,
 \texttt{PNG}s, and \texttt{JPG}s instead of the usual \texttt{PS},
 \texttt{EPS}, and \texttt{TIFF} formats.  You can convert existing graphics
 with a vareity of tools.  \texttt{PDF} graphics are preferred, as they
@@ -195,7 +195,7 @@ convert other docs.
 \subsection{List of Figures}
 If you've put even one measly figure in your document, grad school rules say
 you need a List of Figures.  It's automatically generated for you if you do
-a {\verb \listoffigures } in the master file (heck, it's there right now).
+a texttt{ \listoffigures } in the master file (heck, it's there right now).
 Go look at the list of figures now.  You should be able to click on the
 figure number to warp to the figure.  You'll also see the result of the
 'short caption' used above.
@@ -207,7 +207,8 @@ Just to make sure tables are formatted correctly,
 here's an example of a table float, see Table~\ref{tab:example}.
 %%%%%%%%%%%
 \begin{table}[t]
-\caption[Short table caption appears only in List of Tables.]{Long table
+%\caption[Short table caption appears only in List of Tables.]{Long table
+\caption{Long table
 	caption appears on in the body text.  See the short caption in the List
 	of Tables.  Table captions need to be ABOVE the table.}
 	\label{tab:example}
@@ -224,7 +225,7 @@ here's an example of a table float, see Table~\ref{tab:example}.
 \end{table}
 %%%%%%%%%%%%%
 You should note that [b] formatting 
-({\verb \begin{table}[b] })
+% (texttt{ \begin{table}[b] })
 can cause floats to appear under the
 footnotes.  Try changing it here and see the ugliness.  Tables are identical
 to figures, except that the word 'Table' appears in the caption and its
