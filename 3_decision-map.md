@@ -33,5 +33,10 @@ decision spatially which minimizes loss. This represents the first known
 instance of risk loss function applied spatially to conservation
 science.
 
+todo: Simulations
+-----------------
+
+    install.packages(c('mrds','Distance','dsm','DSsim','mads','DSpat'))
+
 References
 ----------

@@ -33,8 +33,8 @@ for (f_Rmd in files_Rmd){
 }
 
 # concat md
-files_md = setdiff(list.files(pattern=glob2rx('*.md')), c('README.md', all_md))
-f <- file(all_md, 'w') 
+files_md = setdiff(list.files(pattern=glob2rx('*.md')), c('README.md', md_all))
+f <- file(md_all, 'w') 
 for (f_md in files_md){ 
     x <- readLines(f_md) 
     writeLines(c(x,'',''), f)
@@ -42,21 +42,40 @@ for (f_md in files_md){
 close(f)
 
 # get prefix
-pfx = tools::file_path_sans_ext(all_md)
+pfx = tools::file_path_sans_ext(md_all)
 
 # render html
-render(all_md, 'html_document', output_file=sprintf('%s/%s.html', dir_other, pfx), output_options=list(toc='true', fig_caption='true'))
+render(md_all, 'html_document', output_file=sprintf('%s/%s.html', dir_other, pfx), output_options=list(toc='true', fig_caption='true'))
+system(sprintf('open %s/%s.%s', dir_other, pfx, 'html'))
 
 # render pdf
-system(
-  sprintf('/usr/local/bin/pandoc %s.md --to latex --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash-implicit_figures --output %s/%s.pdf --table-of-contents --toc-depth 2 --template %s --highlight-style tango --latex-engine xelatex --variable geometry:margin=1in', pfx, dir_other, pfx, tex_template))
+tex_template = '/Library/Frameworks/R.framework/Versions/3.1/Resources/library/rmarkdown/rmd/latex/default.tex'
+tex_template = 'dissertation.tex'
+tex_template = 'thesis_template.tex'
+#render(md_all, 'pdf_document', output_file=sprintf('%s/%s.pdf', dir_other, pfx), output_options=list(toc='true', fig_caption='true'))
+# /usr/local/bin/pandoc index.utf8.md --to latex --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash --output ~/github/phd_thesis/index.pdf --table-of-contents --toc-depth 2 --template /Library/Frameworks/R.framework/Versions/3.1/Resources/library/rmarkdown/rmd/latex/default.tex --highlight-style tango --latex-engine pdflatex --variable geometry:margin=1in
+tex_template = '/Library/Frameworks/R.framework/Versions/3.1/Resources/library/rmarkdown/rmd/latex/default.tex'
+cmd = paste0(
+  '/usr/local/bin/pandoc ', pfx, '.md \\\n',
+  '--to latex --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash-implicit_figures \\\n',
+  '--output ', dir_other, '/', pfx, '.pdf \\\n',
+  '--table-of-contents --toc-depth 2 --template ', tex_template, ' \\\n',
+  '--highlight-style tango --latex-engine xelatex --variable geometry:margin=1in')
+tex_template = '/Library/Frameworks/R.framework/Versions/3.1/Resources/library/rmarkdown/rmd/latex/default.tex'
+
+tex_template = '~/github/phd_thesis/thesis_template.latex'
+cmd = paste0(
+  '/usr/local/bin/pandoc ', pfx, '.md \\\n',
+  '--to latex --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash-implicit_figures \\\n',
+  '--output ', dir_other, '/', pfx, '.pdf \\\n',
+  '--table-of-contents --toc-depth 2 --template ', tex_template, ' \\\n',
+  '--highlight-style tango --latex-engine xelatex --variable geometry:margin=1in')
+cat(cmd)
+system(cmd)
+system(sprintf('open %s/%s.%s', dir_other, pfx, 'pdf'))
 
 # render docx
-render(all_md, 'word_document', output_file=sprintf('%s/%s.docx', dir_other, pfx))
-  
-# open
-system(sprintf('open %s/%s.%s', dir_other, pfx, 'html'))
-system(sprintf('open %s/%s.%s', dir_other, pfx, 'pdf'))
-system(sprintf('open %s/%s.%s', dir_other, pfx, 'docx'))
+render(md_all, 'word_document', output_file=sprintf('%s/%s.docx', dir_other, pfx))
+system(sprintf('open %s/%s.%s', dir_other, pfx, 'docx'))  
 ```
 

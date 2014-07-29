@@ -14,7 +14,7 @@ Douvere 2008, Dahl et al. 2009, Lubchenco and Sutley 2010, Foley et al.
 2010). For these applications I’ll be focusing on marine spatial
 planning of cetaceans, but methods will be transferable to other marine
 megafauna. In the US, marine mammals are legally protected through the
-Marine Mammal Protection Act and 22 are listed as threatened or
+Marine Mammal Protection Act and 22 are l/isted as threatened or
 endangered so are covered by The Endangered Species Act. Human
 activities that pose threats include: fishing bycatch or prey depletion
 (Laist et al. 2001), ship strikes (Weilgart 2007), anthropogenic noise

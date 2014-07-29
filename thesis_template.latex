@@ -1,4 +1,4 @@
-\documentclass[masters]{ucbthesis}
+\documentclass{ucbthesis}
 % ^^ change to \documentclass{ucbthesis} if this is for PhD
 
 \usepackage{biblatex}
