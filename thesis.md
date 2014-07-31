@@ -9,9 +9,12 @@
 -   Predicting Seasonal Migration
 -   Conclusion
 -   Appendix
+-   References
 
-Marine Species Distribution Modeling and Spatial Decision Frameworks draft PhD thesis by Benjamin D. Best
-at Marine Science and Conservation, Duke University
+Marine Species Distribution Modeling and Spatial Decision Frameworks
+Draft PhD thesis by Benjamin D. Best
+in Marine Science and Conservation, Duke University
+Last modified: 2014-07-30
 
 Abstract
 ========
@@ -111,12 +114,12 @@ I have data and much of the analysis already completed for all of the above with
 Appendix
 ========
 
-<!-- a='Appendix'; ifelse(doc_type!='pdf', sprintf('# %s', a), sprintf('\\chapter*{%s}\\label{%s}\n\\addcontentsline{toc}{chapter}{%s}',a,a,a)) -->
-
 Some extra code, graphs, etc here.
 
 References
 ==========
+
+<!-- adding to show up in toc -->
 
 Butchart, S.H.M., Walpole, M., Collen, B., Strien, A. van, Scharlemann, J.P.W., Almond, R.E.A., Baillie, J.E.M., Bomhard, B., Brown, C., Bruno, J., Carpenter, K.E., Carr, G.M., Chanson, J., Chenery, A.M., Csirke, J., Davidson, N.C., Dentener, F., Foster, M., Galli, A., Galloway, J.N., Genovesi, P., Gregory, R.D., Hockings, M., Kapos, V., Lamarque, J.-F., Leverington, F., Loh, J., McGeoch, M.A., McRae, L., Minasyan, A., Morcillo, M.H., Oldfield, T.E.E., Pauly, D., Quader, S., Revenga, C., Sauer, J.R., Skolnik, B., Spear, D., Stanwell-Smith, D., Stuart, S.N., Symes, A., Tierney, M., Tyrrell, T.D., Vie, J.-C. & Watson, R. (2010) Global biodiversity: Indicators of recent declines. *Science*, **328**, 1164–1168.
 
