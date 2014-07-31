@@ -39,6 +39,7 @@ fig_caption = local({
 
 # render pdf for Grad School final submission ----
 doc_type = 'pdf'
+environment(fig_caption)$i = 0 # reset counter
   
 # Rmd to md
 for (f in unlist(files)){ # f_rmd = 'intro.Rmd'  
@@ -78,11 +79,11 @@ system('pdflatex thesis.tex; pdflatex thesis.tex; open thesis.pdf')
 f_del = setdiff(list.files(pattern='^.*\\.(aux|lof|log|lot|out|toc|tex|md)$'), c('thesis.tex','thesis.md'))
 for (f in f_del) unlink(f)
 
-  
 
 # render word docx for track changes with committee ----
 doc_type = 'word'
-  
+environment(fig_caption)$i = 0 # reset counter
+
 # Rmd to md
 for (f_Rmd in sprintf('%s.Rmd', c('title',unlist(files)))){ # f_rmd = 'intro.Rmd'  
   knit(f_Rmd)
@@ -120,6 +121,7 @@ for (f in f_del) unlink(f)
 
 # render markdown, github flavored ----
 doc_type = 'md'
+environment(fig_caption)$i = 0 # reset counter
 
 thesis_Rmd = 'thesis.Rmd'
 if (file.exists(thesis_Rmd)) unlink(thesis_Rmd)
@@ -138,6 +140,30 @@ render(
     pandoc_args=c(
       '--bibliography', cite_bib,
       '--csl', cite_style)), quiet=F)
-# /usr/local/bin/pandoc thesis.utf8.md --to markdown_github --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash --output thesis.md --standalone --table-of-contents --toc-depth 3 --bibliography phd_thesis.bib --csl csl/global-ecology-and-biogeography.csl
+# TODO: figure captions
+
+# render html for quick view on web ----
+doc_type = 'html'
+environment(fig_caption)$i = 0 # reset counter
+
+thesis_Rmd = 'thesis.Rmd'
+if (file.exists(thesis_Rmd)) unlink(thesis_Rmd)
+for (f_Rmd in sprintf('%s.Rmd', c('title', 'abstract', files$body))){ # f='intro'
+  cat(paste(c(readLines(f_Rmd),'',''), collapse='\n'), file=thesis_Rmd, append=T)
+}
+
+# add references, single-spaced
+cat('\n\n# References\n', file=thesis_Rmd, append=T)
+
+# render
+render(
+  thesis_Rmd, output_format=html_document(
+    number_sections=T, fig_width = 7, fig_height = 5, fig_retina = 2, fig_caption = T, smart=T,
+    self_contained=F, theme='default',
+    highlight='default', mathjax='default', template='default',
+    toc=T, toc_depth=3,
+    pandoc_args=c(
+      '--bibliography', cite_bib,
+      '--csl', cite_style)), quiet=F)
 
 # TODO: see rmarkdown::includes
