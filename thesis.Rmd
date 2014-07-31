@@ -1,14 +1,3 @@
----
-title: "thesis title"
-author: "Ben Best"
-date: "July 30, 2014"
-output: 
-  md_document:
-    toc: true
-bibliography: phd_thesis.bib
-csl: csl/nature.csl
----
-
 `r title`
 draft PhD thesis by `r author`\
 at `r department`, `r school`

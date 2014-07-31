@@ -5,6 +5,7 @@ setwd('~/github/phd_thesis')
 
 # set variables ----
 doc_type   = 'pdf'
+cite_bib   = 'phd_thesis.bib'
 cite_style = 'csl/global-ecology-and-biogeography.csl' # 'csl/conservation-letters.csl' # 'csl/conservation-biology.csl'
 files          = list(
   preamble     = c('abstract', 'acknowledgements'),
@@ -58,7 +59,7 @@ cat('\\normalbaselines \n\n# References\n', file=body_md, append=T)
 for (f in c(files$preamble, 'body', files$epilogue)){ # f = 'body'
   system(paste(
       'pandoc', paste0(f, '.md'), '--chapters',
-      '--bibliography=phd_thesis.bib', paste0('--csl=', cite_style),
+      '--bibliography', cite_bib, '--csl', cite_style,
       '--from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash',
       '--latex-engine=xelatex --to latex --output', paste0(f, '.tex')))
 }
@@ -100,7 +101,7 @@ cat('\n\n# References\n', file=body_md, append=T)
 # md to docx
 system(paste(
     'pandoc', body_md, '--chapters',
-    '--bibliography=phd_thesis.bib', paste0('--csl=', cite_style),
+    '--bibliography', cite_bib, '--csl', cite_style,
     '--from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash', # -implicit_figures
     '--highlight-style tango',
     '--latex-engine=xelatex --to docx --output', 'thesis.docx', '; open thesis.docx'))
@@ -129,17 +130,14 @@ for (f_Rmd in sprintf('%s.Rmd', c('title', 'abstract', files$body))){ # f='intro
 # add references, single-spaced
 cat('\n\n# References\n', file=thesis_Rmd, append=T)
 
-# added yaml
----
-title: "thesis title"
-author: "Ben Best"
-date: "July 30, 2014"
-output: 
-  md_document:
-    toc: true
-bibliography: phd_thesis.bib
-csl: csl/nature.csl
----
-render(thesis_Rmd, output_format='md_document', quiet=F)
-# /usr/local/bin/pandoc thesis.utf8.md --to markdown_strict --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash --output thesis.md --filter /usr/local/bin/pandoc-citeproc --standalone --table-of-contents --toc-depth 3 --bibliography phd_thesis.bib 
-# pandoc --format=markdown_github
+# render
+render(
+  thesis_Rmd, output_format=md_document(
+    variant='markdown_github', 
+    toc=T, toc_depth=3, 
+    pandoc_args=c(
+      '--bibliography', cite_bib,
+      '--csl', cite_style)), quiet=F)
+# /usr/local/bin/pandoc thesis.utf8.md --to markdown_github --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash --output thesis.md --standalone --table-of-contents --toc-depth 3 --bibliography phd_thesis.bib --csl csl/global-ecology-and-biogeography.csl
+
+# TODO: see rmarkdown::includes
