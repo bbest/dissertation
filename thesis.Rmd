@@ -2,7 +2,7 @@
 draft PhD thesis by `r author`\
 at `r department`, `r school`
 
-# Abstract
+# Abstract {.unnumbered}
 
 Our ability to conserve and manage endangered species at sea is limited by our ability to predict species distributions. Herein I describe improvements on predicting distribution and abundance of species as well as decision frameworks for siting potentially harmful activities to times and places that minimize risk to the animals.
 
@@ -95,7 +95,8 @@ Military exercises require environmental impact assessment in relation to cetace
 
 I have data and much of the analysis already completed for all of the above with several collaborators. The conservation climate is ripe for application of these analysis to real world scenarios. The US Navy is responding to lawsuits by the Environmental Defense Fund over whale strandings from use of low-frequency sonar. In British Columbia, the largest oil pipeline in Canada is terminating at port Kittimat where heavy oil tankers will traffic waters rich in wildlife not too far in memory or geography from the Valdez disaster. Renewable energies are on the rise, with offshore development most recently highlighted by a Google investment of $5 billion for an offshore wind backbone in the US East coast. These marine developments are now part of a presidential mandate to address marine spatial planning in the US outlined by the Ocean Task Force. The Global Ocean Biodiversity Initiative is now in process through United Nations Convention on Biological Diversity to address pelagic conservation strategies. These projects further fit into actively funded and proposed projects in the Halpin Marine Geospatial Ecology Lab: 1) NASA funded SDSS for Integrating Ocean Observing Data to Enhance Protected Species, 2) NASA proposed Forecasting of climate change and its effect on the abundance and distribution of cetaceans using downscaled output of IPCC class earth system models, and 3) Census funded Global Ocean Biodiversity Initiative.
 
-`r a='Appendix'; ifelse(doc_type!='pdf', sprintf('# %s', a), sprintf('\\chapter*{%s}\\label{%s}\n\\addcontentsline{toc}{chapter}{%s}',a,a,a))`
+# Appendix {.unnumbered}
+<!-- a='Appendix'; ifelse(doc_type!='pdf', sprintf('# %s', a), sprintf('\\chapter*{%s}\\label{%s}\n\\addcontentsline{toc}{chapter}{%s}',a,a,a)) -->
 
 Some extra code, graphs, etc here.
 

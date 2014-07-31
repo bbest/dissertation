@@ -111,6 +111,8 @@ I have data and much of the analysis already completed for all of the above with
 Appendix
 ========
 
+<!-- a='Appendix'; ifelse(doc_type!='pdf', sprintf('# %s', a), sprintf('\\chapter*{%s}\\label{%s}\n\\addcontentsline{toc}{chapter}{%s}',a,a,a)) -->
+
 Some extra code, graphs, etc here.
 
 References

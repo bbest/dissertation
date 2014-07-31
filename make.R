@@ -5,7 +5,9 @@
 #    - equations don't show
 #  - html: 
 #
-# TODO: see rmarkdown::includes
+# TODO:
+#  - add last modified datestamp
+#  - see rmarkdown::includes
 #  - md:
 #     - update fig_caption() to add caption for md
 #     - add links to toc anchors to headers and links to toc using tolower hyphenated heading
@@ -24,7 +26,7 @@ files          = list(
   preamble     = c('abstract', 'acknowledgements'),
   body         = c('intro','robust-sdm','decision-map','range-map','conservation-routing','seasonal-migration','conclusion', 'appendix'),
   epilogue     = c('biography'))
-files_keep = c('thesis.tex','thesis.md','README.Rmd')
+files_keep = c('thesis.tex','thesis.md','README.md')
 dir_box    = '~/Dropbox/phd_thesis'
 
 title      = 'Marine Species Distribution Modeling and Spatial Decision Frameworks'
@@ -77,13 +79,6 @@ for (f in c(files$preamble, 'body', files$epilogue)){ # f = 'body'
       '--bibliography', cite_bib, '--csl', cite_style,
       '--from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash',
       '--latex-engine=xelatex --to latex --output', paste0(f, '.tex')))
-}
-
-# turn off chapter numbering outside body
-for (f_tex in sprintf('%s.tex', c(files$preamble, files$epilogue))){ # f_tex = 'abstract.tex'
-  a = readLines(f_tex)
-  b = sub('\\\\chapter\\{(.*)\\}\\\\label\\{(.*)\\}', '\\\\chapter*\\{\\1}\\\\label\\{\\2}\n\\\\addcontentsline{toc}{chapter}{\\1}', a)
-  writeLines(b, f_tex)
 }
 
 # note: any errors hang RStudio, so better to run from Terminal or with Complile PDF button in RStudio with thesis.tex open

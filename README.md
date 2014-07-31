@@ -8,6 +8,10 @@ Here's the draft thesis rendered in various formats:
 - [docx](https://www.dropbox.com/s/xzgsxaghxkrj5e6/thesis.docx)
 - [html](https://www.dropbox.com/s/jml6ybe4qa1x14k/thesis.html)
 
+## Sources
+
+- []
+
 ## Knitting the document
 
 This thesis is being knitted into a scientifically reproducible document using the following techniques:

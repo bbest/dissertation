@@ -1,3 +1,4 @@
-`r a='Appendix'; ifelse(doc_type!='pdf', sprintf('# %s', a), sprintf('\\chapter*{%s}\\label{%s}\n\\addcontentsline{toc}{chapter}{%s}',a,a,a))`
+# Appendix {-}
+<!-- a='Appendix'; ifelse(doc_type!='pdf', sprintf('# %s', a), sprintf('\\chapter*{%s}\\label{%s}\n\\addcontentsline{toc}{chapter}{%s}',a,a,a)) -->
 
 Some extra code, graphs, etc here.
