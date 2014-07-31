@@ -4,7 +4,7 @@ This repository is for drafting my PhD thesis at Duke University.
 
 Here's the draft thesis rendered in various formats: for different purposes.
 
-- [**html**](https://www.dropbox.com/s/1qzt1fvvunyz765/thesis.html): quick web view
+- [**html**](https://www.dropbox.com/s/1qzt1fvvunyz765/thesis.html): quick web view (reference links via doi)
 - [**docx**](https://www.dropbox.com/s/a0pren0nwn5zb6n/thesis.docx): track changes with committee
 - [**pdf**](https://www.dropbox.com/s/9gp6cot4hkpz74a/thesis.pdf): final grad school submission
 
@@ -36,11 +36,11 @@ This thesis is being knitted into a scientifically reproducible document using t
   
     1. Export: "Default Output Format" to `Pandoc citation`
     
-    1. Better Bib(La)tex: "Citation key format" to `[auth:lower]_[veryshorttitle:lower]_[year]
+    1. Better Bib(La)tex: "Citation key format" to `[auth:lower]_[veryshorttitle:lower]_[year]`
     
   - Process:
   
-    1. Place all references used by dissertation into its own dedicated collection (mine called "phd_dissertation").
+    1. Place all references used by dissertation into its own dedicated collection (eg "dissertation").
     
     1. Drag and drop references from this collection into the document editor (I like RStudio or [Sublime](http://www.sublimetext.com)). This will add a text citation, eg `@worm_impacts_2006`.
     
@@ -54,10 +54,7 @@ This thesis is being knitted into a scientifically reproducible document using t
       
     1. Repeat as you write. For more, see [**pandoc citations**](http://johnmacfarlane.net/pandoc/demo/example19/Citations.html).
   
-Aside: It is possible to your entire Zotero library using [AutoZotBib](http://www.rtwilson.com/academic/autozotbib), but my library is too large to practically use this.
-  
-
-  - Zotero Preferences >  and > `. Then .
+_Aside_. It is possible to your entire Zotero library using [AutoZotBib](http://www.rtwilson.com/academic/autozotbib), but my library is too large to practically use this.
 
 
 
