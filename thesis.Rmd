@@ -20,7 +20,7 @@ Over the next 5 chapters I propose methods for addressing these questions within
 
 ## Notes
 
-- **Title**:
+- Titles to consider:
   - Data to Decisions: Applying Dynamic Species Distribution Models to Cetacean Conservation Management
   - Marine Spatial Planning for Megafauna in a Dynamic Ocean: Methods and Applications for the Future
   - Marine Species Distribution Modeling and Spatial Decision Frameworks

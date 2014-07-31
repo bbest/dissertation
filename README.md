@@ -1,13 +1,12 @@
-thesis
-======
+# phd_thesis
 
-PhD thesis at Duke University.
+This repository is for drafting my PhD thesis at Duke University.
 
-See the rendered thesis:
+Here's the draft thesis rendered in various formats:
 
-- [html](https://www.dropbox.com/s/2d1ncyu3p9ho00b/phd_thesis.html)
-- [pdf](https://www.dropbox.com/s/xvpiw81izl6beiq/phd_thesis.pdf)
-- [docx](https://www.dropbox.com/s/k2yl5tt2gezvdve/phd_thesis.docx)
+- [pdf](https://www.dropbox.com/s/k1g47p1jejw8jk1/thesis.pdf)
+- [docx](https://www.dropbox.com/s/xzgsxaghxkrj5e6/thesis.docx)
+- [html](https://www.dropbox.com/s/jml6ybe4qa1x14k/thesis.html)
 
 ## Knitting the document
 

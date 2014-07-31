@@ -1,3 +1,16 @@
+# compile thesis into:
+#  - pdf:
+#  - word:
+#  - md:
+#    - equations don't show
+#  - html: 
+#
+# TODO: see rmarkdown::includes
+#  - md:
+#     - update fig_caption() to add caption for md
+#     - add links to toc anchors to headers and links to toc using tolower hyphenated heading
+#  - 
+
 library(knitr)
 library(rmarkdown)
 
@@ -11,6 +24,8 @@ files          = list(
   preamble     = c('abstract', 'acknowledgements'),
   body         = c('intro','robust-sdm','decision-map','range-map','conservation-routing','seasonal-migration','conclusion', 'appendix'),
   epilogue     = c('biography'))
+files_keep = c('thesis.tex','thesis.md','README.Rmd')
+dir_box    = '~/Dropbox/phd_thesis'
 
 title      = 'Marine Species Distribution Modeling and Spatial Decision Frameworks'
 author     = 'Benjamin D. Best'
@@ -72,12 +87,18 @@ for (f_tex in sprintf('%s.tex', c(files$preamble, files$epilogue))){ # f_tex = '
 }
 
 # note: any errors hang RStudio, so better to run from Terminal or with Complile PDF button in RStudio with thesis.tex open
-system('pdflatex thesis.tex; pdflatex thesis.tex; open thesis.pdf')
+system('pdflatex thesis.tex; pdflatex thesis.tex')
+
+# move to dropbox and open
+f = 'thesis.pdf'
+p = file.path(dir_box, f)
+file.copy(f, p, overwrite=T)
+unlink(f)
+system(paste('open', p))
 
 # clean up
-f_del = setdiff(list.files(pattern='^.*\\.(aux|lof|log|lot|out|toc|tex|md)$'), c('thesis.tex','thesis.md'))
+f_del = setdiff(list.files(pattern='^.*\\.(aux|lof|log|lot|out|toc|tex|md)$'), files_keep)
 for (f in f_del) unlink(f)
-
 
 # render word docx for track changes with committee ----
 doc_type = 'word'
@@ -106,6 +127,13 @@ system(paste(
     '--highlight-style tango',
     '--latex-engine=xelatex --to docx --output', 'thesis.docx', '; open thesis.docx'))
 
+# move to dropbox and open
+f = 'thesis.docx'
+p = file.path(dir_box, f)
+file.copy(f, p, overwrite=T)
+unlink(f)
+system(paste('open', p))
+
 # manual post-hoc
 cat('now manually:
     - style Title and Subtitle, center subtitle
@@ -114,7 +142,7 @@ cat('now manually:
     - View > Sidebar > Document Map Pane')
 
 # clean up
-f_del = setdiff(list.files(pattern=glob2rx('*.md')), 'thesis.md')
+f_del = setdiff(list.files(pattern=glob2rx('*.md')), files_keep)
 for (f in f_del) unlink(f)
   
 
@@ -158,12 +186,16 @@ cat('\n\n# References\n', file=thesis_Rmd, append=T)
 render(
   thesis_Rmd, output_format=html_document(
     number_sections=T, fig_width = 7, fig_height = 5, fig_retina = 2, fig_caption = T, smart=T,
-    self_contained=F, theme='default',
+    self_contained=T, theme='default',
     highlight='default', mathjax='default', template='default',
     toc=T, toc_depth=3,
     pandoc_args=c(
       '--bibliography', cite_bib,
       '--csl', cite_style)), quiet=F)
-system('open thesis.html')
 
-# TODO: see rmarkdown::includes
+# move to dropbox and open
+f = 'thesis.html'
+p = file.path(dir_box, f)
+file.copy(f, p, overwrite=T)
+unlink(f)
+system(paste('open', p))
