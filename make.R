@@ -24,7 +24,6 @@ school     = 'Duke University'
 fig_caption = local({
   if (!exists('doc_type')) stop("First set doc_type variable doc_type='pdf|md|html|docx' before rendering.")
   i = 0
-  browser()
   function(x) {
     i <<- i + 1
     if (doc_type=='pdf'){
@@ -165,5 +164,6 @@ render(
     pandoc_args=c(
       '--bibliography', cite_bib,
       '--csl', cite_style)), quiet=F)
+system('open thesis.html')
 
 # TODO: see rmarkdown::includes
