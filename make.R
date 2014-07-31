@@ -22,9 +22,9 @@ doc_type    = 'pdf'
 cite_bib    = 'phd_thesis.bib'
 cite_style  = 'csl/global-ecology-and-biogeography.csl' # 'csl/conservation-letters.csl' # 'csl/conservation-biology.csl'
 files          = list(
-  preamble     = c('abstract', 'acknowledgements'),
-  body         = c('intro','ch_sdm','ch_siting','ch_range','ch_routing','ch_migration','conclusion', 'appendix'),
-  epilogue     = c('biography'))
+  preamble     = c('a_abstract', 'a_acknowledgements'),
+  body         = c('a_intro','c_sdm','c_siting','c_range','c_routing','c_migration','x_conclusion', 'x_appendix'),
+  epilogue     = c('x_biography'))
 files_keep  = c('thesis.tex','thesis.md','README.md')
 dir_dropbox = '~/Dropbox/phd_thesis'
 
@@ -63,7 +63,7 @@ mv_open = function(f, dir=dir_dropbox, open_f=T){
 
 thesis_Rmd = 'thesis.Rmd'
 if (file.exists(thesis_Rmd)) unlink(thesis_Rmd)
-for (f_Rmd in sprintf('%s.Rmd', c('title', 'abstract', files$body))){ # f='intro'
+for (f_Rmd in sprintf('%s.Rmd', c('a_title', 'a_abstract', files$body))){ # f='intro'
   cat(paste(c(readLines(f_Rmd),'',''), collapse='\n'), file=thesis_Rmd, append=T)
 }
 

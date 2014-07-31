@@ -10,6 +10,8 @@ Here's the draft thesis rendered in various formats: for different purposes.
 
 The outputs are binary (vs text, including HTML which has embedded images and javascript), so the files were placed into Dropbox for download. The [Rmarkdown](http://rmarkdown.rstudio.com) files here are collated into a single [thesis.Rmd](./thesis.Rmd), which is most easily viewed through Github as markdown [thesis.md](./thesis.md). The pdf takes special handling to conform to the Duke Graduate School. See [make.R](make.R) for the details on how these individual Rmarkdown files are collated and rendered into these various forms.
 
+Prefixes to Rmarkdown files (\*.Rmd) are simple letters for sorting front matter (a\_\*), core chapters (c\_\*) and back matter (x\_\*).
+
 ## Thesis Templates
 
 - [UC Berkeley](https://github.com/stevenpollack/ucbthesis): uses Rmarkdown templates
