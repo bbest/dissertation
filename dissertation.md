@@ -14,7 +14,7 @@
 Marine Species Distribution Modeling and Spatial Decision Frameworks
 Draft PhD thesis by Benjamin D. Best
 in Marine Science and Conservation, Duke University
-Last modified: 2014-07-30
+Last modified: 2014-07-31
 
 Abstract
 ========
@@ -24,9 +24,9 @@ Our ability to conserve and manage endangered species at sea is limited by our a
 Introduction
 ============
 
-Modern conservation of marine megafauna is dependent upon prioritizing areas within the context of a changing climate and increasing array of human activities. Concurrent with a rise in conflicting human uses has been a rapid decline in overall marine biodiversity and ecosystem services (Worm *et al.*, 2006, 2009; Halpern *et al.*, 2008b; Butchart *et al.*, 2010). In response, recent calls for holistic management practices, such as ecosystem-based management and marine spatial planning, are encouraging multi-species, multi-sector approaches (Ocean Policy, 2004; Crowder *et al.*, 2006; Crowder & Norse, 2008; Douvere, 2008; Halpern *et al.*, 2008a; Dahl *et al.*, 2009; Foley *et al.*, 2010; Lubchenco & Sutley, 2010). For these applications I’ll be focusing on marine spatial planning of cetaceans, but methods will be transferable to other marine megafauna. In the US, marine mammals are legally protected through the Marine Mammal Protection Act and 22 are listed as threatened or endangered so are covered by The Endangered Species Act. Human activities that pose threats include: fishing bycatch or prey depletion (Laist et al. 2001), ship strikes (Weilgart 2007), anthropogenic noise (O’Shea and Brownell Jr. 1994; Aguilar et al. 2002), pollution of oil or bioaccumulating contaminants (Learmonth et al. 2006; Alter et al. 2010), and global climate change (Dolman et al. 2009). Relocating potentially harmful human activities away from known cetacean distributions is generally the safest and simplest way to minimize risk (Redfern et al. 2006).
+Modern conservation of marine megafauna is dependent upon prioritizing areas within the context of a changing climate and increasing array of human activities. Concurrent with a rise in conflicting human uses has been a rapid decline in overall marine biodiversity and ecosystem services (Butchart et al., 2010; B. S. Halpern et al., 2008; Worm et al., 2006, 2009). In response, recent calls for holistic management practices, such as ecosystem-based management and marine spatial planning, are encouraging multi-species, multi-sector approaches (L. B. Crowder et al., 2006; L. Crowder & Norse, 2008; Dahl, Ehler, & Douvere, 2009; F. Douvere, 2008; Foley et al., 2010; B. S. Halpern, McLeod, Rosenberg, & Crowder, 2008; Lubchenco & Sutley, 2010; US Commission on Ocean Policy, 2004). For these applications I’ll be focusing on marine spatial planning of cetaceans, but methods will be transferable to other marine megafauna. In the US, marine mammals are legally protected through the Marine Mammal Protection Act and 22 are listed as threatened or endangered so are covered by The Endangered Species Act. Human activities that pose threats include: fishing bycatch or prey depletion (Laist et al. 2001), ship strikes (Weilgart 2007), anthropogenic noise (O’Shea and Brownell Jr. 1994; Aguilar et al. 2002), pollution of oil or bioaccumulating contaminants (Learmonth et al. 2006; Alter et al. 2010), and global climate change (Dolman et al. 2009). Relocating potentially harmful human activities away from known cetacean distributions is generally the safest and simplest way to minimize risk (Redfern et al. 2006).
 
-![Figure 1. Example of complex management from Crowder et al. (2006).](fig/MSP-SoCal_Crowder2006-Science.png)
+![Example of complex management from L. B. Crowder et al. (2006).)](fig/MSP-SoCal_Crowder2006-Science.png)
 
 The current state of marine spatial planning begs several broad questions of decision makers and decision support scientists. How do you optimize use of ocean resources to provide long-term ecosystem services in a sustainable manner while minimizing impacts on endangered species? How much risk are you willing to accept? What are the tradeoffs between conservation value and economic impact? How do you handle poor data availability within marine systems? How do you manage the dynamic nature of the environment with species distributions? How do you handle uncertainty while making spatial decisions? Which human uses require custom applications?
 
@@ -121,26 +121,26 @@ References
 
 <!-- adding to show up in toc -->
 
-Butchart, S.H.M., Walpole, M., Collen, B., Strien, A. van, Scharlemann, J.P.W., Almond, R.E.A., Baillie, J.E.M., Bomhard, B., Brown, C., Bruno, J., Carpenter, K.E., Carr, G.M., Chanson, J., Chenery, A.M., Csirke, J., Davidson, N.C., Dentener, F., Foster, M., Galli, A., Galloway, J.N., Genovesi, P., Gregory, R.D., Hockings, M., Kapos, V., Lamarque, J.-F., Leverington, F., Loh, J., McGeoch, M.A., McRae, L., Minasyan, A., Morcillo, M.H., Oldfield, T.E.E., Pauly, D., Quader, S., Revenga, C., Sauer, J.R., Skolnik, B., Spear, D., Stanwell-Smith, D., Stuart, S.N., Symes, A., Tierney, M., Tyrrell, T.D., Vie, J.-C. & Watson, R. (2010) Global biodiversity: Indicators of recent declines. *Science*, **328**, 1164–1168.
+Butchart, S. H. M., Walpole, M., Collen, B., Strien, A. van, Scharlemann, J. P. W., Almond, R. E. A., … Watson, R. (2010). Global Biodiversity: Indicators of Recent Declines. *Science*, *328*(5982), 1164–1168. doi:[10.1126/science.1187512](http://dx.doi.org/10.1126/science.1187512)
 
-Crowder, L. & Norse, E. (2008) Essential ecological insights for marine ecosystem-based management and marine spatial planning. *Marine Policy*, **32**, 772–778.
+Crowder, L. B., Osherenko, G., Young, O. R., Airame, S., Norse, E. A., Baron, N., … Wilson, J. A. (2006). Resolving Mismatches in U.S. Ocean Governance. *Science*, *313*(5787), 617–618. doi:[10.1126/science.1129706](http://dx.doi.org/10.1126/science.1129706)
 
-Crowder, L.B., Osherenko, G., Young, O.R., Airame, S., Norse, E.A., Baron, N., Day, J.C., Douvere, F., Ehler, C.N., Halpern, B.S., Langdon, S.J., McLeod, K.L., Ogden, J.C., Peach, R.E., Rosenberg, A.A. & Wilson, J.A. (2006) Resolving mismatches in u.s. ocean governance. *Science*, **313**, 617–618.
+Crowder, L., & Norse, E. (2008). Essential ecological insights for marine ecosystem-based management and marine spatial planning. *Marine Policy*, *32*(5), 772–778. doi:[10.1016/j.marpol.2008.03.012](http://dx.doi.org/10.1016/j.marpol.2008.03.012)
 
-Dahl, R., Ehler, C. & Douvere, F. (2009) Marine spatial planning, a step-by-step approach toward ecosystem-based management. *IOC Manuals and Guides*, **53**.
+Dahl, R., Ehler, C., & Douvere, F. (2009). Marine Spatial Planning, A Step-by-Step Approach toward Ecosystem-based Management. *IOC Manuals and Guides*, *53*.
 
-Douvere, F. (2008) The importance of marine spatial planning in advancing ecosystem-based sea use management. *Marine Policy*, **32**, 762–771.
+Douvere, F. (2008). The importance of marine spatial planning in advancing ecosystem-based sea use management. *Marine Policy*, *32*(5), 762–771. doi:[10.1016/j.marpol.2008.03.021](http://dx.doi.org/10.1016/j.marpol.2008.03.021)
 
-Foley, M.M., Halpern, B.S., Micheli, F., Armsby, M.H., Caldwell, M.R., Crain, C.M., Prahler, E., Rohr, N., Sivas, D., Beck, M.W., Carr, M.H., Crowder, L.B., Emmett Duffy, J., Hacker, S.D., McLeod, K.L., Palumbi, S.R., Peterson, C.H., Regan, H.M., Ruckelshaus, M.H., Sandifer, P.A. & Steneck, R.S. (2010) Guiding ecological principles for marine spatial planning. *Marine Policy*, **34**, 955–966.
+Foley, M. M., Halpern, B. S., Micheli, F., Armsby, M. H., Caldwell, M. R., Crain, C. M., … Steneck, R. S. (2010). Guiding ecological principles for marine spatial planning. *Marine Policy*, *34*(5), 955–966. doi:[10.1016/j.marpol.2010.02.001](http://dx.doi.org/10.1016/j.marpol.2010.02.001)
 
-Halpern, B.S., McLeod, K.L., Rosenberg, A.A. & Crowder, L.B. (2008a) Managing for cumulative impacts in ecosystem-based management through ocean zoning. *Ocean & Coastal Management*, **51**, 203–211.
+Halpern, B. S., McLeod, K. L., Rosenberg, A. A., & Crowder, L. B. (2008). Managing for cumulative impacts in ecosystem-based management through ocean zoning. *Ocean & Coastal Management*, *51*(3), 203–211. doi:[10.1016/j.ocecoaman.2007.08.002](http://dx.doi.org/10.1016/j.ocecoaman.2007.08.002)
 
-Halpern, B.S., Walbridge, S., Selkoe, K.A., Kappel, C.V., Micheli, F., D’Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R. & Watson, R. (2008b) A global map of human impact on marine ecosystems. *Science*, **319**, 948–952.
+Halpern, B. S., Walbridge, S., Selkoe, K. A., Kappel, C. V., Micheli, F., D’Agrosa, C., … Watson, R. (2008). A Global Map of Human Impact on Marine Ecosystems. *Science*, *319*(5865), 948–952. doi:[10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)
 
-Lubchenco, J. & Sutley, N. (2010) Proposed u.s. policy for ocean, coast, and great lakes stewardship. *Science*, **328**, 1485–1486.
+Lubchenco, J., & Sutley, N. (2010). Proposed U.S. Policy for Ocean, Coast, and Great Lakes Stewardship. *Science*, *328*(5985), 1485–1486. Retrieved from <http://www.sciencemag.org/content/328/5985/1485.short>
 
-Ocean Policy, U.C. on (2004) *An ocean blueprint for the 21st century, final report*,
+US Commission on Ocean Policy. (2004). *An Ocean Blueprint for the 21st Century, Final Report*.
 
-Worm, B., Barbier, E.B., Beaumont, N., Duffy, J.E., Folke, C., Halpern, B.S., Jackson, J.B.C., Lotze, H.K., Micheli, F., Palumbi, S.R., Sala, E., Selkoe, K.A., Stachowicz, J.J. & Watson, R. (2006) Impacts of biodiversity loss on ocean ecosystem services. *Science*, **314**, 787–790.
+Worm, B., Barbier, E. B., Beaumont, N., Duffy, J. E., Folke, C., Halpern, B. S., … Watson, R. (2006). Impacts of Biodiversity Loss on Ocean Ecosystem Services. *Science*, *314*(5800), 787–790. doi:[10.1126/science.1132294](http://dx.doi.org/10.1126/science.1132294)
 
-Worm, B., Hilborn, R., Baum, J.K., Branch, T.A., Collie, J.S., Costello, C., Fogarty, M.J., Fulton, E.A., Hutchings, J.A., Jennings, S., Jensen, O.P., Lotze, H.K., Mace, P.M., McClanahan, T.R., Minto, C., Palumbi, S.R., Parma, A.M., Ricard, D., Rosenberg, A.A., Watson, R. & Zeller, D. (2009) Rebuilding global fisheries. *Science*, **325**, 578–585.
+Worm, B., Hilborn, R., Baum, J. K., Branch, T. A., Collie, J. S., Costello, C., … Zeller, D. (2009). Rebuilding Global Fisheries. *Science*, *325*(5940), 578–585. doi:[10.1126/science.1173146](http://dx.doi.org/10.1126/science.1173146)

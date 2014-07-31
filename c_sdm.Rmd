@@ -1,3 +1,19 @@
+---
+title: "sdm"
+author: "Ben Best"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    pandoc_args: [
+      "--bibliography", "dissertation.bib",
+      "--csl", "csl/apa-single-spaced.csl"
+    ]
+---
+```{r setup_sdm, echo=FALSE, include=TRUE}
+# can't seem to put this above the YAML to be able to use variables defined in make_config.R and still generate References
+source('make_config.R')
+```
+
 # Robust and Dynamic Distribution Models
 
 Species distribution modeling literature and available techniques are vast (Elith and Leathwick 2009). Predictive (vs explanatory) techniques are broadly divisible as regression, such as generalized linear model (GLM) or generalized additive model (GAM), or as machine learning, such as multiple adaptive regression splines (MARS), boosted regression trees (BRT), or maximum entropy (Maxent). MARS can uniquely produce a multi-species response allowing for pooling of data, especially helpful for rare species (Leathwick et al. 2006; Nally et al. 2008; Heinänen and von Numers 2009). Multiple models can be combined as an ensemble (Araujo and New 2007). Output can predict likelihood of presence (i.e. habitat) or density (i.e. abundance per unit area). Some habitat modeling techniques (e.g. Maxent) require only presence data, whereas others require absence or pseudo-absence records. Density models require more information on group sizes and parameters for detectability. Density predictions enable the calculation of potential take, often required for environmental impact assessment. Habitat requires less data and may be more appropriate for determining go/no-go areas. Habitat has been correlated to density for cetaceans in Scotland waters, but inconsistently (Hall et al. 2010). Issues such as autocorrelation (Dormann et al. 2007) and sampling bias (Phillips et al. 2009) need to be addressed with each set of data.

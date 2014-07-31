@@ -4,11 +4,11 @@ This repository is for drafting my PhD thesis at Duke University.
 
 Here's the draft thesis rendered in various formats: for different purposes.
 
-- [**html**](https://www.dropbox.com/s/jml6ybe4qa1x14k/thesis.html): quick web view
-- [**docx**](https://www.dropbox.com/s/xzgsxaghxkrj5e6/thesis.docx): track changes with committee
-- [**pdf**](https://www.dropbox.com/s/k1g47p1jejw8jk1/thesis.pdf): final grad school submission
+- [**html**](https://www.dropbox.com/s/1qzt1fvvunyz765/thesis.html): quick web view
+- [**docx**](https://www.dropbox.com/s/a0pren0nwn5zb6n/thesis.docx): track changes with committee
+- [**pdf**](https://www.dropbox.com/s/9gp6cot4hkpz74a/thesis.pdf): final grad school submission
 
-The outputs are binary (vs text, including HTML which has embedded images and javascript), so the files were placed into Dropbox for download. The [Rmarkdown](http://rmarkdown.rstudio.com) files here are collated into a single [thesis.Rmd](./thesis.Rmd), which is most easily viewed through Github as markdown [thesis.md](./thesis.md). The pdf takes special handling to conform to the Duke Graduate School. See [make.R](make.R) for the details on how these individual Rmarkdown files are collated and rendered into these various forms.
+The outputs are binary (including HTML which has embedded images and javascript), so the files were placed into Dropbox for download (since Github more suitable for versioned text files). The [Rmarkdown](http://rmarkdown.rstudio.com) files here are collated into a single [thesis.Rmd](./thesis.Rmd), which is most easily viewed through Github as markdown [thesis.md](./thesis.md). The pdf takes special handling to conform to the Duke Graduate School. See [./make.R](make.R) for the details on how these individual Rmarkdown files are collated and rendered into these various forms.
 
 Prefixes to Rmarkdown files (\*.Rmd) are simple letters for sorting front matter (a\_\*), core chapters (c\_\*) and back matter (x\_\*).
 
@@ -16,14 +16,48 @@ Prefixes to Rmarkdown files (\*.Rmd) are simple letters for sorting front matter
 
 - [UC Berkeley](https://github.com/stevenpollack/ucbthesis): uses Rmarkdown templates
 - [Duke thesis](http://gradschool.duke.edu/academics/theses/): latex formatting specific to Duke
+- [thesis-markdown-pandoc](https://github.com/chiakaivalya/thesis-markdown-pandoc): pandoc commands
 
 ## Knitting the document
 
-This thesis is being knitted into a scientifically reproducible document using the following techniques:
+This thesis is being knitted into a scientifically reproducible document using the following free software:
 
-- **markdown**. [Rmarkdown](http://rmarkdown.rstudio.com).
+- [**RStudio**](http://www.rstudio.com/): excellent R integrated development environment for writing code and text.
 
-- **citations**. Zotero and pandoc. Use better bibtex Zotero extension to enable drag-and-drop of citation into document in Pandoc format.
+- [**Rmarkdown**](http://rmarkdown.rstudio.com): verstatile "literate programming" way to weave chunks of R code with formatted text (markdown), well supported in RStudio.
+
+- [**Pandoc**](johnmacfarlane.net/pandoc): the standalone conversion engine used by the rmarkdown package.
+
+- [**Zotero**](https://www.zotero.org): excellent free bibliographic management software, like Endnote. With the [BetterBibtex](https://github.com/ZotPlus/zotero-better-bibtex) extension, I can simply drag and drop from a Zotero collection to get the inline citation and pandoc will later generate the full bibliography at the end of the document.  To get this to work:
+
+  - Install [Zotero Better Bibtex](https://github.com/ZotPlus/zotero-better-bibtex)
+  
+  - In Zotero Preferences, set:
+  
+    1. Export: "Default Output Format" to `Pandoc citation`
+    
+    1. Better Bib(La)tex: "Citation key format" to `[auth:lower]_[veryshorttitle:lower]_[year]
+    
+  - Process:
+  
+    1. Place all references used by dissertation into its own dedicated collection (mine called "phd_dissertation").
+    
+    1. Drag and drop references from this collection into the document editor (I like RStudio or [Sublime](http://www.sublimetext.com)). This will add a text citation, eg `@worm_impacts_2006`.
+    
+    1. Right-click on collection > Export Collection and choose `Better BibTex` and export to `dissertation.bib` file (which is assigned to `cite_bib` variable in make.R).
+
+    1. You can get a quick formatted view of the document as you write with 'Knit HTML' button (or Ctrl+Shift+Y of [RStudio shortcuts](https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts)). If the metadata at the top of the document includes the following, it will also render References at the bottom. (Note that the *.html files are ignored by git in [.gitignore](./.gitignore).):
+    
+    
+    
+    1. Run [./make.R](make.R) to generate collated document in all formats.
+      
+    1. Repeat as you write. For more, see [**pandoc citations**](http://johnmacfarlane.net/pandoc/demo/example19/Citations.html).
+  
+Aside: It is possible to your entire Zotero library using [AutoZotBib](http://www.rtwilson.com/academic/autozotbib), but my library is too large to practically use this.
+  
+
+  - Zotero Preferences >  and > `. Then .
 
 
 
