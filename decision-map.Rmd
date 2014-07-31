@@ -1,16 +1,5 @@
----
-title: "Decision Mapping"
-author: "Ben Best (bbest@nceas.ucsb.edu)"
-date: July 23, 2014
-bibliography: phd_thesis.bib
-csl: ecology.csl
-output:
-  html_document:
-    toc: true
-    fig_caption: true
----
-
 # 2. Decision Mapping
+
 Often in ecology our predictive models yield very uncertain estimates. Incorporating this uncertainty into the decision-making process is a challenge. Typically this error is never used in the planning process, just the mean prediction surface or a thresholded binary map based on cross-validation. Areas exhibiting a low mean prediction but high uncertainty could still be too risky for some human activities. Conversely, habitat predicted with high confidence is presumably riskier than those with less.
 
 An elegant solution for incorporating risk into decision making is to use a loss function (Ellison 1996, Taylor et al. 1996, Wade 2000). For different decision outcomes, loss functions multiply a loss factor over the integrated probability for the parameter of interest. The recommended decision is then the one that minimizes the loss. For instance, in order to decide whether to conduct an activity in an area which may be harmful to a species that has some probability of being present, two loss functions could be constructed reflecting a decision to: 1) “go” or 2) “no-go.”  Each function is multiplied by the probabilities of each cell resulting in two surfaces representing the loss for each decision. The loss function for the “go” decision would reflect the loss associated with negatively impacting the species if present and conducting the activity, whereas the “no-go” loss function represents the opportunity cost for not conducting the activity if the species is not likely to be present. In its simplest form, these decisions could be represented as a linear or step function. Applying this function over the entire study area results in a loss surface for each decision rule set. By determining the decision yielding the minimal loss per pixel, a decision map is constructed which shows the best decision spatially which minimizes loss. This represents the first known instance of risk loss function applied spatially to conservation science.
@@ -20,6 +9,3 @@ An elegant solution for incorporating risk into decision making is to use a loss
 ```{r simulate, eval=FALSE}
 install.packages(c('mrds','Distance','dsm','DSsim','mads','DSpat'))
 ```
-
-
-## References

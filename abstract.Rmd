@@ -1,15 +1,3 @@
----
-title: "Abstract"
-author: "Ben Best (bbest@nceas.ucsb.edu)"
-date: July 23, 2014
-bibliography: phd_thesis.bib
-csl: nature.csl
-output:
-  html_document:
-    toc: true
-    fig_caption: true
----
-
 # Abstract
 
 Our ability to conserve and manage endangered species at sea is limited by our ability to predict species distributions. Herein I describe improvements on predicting distribution and abundance of species as well as decision frameworks for siting potentially harmful activities to times and places that minimize risk to the animals.
