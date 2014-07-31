@@ -1,15 +1,3 @@
----
-title: "Appendix"
-author: "Ben Best (bbest@nceas.ucsb.edu)"
-date: July 23, 2014
-bibliography: phd_thesis.bib
-csl: nature.csl
-output:
-  html_document:
-  toc: true
-fig_caption: true
----
-  
-# Appendix
+`r a='Appendix'; ifelse(doc_type!='pdf', sprintf('# %s', a), sprintf('\\chapter*{%s}\\label{%s}\n\\addcontentsline{toc}{chapter}{%s}',a,a,a))`
 
 Some extra code, graphs, etc here.

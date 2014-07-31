@@ -1,0 +1,3 @@
+# Biography
+
+Ben Best is a Senior Analyst for the Ocean Health Index, a research project housed at the National Center for Ecological Analysis and Synthesis. Ben is also completing a PhD at Duke University in the Marine Geospatial Ecology Lab. He has worked on Marine Geospatial Ecology Tools, OBIS-SEAMAP marine animal observation geoportal, Census of Marine Life Map & Viz, and species distribution modeling of cetaceans (SERDP, Cetaceans & Sound Mapping).

@@ -1,0 +1,308 @@
+\documentclass[PhD]{dukedissertation}
+%\documentclass[economy,twoside,bind]{dukedissertation}
+% Use the second for a single-spaced copy suitable for duplex printing
+% and binding.
+
+% Other useful options (there are more options documented in Chapter 2):
+%  * draft -- don't actually include images, print a black bar on overful
+%             hboxes
+%  * MS    -- Format for a Master's Thesis.  No UMI abstract page, some 
+%             textual changes to title page.  
+
+% Useful packages for dissertation writing:
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{color}
+\usepackage{bm}
+\usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage{mathabx}
+\usepackage{multirow}
+\usepackage{setspace}
+% \usepackage{cite}  % If you include this, hyperlink cites will
+                     % break.  It's nice to use this package if your bibstyle
+  						% sorts entries by order-of-use, rather than
+							% alphabetically (as plain does).
+							
+%Theorem, Lemma, etc. environments
+\newtheorem{theorem}{Theorem}%[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{result}[theorem]{Result}
+
+%-----------------------------------------------------------------------------%
+% HYPERREF: plain black hypertext references for ref's and cite's.
+%-----------------------------------------------------------------------------%
+% \usepackage[pdftex, pdfusetitle, plainpages=false,
+\usepackage[pdfusetitle, plainpages=false, 
+  			letterpaper, bookmarks, bookmarksnumbered,
+				colorlinks, linkcolor=black, citecolor=black,
+	         filecolor=black, urlcolor=black]
+				{hyperref}
+
+% Personal commands and abbreviations.
+%Define and personal commands here
+
+%-----------------------------------------------------------------------------%
+% extra pandoc packages from default.tex
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[utf8]{inputenc}
+% $if(euro)$
+%   \usepackage{eurosym}
+% $endif$
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+    \usepackage{xltxtra,xunicode}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+% $if(mainfont)$
+%     \setmainfont{$mainfont$}
+% $endif$
+% $if(sansfont)$
+%     \setsansfont{$sansfont$}
+% $endif$
+% $if(monofont)$
+%     \setmonofont[Mapping=tex-ansi]{$monofont$}
+% $endif$
+% $if(mathfont)$
+%     \setmathfont(Digits,Latin,Greek){$mathfont$}
+% $endif$
+\fi
+% use microtype if available
+% \IfFileExists{microtype.sty}{\usepackage{microtype}}{}
+% $if(geometry)$
+% \usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
+% $endif$
+% $if(natbib)$
+% \usepackage{natbib}
+% \bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
+% $endif$
+% $if(biblatex)$
+% \usepackage{biblatex}
+% $if(biblio-files)$
+% \bibliography{$biblio-files$}
+% $endif$
+% $endif$
+% $if(listings)$
+\usepackage{listings}
+% $endif$
+% $if(lhs)$
+\lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}
+% $endif$
+% $if(highlighting-macros)$
+% $highlighting-macros$
+% $endif$
+% $if(verbatim-in-note)$
+\usepackage{fancyvrb}
+% $endif$
+% $if(tables)$
+\usepackage{longtable,booktabs}
+% $endif$
+% $if(graphics)$
+\usepackage{graphicx}
+% Redefine \includegraphics so that, unless explicit options are
+% given, the image width will not exceed the width of the page.
+% Images get their normal width if they fit onto the page, but
+% are scaled down if they would overflow the margins.
+\makeatletter
+\def\ScaleIfNeeded{%
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+\let\Oldincludegraphics\includegraphics
+{%
+ \catcode`\@=11\relax%
+ \gdef\includegraphics{\@ifnextchar[{\Oldincludegraphics}{\Oldincludegraphics[width=\ScaleIfNeeded]}}%
+}%
+% $endif$
+% \ifxetex
+%   \usepackage[setpagesize=false, % page size defined by xetex
+%               unicode=false, % unicode breaks when used with xetex
+%               xetex]{hyperref}
+% \else
+%   \usepackage[unicode=true]{hyperref}
+% \fi
+% \hypersetup{breaklinks=true,
+%             bookmarks=true,
+%             pdfauthor={$author-meta$},
+%             pdftitle={$title-meta$},
+%             colorlinks=true,
+%             citecolor=$if(citecolor)$$citecolor$$else$blue$endif$,
+%             urlcolor=$if(urlcolor)$$urlcolor$$else$blue$endif$,
+%             linkcolor=$if(linkcolor)$$linkcolor$$else$magenta$endif$,
+%             pdfborder={0 0 0}}
+% \urlstyle{same}  % don't use monospace font for urls
+% $if(links-as-notes)$
+% Make links footnotes instead of hotlinks:
+\renewcommand{\href}[2]{#2\footnote{\url{#1}}}
+% $endif$
+% $if(strikeout)$
+\usepackage[normalem]{ulem}
+% avoid problems with \sout in headers with hyperref:
+\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
+% $endif$
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+% $if(numbersections)$
+% \setcounter{secnumdepth}{5}
+% $else$
+% \setcounter{secnumdepth}{0}
+% $endif$
+% $if(verbatim-in-note)$
+\VerbatimFootnotes % allows verbatim text in footnotes
+% $endif$
+% $if(lang)$
+% \ifxetex
+%   \usepackage{polyglossia}
+%   \setmainlanguage{$mainlang$}
+% \else
+%   \usepackage[$lang$]{babel}
+% \fi
+% $endif$
+%-----------------------------------------------------------------------------%
+
+%-----------------------------------------------------------------------------%
+% bbest customized to enable pandoc --highlight-style. Shading borrowed from https://groups.google.com/d/msg/knitr/Ll21P9TC2jc/4wqLl7XUzRUJ
+
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{{#1}}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{{#1}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{{#1}}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\RegionMarkerTok}[1]{{#1}}
+\newcommand{\ErrorTok}[1]{\textbf{{#1}}}
+\newcommand{\NormalTok}[1]{{#1}}
+%-----------------------------------------------------------------------------%
+
+
+%Graphics Path to find your pictures
+\graphicspath{{./duke_template/Pictures/}}
+
+
+%-----------------------------------------------------------------------------%
+% PREAMBLE 
+%-----------------------------------------------------------------------------%
+\author{Benjamin D. Best}
+\title{Marine Species Distribution Modeling and Spatial Decision Frameworks}
+\supervisor{Dr. Patrick N. Halpin}
+\department{Marine Science and Conservation} % Appears as Department of \department
+% Declare dissertation subject used on UMI abstract page.  List of
+% categories: http://dissertations.umi.com/duke/subject_categories.html
+%\subject{[Your Subject Here]}
+
+\date{2014} % Anything but the year is ignored.
+
+% Copyright text.  If undefined, default is 'All rights reserved'
+% (Example sets the text to a hyperlinked Creative Commons Licence)
+\copyrighttext{ All rights reserved except the rights granted by the\\
+   \href{http://creativecommons.org/licenses/by-nc/3.0/us/}
+        {Creative Commons Attribution-Noncommercial Licence}
+}
+
+% Committee Members other than supervisor.  No more than five beyond the
+% supervisor allowed.
+\member{Dean L. Urban}
+\member{[TBD]}
+\member{Falk Huettman}
+%-----------------------------------------------------------------------------%
+
+\begin{document}
+
+%-----------------------------------------------------------------------------%
+% TITLE PAGE -- provides UMI abstract title page & copyright if appropriate
+%-----------------------------------------------------------------------------%
+\maketitle
+
+%-----------------------------------------------------------------------------%
+% ABSTRACT -- included file should start with '\abstract'.
+%-----------------------------------------------------------------------------%
+\include{{./abstract}}
+
+%-----------------------------------------------------------------------------%
+% DEDICATION -- OPTIONAL.  Put the text inside the braces.
+%               (Long 'dedications' probably belong in the acknowledgements)
+%-----------------------------------------------------------------------------%
+\dedication{Dedicated to the open source scientific community who made all the great tools and data freely available that make this thesis possible.}
+
+%-----------------------------------------------------------------------------%
+% FRONTMATTER -- ToC is required, LoT and LoF are required if you have any
+% tables or figures, respectively. List of Abbreviations and Symbols is 
+% optional.
+%-----------------------------------------------------------------------------%
+\tableofcontents % Automatically generated
+\listoftables	   % If you have any tables, automatically generated
+\listoffigures	 % If you have any figures, automatically generated
+%\include{{./duke_template/listofabbr}} % List of Abbreviations. Start file with '\abbreviations'
+
+%-----------------------------------------------------------------------------%
+% ACKNOWLEDGEMENTS -- included file should start with '\acknowledgements'
+%-----------------------------------------------------------------------------%
+\include{{./acknowledgements}}
+
+%==============================================================================
+%-----------------------------------------------------------------------------%
+%
+% MAIN BODY OF PAPER
+%
+%
+%-----------------------------------------------------------------------------%
+\include{{./body}} % including appendix, which are just chapters enumerated by Appendix A, Appendix B, Appendix C...
+%==============================================================================
+
+%-----------------------------------------------------------------------------%
+% APPENDICES -- OPTIONAL. 
+%-----------------------------------------------------------------------------%
+% \appendix
+% \include{{./duke_template/chLorem3}} % appendix. Start with '\chapter{Title}'
+%You can always add more appendices here if you want
+
+%-----------------------------------------------------------------------------%
+% BIBLIOGRAPHY -- uncomment \nocite{*} to include items in 'mybib.bib' file
+% that aren't cited in the text.  Change the style to match your
+% discipline's standards.  Of course, if your bibliography file isn't called
+% 'mybib.bib' you might want to change that here too :)
+%-----------------------------------------------------------------------------%
+%\nocite{*} - if you use this it will put EVERYTHING in your .bib file into the references even if you don't cite it in the text
+% \bibliographystyle{./duke_template/jasa} % Formats bibliography
+% \cleardoublepage
+% \normalbaselines %Fixes spacing of bibliography
+% \addcontentsline{toc}{chapter}{Bibliography} %adds Bibliography to your table of contents
+% \bibliography{./duke_template/References} %your bibliography file - change the path if needed
+%-----------------------------------------------------------------------------%
+
+%-----------------------------------------------------------------------------%
+% BIOGRAPHY -- Start file with '\biography'.  Mandatory for Ph.D.
+%-----------------------------------------------------------------------------%
+\include{{./biography}}
+
+%-----------------------------------------------------------------------------
+% You're done :)
+\end{document}

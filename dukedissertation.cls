@@ -265,7 +265,7 @@
 	 \vskip 1em%
     {\large \@author \par }%
     \vskip 1em%
-	 \normalsize Department of \@department \par
+	 \normalsize \@department \par
 	 Duke University \par
  \if@Gradschool
 	\vskip 4ex%
