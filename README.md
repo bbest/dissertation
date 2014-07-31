@@ -4,9 +4,9 @@ This repository is for drafting my PhD thesis at Duke University.
 
 Here's the draft thesis rendered in various formats: for different purposes.
 
-- [**html**](https://www.dropbox.com/s/1qzt1fvvunyz765/thesis.html): quick web view (reference links via doi)
-- [**docx**](https://www.dropbox.com/s/a0pren0nwn5zb6n/thesis.docx): track changes with committee
-- [**pdf**](https://www.dropbox.com/s/9gp6cot4hkpz74a/thesis.pdf): final grad school submission
+- [**html**](https://www.dropbox.com/s/oq0rqikqtwmwu6s/dissertation.html): quick web view (reference links via doi)
+- [**docx**](https://www.dropbox.com/s/9we24lwcttq1x8v/dissertation.docx): track changes with committee
+- [**pdf**](https://www.dropbox.com/s/anncmip53zvmvlu/dissertation.pdf): final grad school submission
 
 The outputs are binary (including HTML which has embedded images and javascript), so the files were placed into Dropbox for download (since Github more suitable for versioned text files). The [Rmarkdown](http://rmarkdown.rstudio.com) files here are collated into a single [thesis.Rmd](./thesis.Rmd), which is most easily viewed through Github as markdown [thesis.md](./thesis.md). The pdf takes special handling to conform to the Duke Graduate School. See [./make.R](make.R) for the details on how these individual Rmarkdown files are collated and rendered into these various forms.
 
