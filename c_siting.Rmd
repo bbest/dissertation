@@ -1,19 +1,4 @@
----
-title: "siting"
-author: "Ben Best"
-date: "`r Sys.Date()`"
-output: 
-  html_document:
-    pandoc_args: [
-      "--bibliography", "dissertation.bib",
-      "--csl", "csl/apa-single-spaced.csl"
-    ]
----
-```{r setup_siting, echo=FALSE, include=TRUE}
-# can't seem to put this above the YAML to be able to use variables defined in make_config.R and still generate References
-source('make_config.R')
-```
-
+<!--- `source('make_config.R'); render_html('a_intro.Rmd') # run for quick render` -->
 # Decision Mapping
 
 Often in ecology our predictive models yield very uncertain estimates. Incorporating this uncertainty into the decision-making process is a challenge. Typically this error is never used in the planning process, just the mean prediction surface or a thresholded binary map based on cross-validation. Areas exhibiting a low mean prediction but high uncertainty could still be too risky for some human activities. Conversely, habitat predicted with high confidence is presumably riskier than those with less.

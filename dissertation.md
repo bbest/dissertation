@@ -21,12 +21,13 @@ Abstract
 
 Our ability to conserve and manage endangered species at sea is limited by our ability to predict species distributions. Herein I describe improvements on predicting distribution and abundance of species as well as decision frameworks for siting potentially harmful activities to times and places that minimize risk to the animals.
 
+<!--- `source('make_config.R'); render_html('a_intro.Rmd')` # run for quick render -->
 Introduction
 ============
 
 Modern conservation of marine megafauna is dependent upon prioritizing areas within the context of a changing climate and increasing array of human activities. Concurrent with a rise in conflicting human uses has been a rapid decline in overall marine biodiversity and ecosystem services (Butchart et al., 2010; B. S. Halpern et al., 2008; Worm et al., 2006, 2009). In response, recent calls for holistic management practices, such as ecosystem-based management and marine spatial planning, are encouraging multi-species, multi-sector approaches (L. B. Crowder et al., 2006; L. Crowder & Norse, 2008; Dahl, Ehler, & Douvere, 2009; F. Douvere, 2008; Foley et al., 2010; B. S. Halpern, McLeod, Rosenberg, & Crowder, 2008; Lubchenco & Sutley, 2010; US Commission on Ocean Policy, 2004). For these applications I’ll be focusing on marine spatial planning of cetaceans, but methods will be transferable to other marine megafauna. In the US, marine mammals are legally protected through the Marine Mammal Protection Act and 22 are listed as threatened or endangered so are covered by The Endangered Species Act. Human activities that pose threats include: fishing bycatch or prey depletion (Laist et al. 2001), ship strikes (Weilgart 2007), anthropogenic noise (O’Shea and Brownell Jr. 1994; Aguilar et al. 2002), pollution of oil or bioaccumulating contaminants (Learmonth et al. 2006; Alter et al. 2010), and global climate change (Dolman et al. 2009). Relocating potentially harmful human activities away from known cetacean distributions is generally the safest and simplest way to minimize risk (Redfern et al. 2006).
 
-![Example of complex management from L. B. Crowder et al. (2006).)](fig/MSP-SoCal_Crowder2006-Science.png)
+![Figure 1. Example of complex management from L. B. Crowder et al. (2006).](fig/MSP-SoCal_Crowder2006-Science.png)
 
 The current state of marine spatial planning begs several broad questions of decision makers and decision support scientists. How do you optimize use of ocean resources to provide long-term ecosystem services in a sustainable manner while minimizing impacts on endangered species? How much risk are you willing to accept? What are the tradeoffs between conservation value and economic impact? How do you handle poor data availability within marine systems? How do you manage the dynamic nature of the environment with species distributions? How do you handle uncertainty while making spatial decisions? Which human uses require custom applications?
 
@@ -42,6 +43,7 @@ Notes
 -   Marine Spatial Planning for Megafauna in a Dynamic Ocean: Methods and Applications for the Future
 -   Marine Species Distribution Modeling and Spatial Decision Frameworks
 
+<!--- `source('make_config.R'); render_html('a_intro.Rmd') # run for quick render` -->
 Robust and Dynamic Distribution Models
 ======================================
 
@@ -53,6 +55,7 @@ Adaptive management practices are emerging for responding to real-time oceanogra
 
 Distribution of a species can lag in time and space from the characterization of the environment, whether from remotely sensed data or oceanographic models. The degree to which one is coupled to the other may inform key ecological process, such as trophic linkages. For instance, zooplanktivorous baleen whales, like the right whale feeding on Calanus, are hypothesized to be respond more quickly and predictably to the environment than pisciverous whales since more time is allowed for drift. One study in South Africa boldly measured temperature, chlorophyll, zooplankton, fish, bigger fish and birds, and found a spatial mismatch in trophic linkages (Gremillet et al. 2008). Simple testing of this drift in time between species and environment could simply be accomplished by including lagged terms in the model and allowing model selection to determine the best lag. Spatial lag would test neighbors in space, hence testing 4 rook or 8 cardinal neighbors per cell.
 
+<!--- `source('make_config.R'); render_html('a_intro.Rmd') # run for quick render` -->
 Decision Mapping
 ================
 
@@ -67,11 +70,13 @@ todo: Simulations
 install.packages(c('mrds','Distance','dsm','DSsim','mads','DSpat'))
 ```
 
+<!--- `source('make_config.R'); render_html('a_intro.Rmd') # run for quick render` -->
 Probabilistic Range Maps
 ========================
 
 Global observations of marine animals are often constrained to nearshore environments. To overcome the paucity of observations, expert-derived opinion, often in the form of drawn range maps, is enlisted for global species assessments (Schipper et al. 2008). These are binary (habitat or not habitat) without any measure of uncertainty. So little data was available for this analysis that of the 120 marine species the range of those threatened to extinction varied as widely as 23 to 61%. Ready et al. (2010) extracted simple environmental envelopes (Kaschner et al. 2006) from the literature and areas of exclusion based on range maps to produce a global distributions of cetacean and other marine taxa . We will apply a hierarchical state-space Bayes framework (Clark and Gelfand 2006; Schick et al. 2008) for mixing IUCN range maps (Schipper et al. 2008) with observational data and associated environmental data. In areas rich in observational data, the quantitative data should overwhelm the qualitative opinion in terms of matching to environmental signal. As more data becomes available it is easily updateable.
 
+<!--- `source('make_config.R'); render_html('a_intro.Rmd') # run for quick render` -->
 Conservation Routing
 ====================
 
@@ -93,6 +98,7 @@ Oil tanker routes were proposed for the inside waters of BC to Port Kittimat. Th
 
 The relative weights of these layers could be gleaned from the past precedent of re-routing shipping lanes in Boston Harbor based on overlap with a density of right whale observations. A similar spatial decision-making process could then be applied globally as thought experiment using the global shipping layer from (Halpern, Walbridge, et al. 2008).
 
+<!--- `source('make_config.R'); render_html('a_intro.Rmd') # run for quick render` -->
 Predicting Seasonal Migration
 =============================
 
@@ -102,6 +108,7 @@ Most papers which discuss migration and species distribution modeling are modeli
 
 I propose to do this with the North Atlantic right whale (Eubalaena glacialis) since data is easily obtained through OBIS-SEAMAP over the entire species range and existing datasets are available for habitat in the Gulf of Maine foraging grounds (Best et al. In Revision; Department of the Navy (DON) 2007) and calving grounds off Florida (Good 2008), as well as comparison with migratory model based on telemetry data (Schick et al. 2009). Kenney et al. (2001) conceptualized a hierarchical sensory model for right whales to hone in on prey and navigate between summer foraging grounds in the Gulf of Maine and winter calving grounds off Florida, but fell short of postulating specific cues to initiate migration. Past years of observations and environmental data could be mined to explore a more specific environmental cue than date. This would enable predictions of the onset of migration. Other unmeasurable factors, such as satiation or hunger, are likely candidates, perhaps not inferable by environmental proxy.
 
+<!--- `source('make_config.R'); render_html('a_intro.Rmd') # run for quick render` -->
 Conclusion
 ==========
 
@@ -119,7 +126,7 @@ Some extra code, graphs, etc here.
 References
 ==========
 
-<!-- adding to show up in toc -->
+<!-- adding blank content for References to show up in toc -->
 
 Butchart, S. H. M., Walpole, M., Collen, B., Strien, A. van, Scharlemann, J. P. W., Almond, R. E. A., … Watson, R. (2010). Global Biodiversity: Indicators of Recent Declines. *Science*, *328*(5982), 1164–1168. doi:[10.1126/science.1187512](http://dx.doi.org/10.1126/science.1187512)
 
