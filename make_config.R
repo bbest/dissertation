@@ -24,18 +24,83 @@ date        = Sys.Date()
 # helper functions ----
 
 # handle figure captions: numbering for all but pdf (todo: short description for toc)
-fig_caption = local({
-  if (!exists('doc_type')) doc_type = 'html' # default for quick Knit HTML of individual Rmd files
+fig = local({
+  
+  # initialize
+  if (!exists('doc_type')) doc_type = 'html'
   i = 0
-  function(x) {
-    i <<- i + 1
+  figs = numeric(0)
+  
+  function(short, img, long) {
+    
+    # set counter
+    i    <<- i + 1
+    figs <<- c(figs, setNames(i, short))
+    cat(sprintf('fig\n i: %d \n  short: %s \n  figs: %s \n  doc_type: %s \n', i, short, dput(figs), doc_type)) # DEBUG
+    
+    # return text
     if (doc_type=='pdf'){
-      paste(x)
+      #sprintf('![%s](%s)<a name="%s"></a>', long, img, short))
+      return(sprintf(paste(
+        '\\begin{figure}[htbp]',
+        '\\centering',
+        '\\includegraphics{%s}',
+        '\\caption{%s}',
+        '\\label{%s}',
+        '\\end{figure}', collapse='\n'),
+        img, long, short))
     } else {
-      paste('Figure ', i, '. ', x, sep = '')
+      return(sprintf('<a name="%s"></a>\n\n![Figure %d. %s](%s)', short, i, long, img))
     }
   }
 })
+
+tbl = local({
+  
+  # initialize
+  if (!exists('doc_type')) doc_type = 'html'
+  j = 0
+  tbls = numeric(0)
+  
+  function(short, long) {
+    
+    # set counter
+    j    <<- j + 1
+    tbls <<- c(tbls, setNames(j, short))
+    cat(sprintf('tbl\n  j: %d \n  short: %s \n  tbls: %s \n  doc_type: %s \n', j, short, dput(tbls), doc_type)) # DEBUG
+    
+    # return text
+    if (doc_type=='pdf'){
+      return(sprintf('Table: %s <a name="%s"></a>', long, short))
+    } else {
+      return(sprintf('Table %d: %s <a name="%s"></a>', j, long, short))
+    }
+  }
+})
+
+reset_fig_tbl = function(doc_type){
+  environment(fig)$i    = 0
+  environment(tbl)$j    = 0
+  environment(fig)$figs = numeric(0)
+  environment(tbl)$tbls = numeric(0)
+  environment(fig)$doc_type = doc_type
+  environment(tbl)$doc_type = doc_type
+}
+
+ref = function(short){
+  
+  pfx = substr(short, 1, 3)
+  if (!exists('doc_type')) stop('Need to set global variable doc_type for ref() to work.')
+  cat(sprintf('ref\n  short: %s\n  pfx: %s \n figs: %s \n tbls: %s \n  doc_type: %s \n', short, pfx, dput(environment(fig)$figs), dput(environment(tbl)$tbls), doc_type)) # DEBUG
+
+  labels = c(fig='Figure', tbl='Table')
+  if (!pfx %in% names(labels)) stop(sprintf("The function ref failed because the prefix '%s' for ref('%s') is not of the allowed short figure/table prefixes: %s.", pfx, short, paste(names(labels), collapse=', ')))
+  if (doc_type == 'pdf'){
+    return(sprintf('%s \\ref{%s}', labels[pfx], short))
+  } else {
+    return(sprintf('[%s %s](#%s)', labels[pfx], environment(fig)$figs[short], short))
+  }
+}
 
 mv_open = function(f, dir=dir_dropbox, mv_f=T, open_f=T){
   
@@ -60,7 +125,7 @@ cat_Rmd = function(
   files_Rmd = sprintf('%s.Rmd', c('a_title', 'a_abstract', files_cat$body)),
   out_Rmd   = 'dissertation.Rmd'){
   
-  doc_type = 'Rmd'
+  doc_type <<- 'Rmd'
   
   if (file.exists(out_Rmd)) unlink(out_Rmd)
   for (f_Rmd in files_Rmd){
@@ -81,8 +146,8 @@ render_md = function(
   out_md = sprintf('%s.md', tools::file_path_sans_ext(in_Rmd)),
   open   = F){
   
-  doc_type = 'md'
-  environment(fig_caption)$i = 0 # reset counter
+  doc_type <<- 'md'
+  reset_fig_tbl(doc_type)
   
   render(
     in_Rmd, md_document(
@@ -102,8 +167,8 @@ render_html = function(
   move     = F,
   open     = T){
   
-  doc_type = 'html'
-  environment(fig_caption)$i = 0 # reset counter
+  doc_type <<- 'html'
+  reset_fig_tbl(doc_type)
   
   tmp_Rmd = tempfile('tempfile_', tmpdir=dirname(in_Rmd), fileext='.Rmd')
   if (in_Rmd != 'dissertation.Rmd'){
@@ -132,7 +197,7 @@ render_html = function(
       pandoc_args=c(
         '--bibliography', cite_bib,
         '--csl', cite_style)), 
-    out_html, quiet=F)
+    out_html, clean=F, quiet=F)
   
   # move to dropbox and open
   unlink(tmp_Rmd)
@@ -144,8 +209,8 @@ render_word = function(
   out_word = sprintf('%s.docx', tools::file_path_sans_ext(in_Rmd)),
   open     = T){
   
-  doc_type = 'word'
-  environment(fig_caption)$i = 0  # reset counter
+  doc_type <<- 'word'
+  reset_fig_tbl(doc_type)
   
   # render Rmd to docx
   render(
@@ -176,8 +241,8 @@ render_pdf   = function(
   open       = T,
   cleanup    = T){
   
-  doc_type = 'pdf'
-  environment(fig_caption)$i = 0  # reset counter
+  doc_type <<- 'pdf'
+  reset_fig_tbl(doc_type)
   
   # Rmd to md
   for (f_Rmd in sprintf('%s.Rmd', unlist(files))){
@@ -220,7 +285,7 @@ render_pdf   = function(
   
   # note: any errors hang RStudio, so better to run from Terminal or with Complile PDF button in RStudio with dissertation.tex open
   system('pdflatex dissertation.tex; pdflatex dissertation.tex')
-  
+
   # move to dropbox and open
   mv_open('dissertation.pdf', , open_f=open)
   

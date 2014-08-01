@@ -1,4 +1,4 @@
-`r title`\
+**`r title`**\
 Draft PhD dissertation by `r author`\
 in `r department`, `r school`\
 Last modified: `r Sys.Date()`

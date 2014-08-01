@@ -24,4 +24,4 @@ render_html(move=T)
 render_word()
 
 # pdf: final submission to graduate school ----
-render_pdf()
+render_pdf(cleanup=T)

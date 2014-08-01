@@ -11,7 +11,7 @@
 -   Appendix
 -   References
 
-Marine Species Distribution Modeling and Spatial Decision Frameworks
+**Marine Species Distribution Modeling and Spatial Decision Frameworks**
 Draft PhD dissertation by Benjamin D. Best
 in Marine Science and Conservation, Duke University
 Last modified: 2014-07-31
@@ -27,11 +27,15 @@ Introduction
 
 Modern conservation of marine megafauna is dependent upon prioritizing areas within the context of a changing climate and increasing array of human activities. Concurrent with a rise in conflicting human uses has been a rapid decline in overall marine biodiversity and ecosystem services (Butchart et al., 2010; B. S. Halpern et al., 2008; Worm et al., 2006, 2009). In response, recent calls for holistic management practices, such as ecosystem-based management and marine spatial planning, are encouraging multi-species, multi-sector approaches (L. B. Crowder et al., 2006; L. Crowder & Norse, 2008; Dahl, Ehler, & Douvere, 2009; F. Douvere, 2008; Foley et al., 2010; B. S. Halpern, McLeod, Rosenberg, & Crowder, 2008; Lubchenco & Sutley, 2010; US Commission on Ocean Policy, 2004). For these applications I’ll be focusing on marine spatial planning of cetaceans, but methods will be transferable to other marine megafauna. In the US, marine mammals are legally protected through the Marine Mammal Protection Act and 22 are listed as threatened or endangered so are covered by The Endangered Species Act. Human activities that pose threats include: fishing bycatch or prey depletion (Laist et al. 2001), ship strikes (Weilgart 2007), anthropogenic noise (O’Shea and Brownell Jr. 1994; Aguilar et al. 2002), pollution of oil or bioaccumulating contaminants (Learmonth et al. 2006; Alter et al. 2010), and global climate change (Dolman et al. 2009). Relocating potentially harmful human activities away from known cetacean distributions is generally the safest and simplest way to minimize risk (Redfern et al. 2006).
 
-![Figure 1. Example of complex management from L. B. Crowder et al. (2006).](fig/MSP-SoCal_Crowder2006-Science.png)
+<a name="fig_crowder_resolving_2006"></a>
+
+![Figure 1. Example of complex management from Crowder et al.(2006).](fig/MSP-SoCal_Crowder2006-Science.png)
 
 The current state of marine spatial planning begs several broad questions of decision makers and decision support scientists. How do you optimize use of ocean resources to provide long-term ecosystem services in a sustainable manner while minimizing impacts on endangered species? How much risk are you willing to accept? What are the tradeoffs between conservation value and economic impact? How do you handle poor data availability within marine systems? How do you manage the dynamic nature of the environment with species distributions? How do you handle uncertainty while making spatial decisions? Which human uses require custom applications?
 
 While much work has been done already to support description of species distributions for planning purposes (Margules and Sarkar 2007; Pressey et al. 2007; Elith and Leathwick 2009; Pressey and Bottrill 2009), there is room for improvement in answering the questions above for adopting a marine operational framework.
+
+Blah blah, as in [Figure 1](#fig_crowder_resolving_2006).
 
 Over the next 5 chapters I propose methods for addressing these questions within two study areas, British Columbia and US Atlantic. 1) I start with pooling boat and plane datasets in order to incorporate more data into the species distribution models (SDMs). A variety of SDMs will be compared for their requirements, outputs and performance. Improvements in the SDMs will include novel environmental predictors, addressing scale and exploring lags in space and time. 2) Decision Mapping provides a framework for incorporating uncertainty into decision making spatially. 3) Seasonal Migrations explicitly includes time-varying habitats in SDMs. 4) Probabilistic Range Maps combine range maps and occurrence through a Bayesian environmental model. 5) In Conservation Routing layers of species data are combined into a single cost surface for routing ships using least cost paths. These tools should enable a more transparent, operational and robust set of methods for incorporating cetacean species distribution models into the marine spatial planning process.
 
@@ -46,6 +50,8 @@ Notes
 <!--- `source('make_config.R'); render_html('a_intro.Rmd') # run for quick render` -->
 Robust and Dynamic Distribution Models
 ======================================
+
+Blah blah, check out the [Introduction](#introduction).
 
 Species distribution modeling literature and available techniques are vast (Elith and Leathwick 2009). Predictive (vs explanatory) techniques are broadly divisible as regression, such as generalized linear model (GLM) or generalized additive model (GAM), or as machine learning, such as multiple adaptive regression splines (MARS), boosted regression trees (BRT), or maximum entropy (Maxent). MARS can uniquely produce a multi-species response allowing for pooling of data, especially helpful for rare species (Leathwick et al. 2006; Nally et al. 2008; Heinänen and von Numers 2009). Multiple models can be combined as an ensemble (Araujo and New 2007). Output can predict likelihood of presence (i.e. habitat) or density (i.e. abundance per unit area). Some habitat modeling techniques (e.g. Maxent) require only presence data, whereas others require absence or pseudo-absence records. Density models require more information on group sizes and parameters for detectability. Density predictions enable the calculation of potential take, often required for environmental impact assessment. Habitat requires less data and may be more appropriate for determining go/no-go areas. Habitat has been correlated to density for cetaceans in Scotland waters, but inconsistently (Hall et al. 2010). Issues such as autocorrelation (Dormann et al. 2007) and sampling bias (Phillips et al. 2009) need to be addressed with each set of data.
 
