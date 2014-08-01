@@ -46,9 +46,7 @@ This dissertation is being knitted into a scientifically reproducible document u
     
     1. Right-click on collection > Export Collection and choose `Better BibTex` and export to `dissertation.bib` file (which is assigned to `cite_bib` variable in make.R).
 
-    1. You can get a quick formatted view of the document as you write with 'Knit HTML' button (or Ctrl+Shift+Y of [RStudio shortcuts](https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts)). If the metadata at the top of the document includes the following, it will also render References at the bottom. (Note that the *.html files are ignored by git in [.gitignore](./.gitignore).):
-    
-    
+    1. You can get a quick formatted view of the document as you write with 'Knit HTML' button (or Ctrl+Shift+Y of [RStudio shortcuts](https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts)). Metadata at the top of the document (in the YAML format) can point to the bibliography and citation style for rendering References. See [a_intro.Rmd](./a_intro.Rmd) as an example. Note that the *.html files are ignored by git in [.gitignore](./.gitignore).
     
     1. Run [./make.R](make.R) to generate collated document in all formats.
       
