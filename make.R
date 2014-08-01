@@ -2,17 +2,17 @@
 
 source('make_config.R')
 
-# Rmd: base for other formats ----
+# Rmd: base for other formats, except pdf
 cat_Rmd()
 
-# md: github flavored ----
+# md: github flavored
 render_md()
 
-# html: quick web view ----
+# html: quick web view
 render_html(move=T)
 
-# word: track changes for committee feedback ----
+# word: track changes for committee feedback
 render_word()
 
-# pdf: final submission to graduate school ----
+# pdf: final submission to graduate school
 render_pdf(cleanup=T)

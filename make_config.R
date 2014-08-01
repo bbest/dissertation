@@ -1,6 +1,6 @@
 # TODO:
 #  - pdf/tex:
-#    - enable 2nd argument for short entry in list of figures per latex \caption[short]{long}
+#    - enable additional argument for entry in list of figures per latex \caption[short]{long}
 #  - md:
 #     - link toc to headers
 #  - see rmarkdown::includes
@@ -13,24 +13,28 @@ library(brew)
 
 # set variables ----
 
-cite_bib    = 'dissertation.bib'
-cite_style  = 'csl/apa-single-spaced.csl' # get others at zotero.org/styles
-files_cat   = list(
-  preamble     = c('a_abstract', 'a_acknowledgements'),
-  body         = c('a_intro','c_sdm','c_siting','c_range','c_routing','c_migration','x_conclusion', 'x_appendix'),
-  epilogue     = c('x_biography'))
-files_keep  = c('dissertation.brew.tex','dissertation.tex','dissertation.md','README.md')
-dir_dropbox = '~/Dropbox/dissertation'
-
+# strings for substitution
 title       = 'Species Distribution Modeling and Spatial Decision Frameworks for Marine Megafauna'
 author      = 'Benjamin D. Best'
 supervisor  = 'Patrick N. Halpin'
 department  = 'Marine Science and Conservation'
 school      = 'Duke University'
-date        = Sys.Date()
-member1  = 'Dean L. Urban'
-member2  = '[TBD]'
-member3  = 'Falk Huettman'
+member1     = 'Dean L. Urban'
+member2     = '[TBD]'
+member3     = 'Falk Huettman'
+
+# paths to Rmd and bibliography files. see other cite styles at zotero.org/styles.
+cite_bib         = 'dissertation.bib'
+cite_style_pdf   = 'csl/apa-no-doi-no-issue.csl'
+cite_style_other = 'csl/apa-single-spaced.csl'
+dir_notgit       = '~/Dropbox/dissertation'
+files_keep       = c('dissertation.brew.tex','dissertation.tex','dissertation.md','README.md')
+files_pdf        = list(
+  preamble = c('a_abstract', 'a_acknowledgements'),
+  body     = c('a_intro','c_sdm','c_siting','c_range','c_routing','c_migration','x_conclusion', 'x_appendix'),
+  epilogue = c('x_biography'))
+files_other     = c('a_title', 'a_abstract', files_pdf$body)
+file_html_head  = 'a_title'
 
 # helper functions ----
 
@@ -112,7 +116,7 @@ ref = function(short){
   }
 }
 
-mv_open = function(f, dir=dir_dropbox, mv_f=T, open_f=T){
+mv_open = function(f, dir=dir_notgit, mv_f=T, open_f=T){
   
   # move to dropbox folder
   if (mv_f){
@@ -132,7 +136,7 @@ mv_open = function(f, dir=dir_dropbox, mv_f=T, open_f=T){
 # render functions ----
 
 cat_Rmd = function(
-  files_Rmd = sprintf('%s.Rmd', c('a_title', 'a_abstract', files_cat$body)),
+  files_Rmd = sprintf('%s.Rmd', files_other),
   out_Rmd   = 'dissertation.Rmd'){
   
   doc_type <<- 'Rmd'
@@ -154,7 +158,8 @@ cat_Rmd = function(
 render_md = function(
   in_Rmd = 'dissertation.Rmd', 
   out_md = sprintf('%s.md', tools::file_path_sans_ext(in_Rmd)),
-  open   = F){
+  open   = F,
+  cite_style = cite_style_other){
   
   doc_type <<- 'md'
   reset_fig_tbl(doc_type)
@@ -175,7 +180,9 @@ render_html = function(
   in_Rmd   = 'dissertation.Rmd', 
   out_html = sprintf('%s.html', tools::file_path_sans_ext(in_Rmd)),
   move     = F,
-  open     = T){
+  open     = T,
+  cite_style = cite_style_other,
+  header   = file_html_head){
   
   doc_type <<- 'html'
   reset_fig_tbl(doc_type)
@@ -185,7 +192,7 @@ render_html = function(
     
     # add title header
     title = tools::file_path_sans_ext(in_Rmd)
-    file.copy('a_title.Rmd', tmp_Rmd)
+    file.copy(header, tmp_Rmd)
     
     # copy body
     cat(readLines(in_Rmd), file=tmp_Rmd, sep='\n', append=T)
@@ -217,7 +224,8 @@ render_html = function(
 render_word = function(
   in_Rmd   = 'dissertation.Rmd', 
   out_word = sprintf('%s.docx', tools::file_path_sans_ext(in_Rmd)),
-  open     = T){
+  open     = T,
+  cite_style = cite_style_other){
   
   doc_type <<- 'word'
   reset_fig_tbl(doc_type)
@@ -245,9 +253,9 @@ render_word = function(
 }
 
 render_pdf   = function(
-  files      = files_cat, 
+  files      = files_pdf, 
   out_pdf    = 'dissertation.pdf',
-  cite_style = 'csl/apa-no-doi-no-issue.csl',
+  cite_style = cite_style_pdf,
   open       = T,
   cleanup    = T){
   
@@ -262,12 +270,12 @@ render_pdf   = function(
   # cat md body
   body_md = 'body.md'
   if (file.exists(body_md)) unlink(body_md)
-  for (f_md in sprintf('%s.md', files$body)){ # f='a_intro'
+  for (f_md in sprintf('%s.md', files$body)){
     o = rmarkdown:::partition_yaml_front_matter(readLines(f_md))
     cat(paste(c(o$body,'',''), collapse='\n'), file=body_md, append=T)
   }
   
-  # add references, single-spaced
+  # add references, single-spaced, hanging indent
   cat(
 '
 # References {-}
@@ -293,7 +301,7 @@ render_pdf   = function(
       '--latex-engine=xelatex --to latex --output', paste0(f, '.tex')))
   }
   
-  # substitute variables in main latex doc
+  # substitute variables: dissertation.brew.tex -> dissertation.tex
   brew('dissertation.brew.tex', 'dissertation.tex')  
 
   # note: any errors hang RStudio, so better to run from Terminal or with Complile PDF button in RStudio with dissertation.tex open
