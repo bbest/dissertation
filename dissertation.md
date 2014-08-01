@@ -12,7 +12,7 @@
 -   References
 
 Marine Species Distribution Modeling and Spatial Decision Frameworks
-Draft PhD thesis by Benjamin D. Best
+Draft PhD dissertation by Benjamin D. Best
 in Marine Science and Conservation, Duke University
 Last modified: 2014-07-31
 
