@@ -12,13 +12,13 @@ The outputs are binary (including HTML which has embedded images and javascript)
 
 Prefixes to Rmarkdown files (\*.Rmd) are simple letters for sorting front matter (a\_\*), core chapters (c\_\*) and back matter (x\_\*).
 
-## Knitting the document
+## Rendering
 
 This dissertation is being knitted into a scientifically reproducible document using the following free software:
 
-- [**RStudio**](http://www.rstudio.com/): excellent R integrated development environment for writing code and text.
+- [**RStudio**](http://www.rstudio.com/): excellent free, cross-platform R integrated development environment for writing code and text.
 
-- [**Rmarkdown**](http://rmarkdown.rstudio.com): verstatile "literate programming" way to weave chunks of R code with formatted text (markdown), well supported in RStudio.
+- [**Rmarkdown**](http://rmarkdown.rstudio.com): versatile "literate programming" R package for weaving chunks of R code with formatted text (markdown), built into RStudio.
 
 - [**Pandoc**](johnmacfarlane.net/pandoc): the standalone conversion engine used by the rmarkdown package.
 
@@ -40,7 +40,7 @@ This dissertation is being knitted into a scientifically reproducible document u
     
     1. Right-click on collection > Export Collection and choose `Better BibTex` and export to `dissertation.bib` file (which is assigned to `cite_bib` variable in make.R).
 
-    1. You can get a quick formatted view of the document as you write with 'Knit HTML' button (or Ctrl+Shift+Y of [RStudio shortcuts](https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts)). Metadata at the top of the document (in the YAML format) can point to the bibliography and citation style for rendering References. See [a_intro.Rmd](./a_intro.Rmd) as an example. Note that the *.html files are ignored by git in [.gitignore](./.gitignore).
+    1. You can get a quick formatted view of the document as you write with 'Knit HTML' button (or Ctrl+Shift+Y of [RStudio shortcuts](https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts)). Note that the *.html files are ignored by git in [.gitignore](./.gitignore).
     
     1. Run [./make.R](make.R) to generate collated document in all formats.
       
