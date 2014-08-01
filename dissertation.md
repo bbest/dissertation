@@ -30,6 +30,7 @@ Modern conservation of marine megafauna is dependent upon prioritizing areas wit
 <a name="fig_crowder_resolving_2006"></a>
 
 ![Figure 1. Example of complex management from Crowder et al.(2006).](fig/MSP-SoCal_Crowder2006-Science.png)
+*Figure 1. Example of complex management from Crowder et al.(2006).*
 
 The current state of marine spatial planning begs several broad questions of decision makers and decision support scientists. How do you optimize use of ocean resources to provide long-term ecosystem services in a sustainable manner while minimizing impacts on endangered species? How much risk are you willing to accept? What are the tradeoffs between conservation value and economic impact? How do you handle poor data availability within marine systems? How do you manage the dynamic nature of the environment with species distributions? How do you handle uncertainty while making spatial decisions? Which human uses require custom applications?
 
