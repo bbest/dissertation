@@ -38,7 +38,7 @@ file_html_head  = 'a_title'
 
 # helper functions ----
 
-# handle figure captions: numbering for all but pdf (todo: short description for toc)
+# figures
 fig = local({
   
   # initialize
@@ -71,6 +71,7 @@ fig = local({
   }
 })
 
+# tables
 tbl = local({
   
   # initialize
@@ -93,15 +94,17 @@ tbl = local({
   }
 })
 
+# reset counters for tables and figures
 reset_fig_tbl = function(doc_type){
-  environment(fig)$i    = 0
-  environment(tbl)$j    = 0
-  environment(fig)$figs = numeric(0)
-  environment(tbl)$tbls = numeric(0)
+  environment(fig)$i        = 0
+  environment(tbl)$j        = 0
+  environment(fig)$figs     = numeric(0)
+  environment(tbl)$tbls     = numeric(0)
   environment(fig)$doc_type = doc_type
   environment(tbl)$doc_type = doc_type
 }
 
+# reference table or figure
 ref = function(short){
   
   pfx = substr(short, 1, 3)
@@ -116,9 +119,10 @@ ref = function(short){
   }
 }
 
+# move and open file
 mv_open = function(f, dir=dir_notgit, mv_f=T, open_f=T){
   
-  # move to dropbox folder
+  # move to dropbox folder, outside of git versioning
   if (mv_f){
     p = file.path(dir, f)
     file.copy(f, p, overwrite=T)
@@ -164,6 +168,7 @@ render_md = function(
   doc_type <<- 'md'
   reset_fig_tbl(doc_type)
   
+  # Rmd to md
   render(
     in_Rmd, md_document(
       variant='markdown_github', 
@@ -187,12 +192,16 @@ render_html = function(
   doc_type <<- 'html'
   reset_fig_tbl(doc_type)
   
+  cat('render_html:\n','  in_Rmd:',in_Rmd,'\n','  header:',header,'\n')
+  
   tmp_Rmd = tempfile('tempfile_', tmpdir=dirname(in_Rmd), fileext='.Rmd')
   if (in_Rmd != 'dissertation.Rmd'){
     
+    cat('header:',header,'\n')
+    
     # add title header
-    title = tools::file_path_sans_ext(in_Rmd)
-    file.copy(header, tmp_Rmd)
+    title = in_Rmd
+    file.copy(sprintf('%s.Rmd', header), tmp_Rmd)
     
     # copy body
     cat(readLines(in_Rmd), file=tmp_Rmd, sep='\n', append=T)
@@ -204,7 +213,7 @@ render_html = function(
     file.copy(in_Rmd, tmp_Rmd)
   }
   
-  # render
+  # Rmd to html
   render(
     tmp_Rmd, output_format=html_document(
       number_sections=T, fig_width = 7, fig_height = 5, fig_retina = 2, fig_caption = T, smart=T,
@@ -230,7 +239,7 @@ render_word = function(
   doc_type <<- 'word'
   reset_fig_tbl(doc_type)
   
-  # render Rmd to docx
+  # Rmd to docx
   render(
     in_Rmd, output_format=word_document(
       fig_caption = T, fig_width = 7, fig_height = 5, 

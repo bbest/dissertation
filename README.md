@@ -8,7 +8,7 @@ Here's the draft dissertation rendered in various formats: for different purpose
 - [**docx**](https://www.dropbox.com/s/9we24lwcttq1x8v/dissertation.docx): track changes for committee feedback
 - [**pdf**](https://www.dropbox.com/s/anncmip53zvmvlu/dissertation.pdf): final grad school submission
 
-The outputs are binary (including HTML which has embedded images and javascript), so the files were placed into Dropbox for download (since Github more suitable for versioned text files). The [Rmarkdown](http://rmarkdown.rstudio.com) files here are collated into a single [dissertation.Rmd](./dissertation.Rmd), which is most easily viewed through Github as markdown [dissertation.md](./dissertation.md). The pdf takes special handling to conform to the Duke Graduate School. See [./make.R](make.R) [./make_config.R](make_config.R) for the details on how these individual Rmarkdown files are collated and rendered into the various forms.
+The outputs are binary (including HTML which has embedded images and javascript), so the files were placed into Dropbox for download (since Github more suitable for versioned text files). The [Rmarkdown](http://rmarkdown.rstudio.com) files here are collated into a single [dissertation.Rmd](./dissertation.Rmd), which is most easily viewed through Github as markdown [dissertation.md](./dissertation.md). The pdf takes special handling to conform to the Duke Graduate School. See [./make.R](make.R) and [./make_config.R](make_config.R) for details on how these individual Rmarkdown files are collated and rendered into the various forms.
 
 Prefixes to Rmarkdown files (\*.Rmd) are simple letters for sorting front matter (a\_\*), core chapters (c\_\*) and back matter (x\_\*).
 
