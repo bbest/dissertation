@@ -8,15 +8,9 @@ Here's the draft dissertation rendered in various formats: for different purpose
 - [**docx**](https://www.dropbox.com/s/9we24lwcttq1x8v/dissertation.docx): track changes for committee feedback
 - [**pdf**](https://www.dropbox.com/s/anncmip53zvmvlu/dissertation.pdf): final grad school submission
 
-The outputs are binary (including HTML which has embedded images and javascript), so the files were placed into Dropbox for download (since Github more suitable for versioned text files). The [Rmarkdown](http://rmarkdown.rstudio.com) files here are collated into a single [dissertation.Rmd](./dissertation.Rmd), which is most easily viewed through Github as markdown [dissertation.md](./dissertation.md). The pdf takes special handling to conform to the Duke Graduate School. See [./make.R](make.R) for the details on how these individual Rmarkdown files are collated and rendered into these various forms.
+The outputs are binary (including HTML which has embedded images and javascript), so the files were placed into Dropbox for download (since Github more suitable for versioned text files). The [Rmarkdown](http://rmarkdown.rstudio.com) files here are collated into a single [dissertation.Rmd](./dissertation.Rmd), which is most easily viewed through Github as markdown [dissertation.md](./dissertation.md). The pdf takes special handling to conform to the Duke Graduate School. See [./make.R](make.R) [./make_config.R](make_config.R) for the details on how these individual Rmarkdown files are collated and rendered into the various forms.
 
 Prefixes to Rmarkdown files (\*.Rmd) are simple letters for sorting front matter (a\_\*), core chapters (c\_\*) and back matter (x\_\*).
-
-## Dissertation Templates
-
-- [UC Berkeley](https://github.com/stevenpollack/ucbthesis): uses Rmarkdown templates
-- [Duke theses](http://gradschool.duke.edu/academics/theses/): latex formatting specific to Duke
-- [thesis-markdown-pandoc](https://github.com/chiakaivalya/thesis-markdown-pandoc): pandoc commands
 
 ## Knitting the document
 
@@ -53,3 +47,12 @@ This dissertation is being knitted into a scientifically reproducible document u
     1. Repeat as you write. For more, see [**pandoc citations**](http://johnmacfarlane.net/pandoc/demo/example19/Citations.html).
   
 _Aside_. It is possible to your entire Zotero library using [AutoZotBib](http://www.rtwilson.com/academic/autozotbib), but my library is too large to practically use this.
+
+## Dissertation Templates
+
+Here are a few related resources from which I borrowed.
+
+- [UC Berkeley](https://github.com/stevenpollack/ucbthesis): uses Rmarkdown templates
+- [Duke theses](http://gradschool.duke.edu/academics/theses/): latex formatting specific to Duke
+- [thesis-markdown-pandoc](https://github.com/chiakaivalya/thesis-markdown-pandoc): pandoc commands
+- [knitr-examples / 070-caption-num.Rmd](https://github.com/yihui/knitr-examples/blob/master/070-caption-num.Rmd): trick with use of `local` and `global` variable assignment for caption counter

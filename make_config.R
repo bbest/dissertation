@@ -36,7 +36,6 @@ fig = local({
     # set counter
     i    <<- i + 1
     figs <<- c(figs, setNames(i, short))
-    cat(sprintf('fig\n i: %d \n  short: %s \n  figs: %s \n  doc_type: %s \n', i, short, dput(figs), doc_type)) # DEBUG
     
     # return text
     if (doc_type=='pdf'){
@@ -69,7 +68,6 @@ tbl = local({
     # set counter
     j    <<- j + 1
     tbls <<- c(tbls, setNames(j, short))
-    cat(sprintf('tbl\n  j: %d \n  short: %s \n  tbls: %s \n  doc_type: %s \n', j, short, dput(tbls), doc_type)) # DEBUG
     
     # return text
     if (doc_type=='pdf'){
@@ -93,7 +91,6 @@ ref = function(short){
   
   pfx = substr(short, 1, 3)
   if (!exists('doc_type')) stop('Need to set global variable doc_type for ref() to work.')
-  cat(sprintf('ref\n  short: %s\n  pfx: %s \n figs: %s \n tbls: %s \n  doc_type: %s \n', short, pfx, dput(environment(fig)$figs), dput(environment(tbl)$tbls), doc_type)) # DEBUG
 
   labels = c(fig='Figure', tbl='Table')
   if (!pfx %in% names(labels)) stop(sprintf("The function ref failed because the prefix '%s' for ref('%s') is not of the allowed short figure/table prefixes: %s.", pfx, short, paste(names(labels), collapse=', ')))
