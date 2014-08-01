@@ -1,3 +1,10 @@
+# TODO:
+#  - pdf/tex:
+#    - enable 2nd argument for short entry in list of figures per latex \caption[short]{long}
+#  - md:
+#     - link toc to headers
+#  - see rmarkdown::includes
+
 # load libraries ----
 
 library(knitr)
