@@ -48,7 +48,7 @@ This dissertation is rendered into a scientifically reproducible document using 
   
 _Aside_. It is possible to your entire Zotero library using [AutoZotBib](http://www.rtwilson.com/academic/autozotbib), but my library is too large to practically use this.
 
-## Technical Inspirations
+## Rendering Inspirations
 
 Here are a few related resources from which I borrowed.
 
