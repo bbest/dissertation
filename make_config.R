@@ -50,7 +50,7 @@ fig = local({
         '\\end{figure}', collapse='\n'),
         img, long, short))
     } else if (doc_type=='md'){
-      return(sprintf('<a name="%s"></a>\n\n![Figure %d. %s](%s)\\\n_Figure %d. %s_', short, i, long, img, i, long))
+      return(sprintf('<a name="%s"></a>\n\n![Figure %d. %s](%s) <br />\\\n_Figure %d. %s_', short, i, long, img, i, long))
     } else {
       return(sprintf('<a name="%s"></a>\n\n![Figure %d. %s](%s)', short, i, long, img))
     }
