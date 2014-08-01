@@ -1,22 +1,15 @@
-# compile dissertation into:
-#  - pdf:
-#  - word:
-#  - md:
-#    - equations don't show
-#  - html: 
+# make.R - compile dissertation into: pdf, word, html, md
 #
 # TODO:
 #  - tex:
-#    - swap hardcoded vars with below
+#    - swap hardcoded vars using make_config.R
 #  - see rmarkdown::includes
 #  - md:
 #     - update fig_caption() to add caption for md
-#     - add links to toc anchors to headers and links to toc using tolower hyphenated heading
-#  - 
+#     - link toc to headers
 
 library(knitr)
 library(rmarkdown)
-#setwd('~/github/dissertation')
 
 source('make_config.R')
 
@@ -25,7 +18,12 @@ source('make_config.R')
 dissertation_Rmd = 'dissertation.Rmd'
 if (file.exists(dissertation_Rmd)) unlink(dissertation_Rmd)
 for (f_Rmd in sprintf('%s.Rmd', c('a_title', 'a_abstract', files$body))){ # f='intro'
-  cat(paste(c(readLines(f_Rmd),'',''), collapse='\n'), file=dissertation_Rmd, append=T)
+  
+  # strip YAML metadata header
+  o = rmarkdown:::partition_yaml_front_matter(readLines(f_Rmd))
+  
+  # cat into single file
+  cat(paste(c(o$body,'',''), collapse='\n'), file=dissertation_Rmd, append=T)
 }
 
 # add references, single-spaced
