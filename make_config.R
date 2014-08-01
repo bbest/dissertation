@@ -2,6 +2,7 @@
 
 library(knitr)
 library(rmarkdown)
+library(brew)
 
 # set variables ----
 
@@ -11,15 +12,18 @@ files_cat   = list(
   preamble     = c('a_abstract', 'a_acknowledgements'),
   body         = c('a_intro','c_sdm','c_siting','c_range','c_routing','c_migration','x_conclusion', 'x_appendix'),
   epilogue     = c('x_biography'))
-files_keep  = c('dissertation.tex','dissertation.md','README.md')
+files_keep  = c('dissertation.brew.tex','dissertation.tex','dissertation.md','README.md')
 dir_dropbox = '~/Dropbox/dissertation'
 
-title       = 'Marine Species Distribution Modeling and Spatial Decision Frameworks'
+title       = 'Species Distribution Modeling and Spatial Decision Frameworks for Marine Megafauna'
 author      = 'Benjamin D. Best'
 supervisor  = 'Patrick N. Halpin'
 department  = 'Marine Science and Conservation'
 school      = 'Duke University'
 date        = Sys.Date()
+member1  = 'Dean L. Urban'
+member2  = '[TBD]'
+member3  = 'Falk Huettman'
 
 # helper functions ----
 
@@ -282,6 +286,9 @@ render_pdf   = function(
       '--latex-engine=xelatex --to latex --output', paste0(f, '.tex')))
   }
   
+  # substitute variables in main latex doc
+  brew('dissertation.brew.tex', 'dissertation.tex')  
+
   # note: any errors hang RStudio, so better to run from Terminal or with Complile PDF button in RStudio with dissertation.tex open
   system('pdflatex dissertation.tex; pdflatex dissertation.tex')
 

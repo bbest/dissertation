@@ -11,10 +11,10 @@
 -   Appendix
 -   References
 
-**Marine Species Distribution Modeling and Spatial Decision Frameworks**
+**Species Distribution Modeling and Spatial Decision Frameworks for Marine Megafauna**
 Draft PhD dissertation by Benjamin D. Best
 in Marine Science and Conservation, Duke University
-Last modified: 2014-07-31
+Last modified: 2014-08-01
 
 Abstract
 ========
@@ -25,7 +25,9 @@ Our ability to conserve and manage endangered species at sea is limited by our a
 Introduction
 ============
 
-Modern conservation of marine megafauna is dependent upon prioritizing areas within the context of a changing climate and increasing array of human activities. Concurrent with a rise in conflicting human uses has been a rapid decline in overall marine biodiversity and ecosystem services (Butchart et al., 2010; B. S. Halpern et al., 2008; Worm et al., 2006, 2009). In response, recent calls for holistic management practices, such as ecosystem-based management and marine spatial planning, are encouraging multi-species, multi-sector approaches (L. B. Crowder et al., 2006; L. Crowder & Norse, 2008; Dahl, Ehler, & Douvere, 2009; F. Douvere, 2008; Foley et al., 2010; B. S. Halpern, McLeod, Rosenberg, & Crowder, 2008; Lubchenco & Sutley, 2010; US Commission on Ocean Policy, 2004). For these applications I’ll be focusing on marine spatial planning of cetaceans, but methods will be transferable to other marine megafauna. In the US, marine mammals are legally protected through the Marine Mammal Protection Act and 22 are listed as threatened or endangered so are covered by The Endangered Species Act. Human activities that pose threats include: fishing bycatch or prey depletion (Laist et al. 2001), ship strikes (Weilgart 2007), anthropogenic noise (O’Shea and Brownell Jr. 1994; Aguilar et al. 2002), pollution of oil or bioaccumulating contaminants (Learmonth et al. 2006; Alter et al. 2010), and global climate change (Dolman et al. 2009). Relocating potentially harmful human activities away from known cetacean distributions is generally the safest and simplest way to minimize risk (Redfern et al. 2006).
+Successful conservation of marine megafauna is dependent upon identifying times and places of greatest use, within the context of a changing climate and increasing array of human activities. Concurrent with a rise in conflicting human uses has been a rapid decline in overall marine biodiversity and ecosystem services (Butchart et al., 2010; B. S. Halpern et al., 2008; Worm et al., 2006, 2009). In response, recent calls for holistic management practices, such as ecosystem-based management and marine spatial planning, are encouraging multi-species, multi-sector approaches (L. B. Crowder et al., 2006; L. Crowder & Norse, 2008; Dahl, Ehler, & Douvere, 2009; F. Douvere, 2008; Foley et al., 2010; B. S. Halpern, McLeod, Rosenberg, & Crowder, 2008; Lubchenco & Sutley, 2010; US Commission on Ocean Policy, 2004). For these applications I’ll be focusing on marine spatial planning of cetaceans, but methods will be transferable to other marine megafauna.
+
+In the US, marine mammals are legally protected through the Marine Mammal Protection Act and 22 are listed as threatened or endangered so are covered by The Endangered Species Act. Human activities that pose threats include: fishing bycatch or prey depletion (Laist et al. 2001), ship strikes (Weilgart 2007), anthropogenic noise (O’Shea and Brownell Jr. 1994; Aguilar et al. 2002), pollution of oil or bioaccumulating contaminants (Learmonth et al. 2006; Alter et al. 2010), and global climate change (Dolman et al. 2009). Relocating potentially harmful human activities away from known cetacean distributions is generally the safest and simplest way to minimize risk (Redfern et al. 2006).
 
 <a name="fig_crowder_resolving_2006"></a>
 
@@ -46,7 +48,7 @@ Notes
 -   Titles to consider:
 -   Data to Decisions: Applying Dynamic Species Distribution Models to Cetacean Conservation Management
 -   Marine Spatial Planning for Megafauna in a Dynamic Ocean: Methods and Applications for the Future
--   Marine Species Distribution Modeling and Spatial Decision Frameworks
+-   
 
 <!--- `source('make_config.R'); render_html('a_intro.Rmd') # run for quick render` -->
 Robust and Dynamic Distribution Models

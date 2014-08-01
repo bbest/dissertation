@@ -48,7 +48,7 @@ This dissertation is being knitted into a scientifically reproducible document u
   
 _Aside_. It is possible to your entire Zotero library using [AutoZotBib](http://www.rtwilson.com/academic/autozotbib), but my library is too large to practically use this.
 
-## Dissertation Templates
+## Technical Inspirations
 
 Here are a few related resources from which I borrowed.
 
@@ -56,3 +56,4 @@ Here are a few related resources from which I borrowed.
 - [Duke theses](http://gradschool.duke.edu/academics/theses/): latex formatting specific to Duke
 - [thesis-markdown-pandoc](https://github.com/chiakaivalya/thesis-markdown-pandoc): pandoc commands
 - [knitr-examples / 070-caption-num.Rmd](https://github.com/yihui/knitr-examples/blob/master/070-caption-num.Rmd): trick with use of `local` and `global` variable assignment for caption counter
+- [brew: Creating Repetitive Reports](http://learnr.wordpress.com/2009/09/09/brew-creating-repetitive-reports/): used to substitute variables `dissertation.brew.tex` -> `dissertation.tex`.

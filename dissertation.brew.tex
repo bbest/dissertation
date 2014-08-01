@@ -130,15 +130,15 @@
 %-----------------------------------------------------------------------------%
 % PREAMBLE 
 %-----------------------------------------------------------------------------%
-\author{Benjamin D. Best}
-\title{Species Distribution Modeling and Spatial Decision Frameworks for Marine Megafauna}
-\supervisor{Patrick N. Halpin}
-\department{Marine Science and Conservation} % Appears as Department of \department
+\author{<%= author %>}
+\title{<%= title %>}
+\supervisor{<%= supervisor %>}
+\department{<%= department %>} % Appears as Department of \department
 % Declare dissertation subject used on UMI abstract page.  List of
 % categories: http://dissertations.umi.com/duke/subject_categories.html
 %\subject{[Your Subject Here]}
 
-\date{2014} % Anything but the year is ignored.
+\date{<%= format(Sys.Date(), '%Y') %>} % Anything but the year is ignored.
 
 % Copyright text.  If undefined, default is 'All rights reserved'
 % (Example sets the text to a hyperlinked Creative Commons Licence)
@@ -149,9 +149,9 @@
 
 % Committee Members other than supervisor.  No more than five beyond the
 % supervisor allowed.
-\member{Dean L. Urban}
-\member{[TBD]}
-\member{Falk Huettman}
+\member{<%= member1 %>}
+\member{<%= member2 %>}
+\member{<%= member3 %>}
 %-----------------------------------------------------------------------------%
 
 \begin{document}
