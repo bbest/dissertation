@@ -14,7 +14,7 @@ Prefixes to Rmarkdown files (\*.Rmd) are simple letters for sorting front matter
 
 ## Rendering
 
-This dissertation is being knitted into a scientifically reproducible document using the following free software:
+This dissertation is rendered into a scientifically reproducible document using the following free software:
 
 - [**RStudio**](http://www.rstudio.com/): excellent free, cross-platform R integrated development environment for writing code and text.
 
