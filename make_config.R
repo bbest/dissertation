@@ -106,6 +106,7 @@ reset_fig_tbl = function(doc_type){
 
 # reference table or figure
 ref = function(short){
+  # NOTE: figure or table has to preceed ref. for now.
   
   pfx = substr(short, 1, 3)
   if (!exists('doc_type')) stop('Need to set global variable doc_type for ref() to work.')
@@ -223,7 +224,7 @@ render_html = function(
       pandoc_args=c(
         '--bibliography', cite_bib,
         '--csl', cite_style)), 
-    out_html, clean=F, quiet=F)
+    out_html, clean=T, quiet=F)
   
   # move to dropbox and open
   unlink(tmp_Rmd)
