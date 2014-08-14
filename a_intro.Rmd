@@ -1,7 +1,7 @@
 <!--- `source('make_config.R'); render_html('a_intro.Rmd')` # run for quick render -->
 # Introduction
 
-`r fig('fig_crowder_resolving_2006', 'fig/MSP-SoCal_Crowder2006-Science.png', 'Example from Crowder et al.(2006) of the many mixed uses of our oceans necessitating coordinated, holistic approaches to marine spatial management.')`
+`r fig('fig_crowder_resolving_2006', 'fig/Crowder2006_fig1_no-legend.png', 'Example from Crowder et al.(2006) of the many mixed uses of our oceans necessitating coordinated, holistic approaches to marine spatial management.')`
 
 Successful conservation of marine megafauna is dependent upon identifying times and places of greatest use, within the context of a changing climate and increasing array of human activities. Concurrent with a rise in conflicting human uses has been a rapid decline in overall marine biodiversity and ecosystem services [@worm_impacts_2006; @halpern_global_2008; @worm_rebuilding_2009; @butchart_global_2010]. In response, recent calls for holistic management practices, such as ecosystem-based management and marine spatial planning, are encouraging multi-species, multi-sector approaches [@uscommissiononoceanpolicy_ocean_2004; @crowder_resolving_2006; @halpern_managing_2008; @crowder_essential_2008; @douvere_importance_2008; @dahl_marine_2009; @lubchenco_proposed_2010; @foley_guiding_2010] (see `r ref('fig_crowder_resolving_2006')`). For these applications I’ll be focusing on marine spatial planning of cetaceans, but methods will be transferable to other marine megafauna.
 
@@ -28,4 +28,10 @@ Over the next 5 chapters I propose methods for addressing these questions within
 - Titles to consider:
   - Data to Decisions: Applying Dynamic Species Distribution Models to Cetacean Conservation Management
   - Marine Spatial Planning for Megafauna in a Dynamic Ocean: Methods and Applications for the Future
-  - 
+
+- History of Cetacean Distribution Modeling
+  - historic whaling charts by Admiral Matthew Maury [map of whales](http://maps.bpl.org/id/m8753) [data visualizations of whaling history]](http://sappingattention.blogspot.com/2012/10/data-narratives-and-structural.html)
+  - whaling (graphic), extirpation. examples of extinct whales. locally extinct, eg gray whale from Atlantic, but then climate change doing interesting things with whale showing up in Med.
+  - summarized by [@smith_spatial_2012]
+
+- counting whales from satellite [@fretwell_whales_2014]

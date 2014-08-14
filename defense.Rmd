@@ -1,0 +1,608 @@
+---
+title: "PhD Defense"
+author: "Ben Best"
+date: "`r Sys.Date()`"
+output:
+  ioslides_presentation:
+    incremental: true
+    fig_caption: true
+    self_contained: false
+---
+
+```{r setup, include=TRUE, echo=F}
+#library(rmarkdown)
+library(knitr)
+```
+
+
+## Marine Conflicts
+
+human uses vs. endangered species
+
+![](./fig/marine_conflicts_sized.png)
+
+<div class="notes">
+- To enable presenter mode add `?presentme=true` to URL, and `?presentme=false` to turn off.
+
+- to render:
+
+```
+library(rmarkdown)
+render('~/github/dissertation/defense.Rmd', ioslides_presentation(self_contained=TRUE))
+file.copy('~/github/dissertation/defense.html', '~/Dropbox/dissertation/defense.html', overwrite=T)
+render(from)
+system('open ~/Dropbox/dissertation/defense.html')
+```
+
+Multiple interactions / conflict possible with variety of human industries.
+</div>
+
+## Marine Spatial Planning {.flexbox .vcenter}
+
+
+<img src='./fig/Crowder2006_fig1_sized.png' height=450>
+
+<footer class="source">
+Source: Crowder et al. (2006) Resolving Mismatches in U.S. Ocean Governance. _Science_
+</footer>
+
+<div class="notes">
+need to coordinate multilple uses highlighted by the many operating agencies and activities
+
+- Crowder et al 2006. Resolving Mismatches in U.S. Ocean Governance. **Science**.
+
+Many regulating agencies to oversee all these conflicting uses. Messy. Especially for ad-hoc human decision making. Need a system to handle this.
+</div>
+
+## Spatial Decision Support System {.flexbox .vcenter}
+
+<img src='./fig/serdp-mapper_sperm-whale-summer-east_zoom_sized.png' height=450>
+
+<footer class="source">
+Source: http://seamap.env.duke.edu/search/?app=serdp
+</footer>
+
+<div class="notes">
+
+Need SDSS for conservation management of megafauna.
+
+Who, What, When, Where, How, _Why_?
+
+- Who  = spp: guilds, assoc, trophic links, aggregated into single layer
+  ( Ok a little anthropamorphizing xharismatic megafauna)
+
+- What env associations 
+  beyond usual suspects MLD, eddies
+
+- Where space
+  persistent places, shifts in When
+
+- When time (seasons, forecast, climate)
+
+- How decision making, using all avail data (multiple platforms, obs portal, expert opinion)
+
+- _Why_ skipping: more of an evolutionary Q.
+</div>
+
+## Data from Many Platforms
+
+![](./fig/data-platforms_sized.png)
+
+<div class="notes">
+- boat
+- plane
+- telemetry
+- land survey. turtle nesting site. pinniped rookery. bird nest. whale observation.
+- expert opinion. charrettes for conservation planning, IUCN species meetings...
+</div>
+
+## Questions (themes) {.smaller}
+
+- How to combine data from many platforms to best predict distribution and abundance of species? (**disperate data**)
+
+- How do these distributions change over time, seasonally and trending with climate change? (**distributions and time**)
+
+- What environmental covariates best predict where and when these animals are distributed? (**distributions and environment**)
+
+- How do we effectively capture and integrate uncertainty for these distributions into decision making? (**uncertainty**)
+
+- Once we can best describe the distribution of these species in space and time, how can we integrate this information into spatial decision frameworks? (**decision frameworks**)
+
+    - for siting
+    
+    - for routing 
+
+## Chapters: Data to Decision
+
+1. Robust, Dynamic Distribution Models
+    - Combine plane and boat observation data (**disperate data**)
+    - Distance from Gulf Stream (**distributions and environment**)
+    - Predicting with Uncertainty in Measurement and/or Gap-filled Environment (**uncertainty**)
+1. Predicting Seasonal Migration (**distributions and time**)
+1. Probabilistic Range Maps (**disperate data**, **decision frameworks**, **uncertainty**)
+1. Decision Mapping (**decision frameworks**, **uncertainty**)
+1. Conservation Routing (**decision frameworks**)
+
+<div class="notes">
+- Maximizing Species Distribution Models (SDMs) for Decision-Making: Marine Spatial Planning Methods for Cetacean Conservation
+</div>
+
+# 1. Robust, Dynamic Distribution Models
+
+
+## Baseline SDM: Boat + Plane
+
+![](./fig/serdp-mapper-old_sperm-whale-summer-east_sized.png)
+
+<footer class="source">
+Source: Best BD, PN Halpin _et al_ (**2012**) Online Cetacean Habitat Modeling System for the U.S. East Coast and Gulf of Mexico. _Endangered Species Research_
+</footer>
+
+<div class="notes">
+- part of special issue
+</div>
+
+## Dynamic Variables from Satellite
+
+Eddies from AVISO  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Fronts from Pathfinder / GHRSST
+
+![](./fig/dynamic-vars-satellite_sized.png)
+
+<div class="notes">
+</div>
+
+## Dynamic Vars from Ocean Models
+
+![](./fig/dynamic-vars-oceanomodel_sized.png)
+
+Hybrid Coordinate Ocean Model (HYCOM)
+
+- pros: 1/12 °, cloud-free, 3D, forecast
+- cons: modeled, since 2003, physical only
+
+<div class="notes">
+</div>
+
+
+## Forecast Whales using Ocean Models
+
+![](./fig/becker-whale-forecasts_sized.png)
+
+using ROMS to Oct, Nov (predicting from July)
+
+<div class="notes">
+- Becker et al whale forecasts
+</div>
+
+
+## Robust Comparison
+
+- Presence < Presence-Absence < Density?
+- Regression (GLM, GAM) vs Machine Learning (Maxent, BRT)
+- Predictive Performance vs Ecological Interpretation
+- Space Time Lags
+- Scaling Effects
+
+<div class="notes">
+</div>
+
+
+## Space vs Time
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Processes  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Observations
+
+![](./fig/oceano-space-time_sized.png)
+
+<div class="notes">
+(after Stommel, 1963 and Dickey, 2004)
+Hill, K., T. Moltmann, R. Proctor, and S. Allen. 2010. The Australian Integrated Marine Observing System: Delivering Data Streams to Address National and International Research Priorities. Marine Technology Society Journal 44:65–72.
+</div>
+
+# 2. Predicting Seasonal Migration
+
+## Grey Whale Migration
+
+![](./fig/gray-whale-migration_sized.png)
+
+<div class="notes">
+- longest mammalian migration on planet
+- Eastern North Pacific gray whales make a mammoth 20,000 km (12,400 mile) round trip between their southern breeding grounds off Baja California, Mexico and their northern feeding grounds off Alaska and the Beaufort Sea. 
+- April - November: Arctic feeding grounds
+- [October - February: migrates south]
+- December - April: Mexican breeding grounds
+- [February - July: migrates north] 
+- In the early winter, they move south to breed in the warm, shallow lagoons along the Mexican coast. The most popular breeding lagoons are San Ignacio lagoon, Scammon's lagoon, and Magdalena Bay, on the Pacific coast of Baja California, Mexico. Around February, the grays migrate north to feed in Arctic waters (western Beaufort Sea and Bering Sea), northwest of Alaska. A few - mainly younger - whales make a shorter journey north from Mexico, stopping off along the coastline stretching between northern California, Oregon, Washington State, USA, and British Columbia, Canada. Some feeding behaviour has been observed in all parts of the range, and around Vancouver Island, British Columbia, Canada, grays are present year-round. 
+
+</div>
+
+
+## Migration Model
+
+![](./fig/migration-model-a_sized.png)
+
+<div class="notes">
+</div>
+
+
+## Migration Model
+
+![](./fig/migration-model-b_sized.png)
+
+<div class="notes">
+- mid: laggards leaving.  End: over-acheivers.
+- `x`: along-shore distance
+- bivariate smoother (`s(x,t)`)
+</div>
+
+
+## Migration Model
+
+![](./fig/migration-model-c_sized.png)
+
+<div class="notes">
+- `w`: width
+</div>
+
+# 3. Probabilistic Range Maps
+
+## Range Map
+
+_Eubalaena glacialis_
+
+![](./fig/range-rwhale-iucn_sized.png)
+
+<footer class="source">
+Source: IUCN
+</footer>
+
+<div class="notes">
+- expert-convened range maps of species  
+- attributes of species (eg phylogenetic diversity)
+- International Union of Concerned ... N?
+- 
+</div>
+
+
+## IUCN Range Maps Applied
+
+![](./fig/Schipper2008_fig1A_mammal-spp-richness_sized.png)
+
+<footer class="source">
+Source: Schipper et al. (2008) The Status of the World's Land and Marine Mammals: Diversity, Threat, and Knowledge. _Science_
+</footer>
+
+<div class="notes">
+</div>
+
+
+## AquaMaps Environmental Envelope
+
+![](./fig/range-rwhale-aquamaps_sized.png)
+
+<footer class="source">
+Source: _Eubalaena glacialis_ from [AquaMaps.org](http://aquamaps.org) (Ready et al. 2010)
+</footer>
+
+<div class="notes">
+NOTES from AquaMaps: Predictions only describe range of western population of this species, since the eastern population is probably almost extinct. Please view suitable habitat for probable former range of eastern population. Note: eastern limit of bounding box is somewhat arbitrary, but represents the minimum supported by satellite track data and acoustic detection around Cape Farewell. Species is highly migratory and distribution represents a compromise between summer and winter range. Modified SST range, since species does not occur regularly on in large numbers in Gulf of Mexico. Extended primary production envelope, since species is a filter feeder and thus likely to be directly associated with areas of high primary production. (Kristin Kaschner, 2012-04-19 11:42:28)
+
+</div>
+
+## AquaMaps Environmental Envelope {.flexbox .vcenter}
+
+Relative Environmental Suitability
+
+![](./fig/range-aquamaps-res_sized.png)
+
+<div class="notes">
+Fig. 2. Trapezoidal species’ response curve describing the niche categories used in the RES model. $Min_A$ and $Max_A$ refer to absolute minimum and maximum predictor ranges, while $Min_P$ and $Max_P$ describe the ‘preferred’ range, in terms of habitat usage of a given species
+
+... Ready(2010) methods added more features and compared with other methods.
+</div>
+
+<footer class='source'>
+Source: Kaschner et al. (2006)
+</footer>
+
+## Ocean Health Index: Species
+
+![Species status based on extinction risk and species richness based on range maps from IUCN and AquaMaps (Selig et al., 2013).](./fig/selig2013_ohi-spp-status_sized.png)
+
+<div class="notes">
+Contributes to OHI Biodiversity. One of two subgoals, the other being HAB.
+</div>
+
+
+## Probabilistic Range Maps {.columns-2}
+
+Combine:
+
+- $Y$: Occurrences for presence-only observation
+
+- $R$: Range map from expert opinion
+
+- $E$: "Effort"" proxy from all "Cetacea" occurrences
+
+...
+
+<img src='./fig/rangemap_rwhale-y-r-e_sized.png' height='500'>
+
+<div class="notes">
+</div>
+
+## Probabilistic Range Maps {.columns-2}
+
+Combine:
+
+...
+
+- Environment:
+
+    - $sst$: sea-surface temperature
+    
+    - $depth$: bathymetric depth
+    
+    - $d2shore$: distance to shore
+
+![](./fig/rangemap_env-sst-depth-d2shore_resized.png)
+
+<div class="notes">
+</div>
+
+## Bayesian State-Space Model
+
+$$
+\operatorname{p}(\boldsymbol{\lambda}, \boldsymbol{\beta}, \sigma^2, z | \boldsymbol{y}, \boldsymbol{W}, \boldsymbol{E}, \boldsymbol{R}) \alpha \\
+\operatorname{Pois}(\boldsymbol{y}, \boldsymbol{E} \boldsymbol{\lambda}) \\
+\operatorname{N_5}(\operatorname{ln} \boldsymbol{\lambda}, \boldsymbol{W} \boldsymbol{\beta}, \sigma^2 \boldsymbol{I_5}) \\
+\operatorname{Bin}(\boldsymbol{R} │ 1, 1 - exp(-z \boldsymbol{\lambda}) )^{.5} \\
+\operatorname{N_5}(\boldsymbol{\beta} │ \boldsymbol{\beta}_p, \boldsymbol{V}_p ) \\
+\operatorname{IG}(\sigma^2 │ s_1, s_2)
+$$
+
+<div class="columns-2">
+prior densities:
+
+- $N_5(\boldsymbol{\beta}_p, \boldsymbol{V}_p)$
+- $IG(s_1, s_2)$
+
+<br>
+<br>
+
+hyperparameters:
+
+- $\boldsymbol{\beta}_p = [0,0,0,0,0]$
+- $\boldsymbol{V}_p = 1000 \boldsymbol{I}_5$
+- $s_1 = s_2 = 0.1$
+</div>
+
+<div class='notes'>
+</div>
+
+## Right Whale Estimated Range {.flexbox .vcenter}
+
+![](./fig/rangemap_rwhale-estimate_sized.png)
+
+<div class="notes">
+</div>
+
+# 4. Decision Mapping
+
+## Habitat {.flexbox .vcenter}
+
+<!--
+![](./fig/decision-map-habitat.png)
+-->
+
+<img src='./fig/decision-map-habitat.png' height='550'>
+
+<div class="notes">
+prediction from model
+</div>
+
+
+## Error {.flexbox .vcenter}
+
+<!--
+![](./fig/decision-map-error.png)
+-->
+
+<img src='./fig/decision-map-error.png' height='550'>
+
+
+<div class="notes">
+But that model has a certain amount of error. How do we resolve these pieces of information? [Toggle fwd/back]
+
+TODO:
+- Add slide showing distribution of values for different pixels:
+    - precise (narrow CI): low error w/ low & high mean
+    - imprecise (wide CI): high error w/ low & med & high mean
+- Consider how this works with density data, treat as 3rd variable in step loss fxn or swap for integrated "likelihood of encounter"?
+- Compare w/ ROC
+- How much added value with integrated risk-loss function vs just taking the mean?
+</div>
+
+## Weights
+
+```{r risk loss tbl, results='asis', echo=F, eval=T}
+cols = c('decision', '_p_(0-0.5)', '_p_(0.5-1)')
+d = data.frame(
+   c('go','no go'),
+   c( 0 ,  1),
+   c( 3 ,  0))
+kable(d, format='pandoc', col.names=cols)
+```
+
+Weights associating a decided action with the integrated probability of encounter as a simple step function.
+
+<div class="notes">
+as simple step function.
+</div>
+
+## Weights
+
+<table class="rmdtable">
+<!--caption>Weights associating a decided action with the integrated probability of encounter as a simple step function.</caption-->
+<tbody><tr class="header">
+<th align="left">decision</th>
+<th align="right"><em>p</em>(0-0.5)</th>
+<th align="center"><em>p</em>(0.5-1)</th>
+</tr>
+<tr class="odd">
+<td align="left">go</td>
+<td align="right">0</td>
+<td align="center" class="highlight">3</td>
+</tr>
+<tr class="even">
+<td align="left">no go</td>
+<td align="right" class="highlight">1</td>
+<td align="center">0</td>
+</tr>
+</tbody></table>
+
+
+- **conservation risk** of operating (go) and encountering whales, vs.
+- **opportunity loss** of not operating (_no_ go) and _not_ encountering whales
+
+<div class="notes">
+- highlighting the high cost associated with 
+</div>
+
+
+## Integrated Probabilities
+
+![](./fig/decision-step-fxn-curves_sized.png)
+
+<div class="notes">
+</div>
+
+
+## Cost Maps per Decision
+
+![](./fig/decision-map-risk-values_sized.png)
+
+<div class="notes">
+</div>
+
+## Decision Map {.flexbox .vcenter}
+
+Per pixel, choose decision which minimizes risk-loss function.
+
+<!--![](./fig/decision-map-risk-decided_sized.png)-->
+<img src='./fig/decision-map-risk-decided.png' height='550'>
+
+<div class="notes">
+</div>
+
+# 5. Conservation Routing
+
+## Vessel Routes
+
+![Whale areas (left) and proposed routes (right) in BC.](./fig/routing-proposed-routes_sized.png)
+
+<div class="notes">
+- Full caption. Maps of British Columbia related to conservation routing. On left, areas for gray, humpback, and sperm whales based on expert opinion (PNCIMA Atlas, 2009). On right, proposed oil tanker vessel route for servicing the forthcoming Kitimat oil and gas project.
+</div>
+
+
+## Integrate Marine Mammal Distributions
+
+- Using density spatial models for 9 marine mammal species in BC from Raincoast surveys 2004-2008
+- Composite risk map derived per pixel ($i$) across $n$ species ($s$) by summing relative density ($z_i$), which is based on the pixel values' ($x_i$) deviation ($\sigma_s$) from mean density ($\mu_s$), and multiplying by conservation status ($w_s$)
+
+$$
+z_{i,s} = \frac{ x_{i,s} - \mu_s }{ \sigma_s }
+$$
+$$
+Z_i = \frac{ \sum_{s=1}^{n} z_{i,s} w_s }{ n }
+$$
+
+
+![](./fig/.png)
+
+<div class="notes">
+- Density surface model outputs will be assembled into a marine mammal composite risk map, or cost surface. 
+- Each density surface was normalized in order to highlight areas of high density relative to its average.
+- The unitless standard score, or z-value ($z_i$), per pixel ($i$) is calculated as the pixel’s marine mammal density estimate ($x_i$) subtracted from the mean of all density estimates for the strata ($\mu$), divided by the standard deviation of those density estimates ($\sigma$) and finally multiplied by the species weight ($w_s$) according to conservation status. 
+TODO:
+- Is $\sigma$ per pixel or for entire DSM?
+- How does uncertainty play into this decision making?
+</div>
+
+## Conservation Status ($w_s$) {.flexbox .vcenter}
+
+![](./fig/routing-conservation-status_sized.png)
+
+<div class="notes">
+</div>
+
+## Composite Risk Map {.flexbox .vcenter}
+
+![](./fig/routing-composite-risk-map_sized.png)
+
+<div class="notes">
+</div>
+
+
+## Routes for Oil Tankers {.flexbox .vcenter}
+
+![](./fig/routing-tanker-routes_sized.png)
+
+<div class="notes">
+- compared with straight line (Euclidean) route
+
+TODO:
+- get feedback from Raincoast, Mersk, Shaun on actual application
+- How could this relate to insurance incentivizing program?
+- Research issues with SB Channel in trying to get rerouting accomplished.
+</div>
+
+
+## Routes for Cruise Ships {.flexbox .vcenter}
+
+![](./fig/routing-cruise-ship-routes_sized.png)
+
+<div class="notes">
+</div>
+
+
+## Further Application {.columns-2}
+
+Boston Harbor Rerouting for Right Whales
+<img src='./fig/routing-boston-harbor_sized.png' width='350'>
+<br>
+<br>
+<br>
+<br>
+
+Global Traffic
+<img src='./fig/routing-global-traffic_sized.png' width='350'>
+
+<footer class="source">
+Sources:<br>
+Left: Ward-Geiger et al. (2005) Characterization of Ship Traffic in Right Whale Critical Habitat. _Coastal Management_<br>
+Right: Halpern et al. (2008) A Global Map of Human Impact on Marine Ecosystems. _Science_
+</footer>
+
+<div class="notes">
+</div>
+
+## Acknowledgements
+
+...
+
+<div class="notes">
+- PH with byramid / in tiara
+- Raincoast in field pic
+- Friends collage
+</div>
+
+## Backup Slides
+
+...
+
+<div class="notes">
+- ROC for optimum
+- Figs from Whitehead, McGill, Worm.  2008. Diversity of deep-water cetaceans in relation to temperature: implications for ocean warming. Ecology Letters
+- Gray whale migration sightings
+</div>
