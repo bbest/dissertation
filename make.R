@@ -15,4 +15,4 @@ render_html(move=T)
 render_word()
 
 # pdf: final submission to graduate school
-render_pdf(cleanup=T)
+render_pdf(cleanup=T, debug=F)

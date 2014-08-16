@@ -11,17 +11,27 @@ Our ability to conserve and manage endangered species at sea is limited by our a
 <!--- `source('make_config.R'); render_html('a_intro.Rmd')` # run for quick render -->
 # Introduction
 
-`r fig('fig_crowder_resolving_2006', 'fig/MSP-SoCal_Crowder2006-Science.png', 'Example from Crowder et al.(2006) of the many mixed uses of our oceans necessitating coordinated, holistic approaches to marine spatial management.')`
+In order to maintain marine biodiversity, we need to effectively describe the distributions of endangered marine life and mitigate potential impacts from human uses of the ocean. Successful conservation of marine megafauna is dependent upon identifying times and places of greatest use, within the context of a changing climate and increasing array of human activities. 
 
-Successful conservation of marine megafauna is dependent upon identifying times and places of greatest use, within the context of a changing climate and increasing array of human activities. Concurrent with a rise in conflicting human uses has been a rapid decline in overall marine biodiversity and ecosystem services [@worm_impacts_2006; @halpern_global_2008; @worm_rebuilding_2009; @butchart_global_2010]. In response, recent calls for holistic management practices, such as ecosystem-based management and marine spatial planning, are encouraging multi-species, multi-sector approaches [@uscommissiononoceanpolicy_ocean_2004; @crowder_resolving_2006; @halpern_managing_2008; @crowder_essential_2008; @douvere_importance_2008; @dahl_marine_2009; @lubchenco_proposed_2010; @foley_guiding_2010] (see `r ref('fig_crowder_resolving_2006')`). For these applications I’ll be focusing on marine spatial planning of cetaceans, but methods will be transferable to other marine megafauna.
+`r fig('fig_marine_conflicts', 'fig/marine_conflicts.png', 'Example human uses of the ocean with potential for harm to endangered species (upper left, clockwise): pile driving and maintenance from offshore wind energy installations, ship shock trials and low frequency sonar use by military, fisheries gear entanglement, ship strike by transportation and cruise industries.')`
+
+Concurrent with a rise in conflicting human uses (see `r ref('fig_marine_conflicts')`) has been a rapid decline in overall marine biodiversity and ecosystem services [@worm_impacts_2006; @halpern_global_2008; @worm_rebuilding_2009; @butchart_global_2010]. 
+
+`r fig('fig_crowder_resolving_2006', 'fig/Crowder2006_fig1_no-legend.png', 'Example from Crowder et al.(2006) of the many mixed uses of our oceans necessitating coordinated, holistic approaches to marine spatial management.')`
+
+In response, recent calls for holistic management practices, such as ecosystem-based management and marine spatial planning, are encouraging multi-species, multi-sector approaches [@uscommissiononoceanpolicy_ocean_2004; @crowder_resolving_2006; @halpern_managing_2008; @crowder_essential_2008; @douvere_importance_2008; @dahl_marine_2009; @lubchenco_proposed_2010; @foley_guiding_2010] (see `r ref('fig_crowder_resolving_2006')`). For these applications I’ll be focusing on marine spatial planning of cetaceans, but methods will be transferable to other marine megafauna.
 
 In the US, marine mammals are legally protected through the Marine Mammal Protection Act and 22 are listed as threatened or endangered so are covered by The Endangered Species Act. Human activities that pose threats include: fishing bycatch or prey depletion [@read_looming_2008], ship strikes [@laist_collisions_2001], anthropogenic noise [@weilgart_impacts_2007], pollution of oil or bioaccumulating contaminants [@aguilar_geographical_2002; @oshea_organochlorine_1994; @ross_fireproof_2006], and global climate change [@learmonth_potential_2006; @alter_tertiary_2010]. Relocating potentially harmful human activities away from known cetacean distributions is generally the safest and simplest way to minimize risk [@dolman_comparative_2009; @redfern_techniques_2006].
 
 The current state of marine spatial planning begs several broad questions of decision makers and decision support scientists. How do you optimize use of ocean resources to provide long-term ecosystem services in a sustainable manner while minimizing impacts on endangered species?  How much risk are you willing to accept?  What are the tradeoffs between conservation value and economic impact?  How do you handle poor data availability within marine systems?  How do you manage the dynamic nature of the environment with species distributions?  How do you handle uncertainty while making spatial decisions?  Which human uses require custom applications?
 
-While much work has been done already to support description of species distributions for planning purposes [@margules_systematic_2007; @pressey_conservation_2007; @elith_species_2009; @pressey_approaches_2009], there is room for improvement in answering the questions above for adopting a marine operational framework.
+`r fig('fig_serdp-mapper', 'fig/serdp-mapper_sperm-whale-summer-east_zoom_sized.png', 'Spatial decision support system depicting the input survey tracks (lines), observations (blue dots) and habitat prediction surface (blue=low vs red=high likelihood of encounter) for sperm whales in the US Atlantic east coast region.')`
 
-Over the next 5 chapters I propose methods for addressing these questions within two study areas, British Columbia and US Atlantic (see . 
+While much work has been done already to support description of species distributions for planning purposes [@margules_systematic_2007; @pressey_conservation_2007; @elith_species_2009; @pressey_approaches_2009], there is room for improvement in answering the questions above for adopting a marine operational framework. Providing web services makes these data readily available for decision making (see `ref('fig_serdp-mapper')` [^serdp]).
+
+[^serdp]: http://seamap.env.duke.edu/search/?app=serdp
+
+Over the next 5 chapters I propose methods for addressing these questions within two study areas, British Columbia and US Atlantic (see [[TODO: study area map]]). 
 
 1. I start with pooling boat and plane datasets in order to incorporate more data into the species distribution models (SDMs). A variety of SDMs will be compared for their requirements, outputs and performance. Improvements in the SDMs will include novel environmental predictors, addressing scale and exploring lags in space and time.
 
@@ -33,12 +43,21 @@ Over the next 5 chapters I propose methods for addressing these questions within
 
 1. In Conservation Routing layers of species data are combined into a single cost surface for routing ships using least cost paths. These tools should enable a more transparent, operational and robust set of methods for incorporating cetacean species distribution models into the marine spatial planning process.
 
+<!--
 ## Notes
 
 - Titles to consider:
   - Data to Decisions: Applying Dynamic Species Distribution Models to Cetacean Conservation Management
   - Marine Spatial Planning for Megafauna in a Dynamic Ocean: Methods and Applications for the Future
-  - 
+
+- History of Cetacean Distribution Modeling
+  - historic whaling charts by Admiral Matthew Maury [map of whales](http://maps.bpl.org/id/m8753) [data visualizations of whaling history]](http://sappingattention.blogspot.com/2012/10/data-narratives-and-structural.html)
+  - whaling (graphic), extirpation. examples of extinct whales. locally extinct, eg gray whale from Atlantic, but then climate change doing interesting things with whale showing up in Med.
+  - summarized by [@smith_spatial_2012]
+
+- counting whales from satellite [@fretwell_whales_2014]
+
+-->
 
 <!--- `source('make_config.R'); render_html('c_sdm.Rmd') # run for quick render` -->
 # Robust and Dynamic Distribution Models

@@ -178,8 +178,8 @@ using ROMS to Oct, Nov (predicting from July)
 ## Robust Comparison
 
 - Presence < Presence-Absence < Density?
-- Regression (GLM, GAM) vs Machine Learning (Maxent, BRT)
-- Predictive Performance vs Ecological Interpretation
+- Regression (GLM, GAM) vs Machine Learning (Maxent, BRT)
+- Predictive Performance vs Ecological Interpretation
 - Space Time Lags
 - Scaling Effects
 
@@ -587,6 +587,8 @@ Right: Halpern et al. (2008) A Global Map of Human Impact on Marine Ecosystems. 
 <div class="notes">
 </div>
 
+# Backup Slides
+
 ## Acknowledgements
 
 ...
@@ -597,12 +599,22 @@ Right: Halpern et al. (2008) A Global Map of Human Impact on Marine Ecosystems. 
 - Friends collage
 </div>
 
-## Backup Slides
+# Backup Slides
 
 ...
 
 <div class="notes">
+
 - ROC for optimum
 - Figs from Whitehead, McGill, Worm.  2008. Diversity of deep-water cetaceans in relation to temperature: implications for ocean warming. Ecology Letters
 - Gray whale migration sightings
+
+Further Study:
+
+- Niche Modeling
+- Cetacean Ecology
+- Decision Theory
+- Operations Research
+- Environmental Economics
+
 </div>

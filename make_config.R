@@ -267,7 +267,8 @@ render_pdf   = function(
   out_pdf    = 'dissertation.pdf',
   cite_style = cite_style_pdf,
   open       = T,
-  cleanup    = T){
+  cleanup    = T,
+  debug      = F){
   
   doc_type <<- 'pdf'
   reset_fig_tbl(doc_type)
@@ -315,14 +316,18 @@ render_pdf   = function(
   brew('dissertation.brew.tex', 'dissertation.tex')  
 
   # note: any errors hang RStudio, so better to run from Terminal or with Complile PDF button in RStudio with dissertation.tex open
-  system('pdflatex dissertation.tex; pdflatex dissertation.tex')
+  if (!debug) {
+    system('pdflatex dissertation.tex; pdflatex dissertation.tex')
 
-  # move to dropbox and open
-  mv_open('dissertation.pdf', , open_f=open)
+    # move to dropbox and open
+    mv_open('dissertation.pdf', , open_f=open)
   
-  # clean up
-  if (cleanup){
-    f_del = setdiff(list.files(pattern='^.*\\.(aux|lof|log|lot|out|toc|tex|md)$'), files_keep)
-    for (f in f_del) unlink(f)
+    # clean up
+    if (cleanup){
+      f_del = setdiff(list.files(pattern='^.*\\.(aux|lof|log|lot|out|toc|tex|md)$'), files_keep)
+      for (f in f_del) unlink(f)
+    }
+  } else {
+    cat('In debug=T mode, so next run on terminal:n\n  pdflatex dissertation.tex; pdflatex dissertation.tex\n\n')
   }
 }

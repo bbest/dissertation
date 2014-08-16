@@ -1,6 +1,5 @@
 -   Abstract
 -   Introduction
-    -   Notes
 -   Robust and Dynamic Distribution Models
 -   Decision Mapping
     -   todo: Simulations
@@ -14,7 +13,7 @@
 **Species Distribution Modeling and Spatial Decision Frameworks for Marine Megafauna**
 Draft PhD dissertation by Benjamin D. Best
 in Marine Science and Conservation, Duke University
-Last modified: 2014-08-08
+Last modified: 2014-08-15
 
 Abstract
 ========
@@ -25,20 +24,34 @@ Our ability to conserve and manage endangered species at sea is limited by our a
 Introduction
 ============
 
+In order to maintain marine biodiversity, we need to effectively describe the distributions of endangered marine life and mitigate potential impacts from human uses of the ocean. Successful conservation of marine megafauna is dependent upon identifying times and places of greatest use, within the context of a changing climate and increasing array of human activities.
+
+<a name="fig_marine_conflicts"></a>
+
+![Figure 1. Example human uses of the ocean with potential for harm to endangered species (upper left, clockwise): pile driving and maintenance from offshore wind energy installations, ship shock trials and low frequency sonar use by military, fisheries gear entanglement, ship strike by transportation and cruise industries.](fig/marine_conflicts.png) <br />
+*Figure 1. Example human uses of the ocean with potential for harm to endangered species (upper left, clockwise): pile driving and maintenance from offshore wind energy installations, ship shock trials and low frequency sonar use by military, fisheries gear entanglement, ship strike by transportation and cruise industries.*
+
+Concurrent with a rise in conflicting human uses (see [Figure 1](#fig_marine_conflicts)) has been a rapid decline in overall marine biodiversity and ecosystem services (Butchart et al., 2010; B. S. Halpern et al., 2008b; Worm et al., 2006, 2009).
+
 <a name="fig_crowder_resolving_2006"></a>
 
-![Figure 1. Example from Crowder et al.(2006) of the many mixed uses of our oceans necessitating coordinated, holistic approaches to marine spatial management.](fig/MSP-SoCal_Crowder2006-Science.png) <br />
-*Figure 1. Example from Crowder et al.(2006) of the many mixed uses of our oceans necessitating coordinated, holistic approaches to marine spatial management.*
+![Figure 2. Example from Crowder et al.(2006) of the many mixed uses of our oceans necessitating coordinated, holistic approaches to marine spatial management.](fig/Crowder2006_fig1_no-legend.png) <br />
+*Figure 2. Example from Crowder et al.(2006) of the many mixed uses of our oceans necessitating coordinated, holistic approaches to marine spatial management.*
 
-Successful conservation of marine megafauna is dependent upon identifying times and places of greatest use, within the context of a changing climate and increasing array of human activities. Concurrent with a rise in conflicting human uses has been a rapid decline in overall marine biodiversity and ecosystem services (Butchart et al., 2010; B. S. Halpern et al., 2008b; Worm et al., 2006, 2009). In response, recent calls for holistic management practices, such as ecosystem-based management and marine spatial planning, are encouraging multi-species, multi-sector approaches (L. B. Crowder et al., 2006; L. Crowder & Norse, 2008; Dahl, Ehler, & Douvere, 2009; F. Douvere, 2008; M. M. Foley et al., 2010; B. S. Halpern, McLeod, Rosenberg, & Crowder, 2008a; Lubchenco & Sutley, 2010; US Commission on Ocean Policy, 2004) (see [Figure 1](#fig_crowder_resolving_2006)). For these applications I’ll be focusing on marine spatial planning of cetaceans, but methods will be transferable to other marine megafauna.
+In response, recent calls for holistic management practices, such as ecosystem-based management and marine spatial planning, are encouraging multi-species, multi-sector approaches (L. B. Crowder et al., 2006; L. Crowder & Norse, 2008; Dahl, Ehler, & Douvere, 2009; F. Douvere, 2008; M. M. Foley et al., 2010; B. S. Halpern, McLeod, Rosenberg, & Crowder, 2008a; Lubchenco & Sutley, 2010; US Commission on Ocean Policy, 2004) (see [Figure 2](#fig_crowder_resolving_2006)). For these applications I’ll be focusing on marine spatial planning of cetaceans, but methods will be transferable to other marine megafauna.
 
 In the US, marine mammals are legally protected through the Marine Mammal Protection Act and 22 are listed as threatened or endangered so are covered by The Endangered Species Act. Human activities that pose threats include: fishing bycatch or prey depletion (A. J. Read, 2008), ship strikes (Laist, Knowlton, Mead, Collet, & Podesta, 2001), anthropogenic noise (Weilgart, 2007), pollution of oil or bioaccumulating contaminants (Aguilar, Borrell, & Reijnders, 2002; O’Shea & Brownell Jr., 1994; Ross, 2006), and global climate change (Alter, Simmonds, & Brandon, 2010; Learmonth et al., 2006). Relocating potentially harmful human activities away from known cetacean distributions is generally the safest and simplest way to minimize risk (S. J. Dolman, Weir, & Jasny, 2009; Redfern et al., 2006).
 
 The current state of marine spatial planning begs several broad questions of decision makers and decision support scientists. How do you optimize use of ocean resources to provide long-term ecosystem services in a sustainable manner while minimizing impacts on endangered species? How much risk are you willing to accept? What are the tradeoffs between conservation value and economic impact? How do you handle poor data availability within marine systems? How do you manage the dynamic nature of the environment with species distributions? How do you handle uncertainty while making spatial decisions? Which human uses require custom applications?
 
-While much work has been done already to support description of species distributions for planning purposes (J. Elith & Leathwick, 2009; Margules & Sarkar, 2007; Pressey & Bottrill, 2009; Pressey, Cabeza, Watts, Cowling, & Wilson, 2007), there is room for improvement in answering the questions above for adopting a marine operational framework.
+<a name="fig_serdp-mapper"></a>
 
-Over the next 5 chapters I propose methods for addressing these questions within two study areas, British Columbia and US Atlantic (see .
+![Figure 3. Spatial decision support system depicting the input survey tracks (lines), observations (blue dots) and habitat prediction surface (blue=low vs red=high likelihood of encounter) for sperm whales in the US Atlantic east coast region.](fig/serdp-mapper_sperm-whale-summer-east_zoom_sized.png) <br />
+*Figure 3. Spatial decision support system depicting the input survey tracks (lines), observations (blue dots) and habitat prediction surface (blue=low vs red=high likelihood of encounter) for sperm whales in the US Atlantic east coast region.*
+
+While much work has been done already to support description of species distributions for planning purposes (J. Elith & Leathwick, 2009; Margules & Sarkar, 2007; Pressey & Bottrill, 2009; Pressey, Cabeza, Watts, Cowling, & Wilson, 2007), there is room for improvement in answering the questions above for adopting a marine operational framework. Providing web services makes these data readily available for decision making (see `ref('fig_serdp-mapper')`[1]).
+
+Over the next 5 chapters I propose methods for addressing these questions within two study areas, British Columbia and US Atlantic (see [[TODO: study area map]]).
 
 1.  I start with pooling boat and plane datasets in order to incorporate more data into the species distribution models (SDMs). A variety of SDMs will be compared for their requirements, outputs and performance. Improvements in the SDMs will include novel environmental predictors, addressing scale and exploring lags in space and time.
 
@@ -50,13 +63,21 @@ Over the next 5 chapters I propose methods for addressing these questions within
 
 5.  In Conservation Routing layers of species data are combined into a single cost surface for routing ships using least cost paths. These tools should enable a more transparent, operational and robust set of methods for incorporating cetacean species distribution models into the marine spatial planning process.
 
-Notes
------
+<!--
+## Notes
 
--   Titles to consider:
--   Data to Decisions: Applying Dynamic Species Distribution Models to Cetacean Conservation Management
--   Marine Spatial Planning for Megafauna in a Dynamic Ocean: Methods and Applications for the Future
--   
+- Titles to consider:
+  - Data to Decisions: Applying Dynamic Species Distribution Models to Cetacean Conservation Management
+  - Marine Spatial Planning for Megafauna in a Dynamic Ocean: Methods and Applications for the Future
+
+- History of Cetacean Distribution Modeling
+  - historic whaling charts by Admiral Matthew Maury [map of whales](http://maps.bpl.org/id/m8753) [data visualizations of whaling history]](http://sappingattention.blogspot.com/2012/10/data-narratives-and-structural.html)
+  - whaling (graphic), extirpation. examples of extinct whales. locally extinct, eg gray whale from Atlantic, but then climate change doing interesting things with whale showing up in Med.
+  - summarized by [@smith_spatial_2012]
+
+- counting whales from satellite [@fretwell_whales_2014]
+
+-->
 
 <!--- `source('make_config.R'); render_html('c_sdm.Rmd') # run for quick render` -->
 Robust and Dynamic Distribution Models
@@ -66,9 +87,9 @@ Species distribution modeling literature and available techniques are vast (J. E
 
 Taking advantage of recently completed cetacean habitat models for US Atlantic waters (Best et al., 2012), I will compare performance of modeling techniques ranging from presence-only to presence-absence to density . These will include both correlative techniques (GLM, GAM) and machine learning (random forest, BRT, Maxent). Does more information as required by presence-absence and especially density add value? In order to use both ship and plane datasets the cell values for fitting the GAMs were offset residence time of survey effort per cell. No known methods exist to simultaneously incorporate density surface models from different platforms, so data will need to be subset for comparability. Measures such as AUC will assess model performance.
 
-Megafauna often move between several habitats depending on life stage while exhibiting complex behaviors. They live in a dynamic world of shifting currents or winds, temperature and prey. This compounds typical data limitations, often resulting in species distributions having poor levels of variance explained. Inclusion of dynamic variables could improve predictability. The original models only included depth, distance to shore, distance to continental shelf break, and sea-surface temperature (SST). The next generation of models will include novel covariates from satellite-derived features which tend to aggregate prey: improved sea-surface temperature fronts, geostrophic eddies and the Lagrangian technique finite-size Lyapunov exponent (Tew Kai et al., 2009). Mixed layer depth (MLD) has proven to be a strong predictor for the habitat of some cetaceans (Redfern et al., 2006), but has historically been limited to in situ measurements by boat limiting its prediction across the seascape. Now 4D oceanographic models such as the Hybrid Coordinate Ocean Model (HyCOM) make MLD available over the entire oceanographically modeled extent. Oceanographic models also do not suffer from cloud cover and can resolve more finely in time and space, although error still exists. Most importantly they can be used to forecast conditions. California NOAA colleagues Elizabeth Becker and Karin Forney have been extending their models (Becker et al., 2010) with the Regional Oceanographic Modeling System (ROMS) to forecast in the Pacific. HYCOM currently predicts out 5 days and ROMS up to 3 months. Most of these data and tools relevant to US Atlantic are easily accessed within an ArcGIS workflow through the Marine Geospatial Ecology Tools[1] (Roberts, Best, Dunn, Treml, & Halpin, 2010).
+Megafauna often move between several habitats depending on life stage while exhibiting complex behaviors. They live in a dynamic world of shifting currents or winds, temperature and prey. This compounds typical data limitations, often resulting in species distributions having poor levels of variance explained. Inclusion of dynamic variables could improve predictability. The original models only included depth, distance to shore, distance to continental shelf break, and sea-surface temperature (SST). The next generation of models will include novel covariates from satellite-derived features which tend to aggregate prey: improved sea-surface temperature fronts, geostrophic eddies and the Lagrangian technique finite-size Lyapunov exponent (Tew Kai et al., 2009). Mixed layer depth (MLD) has proven to be a strong predictor for the habitat of some cetaceans (Redfern et al., 2006), but has historically been limited to in situ measurements by boat limiting its prediction across the seascape. Now 4D oceanographic models such as the Hybrid Coordinate Ocean Model (HyCOM) make MLD available over the entire oceanographically modeled extent. Oceanographic models also do not suffer from cloud cover and can resolve more finely in time and space, although error still exists. Most importantly they can be used to forecast conditions. California NOAA colleagues Elizabeth Becker and Karin Forney have been extending their models (Becker et al., 2010) with the Regional Oceanographic Modeling System (ROMS) to forecast in the Pacific. HYCOM currently predicts out 5 days and ROMS up to 3 months. Most of these data and tools relevant to US Atlantic are easily accessed within an ArcGIS workflow through the Marine Geospatial Ecology Tools[2] (Roberts, Best, Dunn, Treml, & Halpin, 2010).
 
-Adaptive management practices are emerging for responding to real-time oceanographic features and endangered species observations. Hawaii-based longline vessels in the Pacific are advised by a regularly update satellite contour map from the TurtleWatch service[2] to fish in waters warmer than 65.5° C to avoid bycatch of loggerhead sea turtles (Howell, Kobayashi, Parker, Balazs, & Polovina, 2008). A similar temperature contour was used for separation of commercially fished tuna species in southwestern Australia (A. J. Hobday & Hartmann, 2006). All vessels larger than 65 ft around Boston Harbor must travel 10 knots or less in critical habitat areas, and those heavier than 300 gross tons must report entrance into key areas and respond in real-time to current observations delivered through the right whale sighting advisory system[3] (L. Ward-Geiger, Silber, Baumstark, & Pulfer, 2005). The notion of pelagic reserves (K. D. Hyrenbach, Forney, & Dayton, 2000) is still young and has been more recently suggested beyond countries' exclusive economic zones (Ardron, Gjerde, Pullen, & Tilot, 2008). The UN Convention on Biological Diversity is reviewing criteria for Ecological and Biological Significant Areas for applying these measures, organized in coordination with the Halpin lab through the Global Ocean Biodiversity Initiative[4]. In short a receptive audience awaits for determining pelagic habitats with the latest predictive tools relevant to policy in process (D. C. Dunn, Boustany, & Halpin, 2010).
+Adaptive management practices are emerging for responding to real-time oceanographic features and endangered species observations. Hawaii-based longline vessels in the Pacific are advised by a regularly update satellite contour map from the TurtleWatch service[3] to fish in waters warmer than 65.5° C to avoid bycatch of loggerhead sea turtles (Howell, Kobayashi, Parker, Balazs, & Polovina, 2008). A similar temperature contour was used for separation of commercially fished tuna species in southwestern Australia (A. J. Hobday & Hartmann, 2006). All vessels larger than 65 ft around Boston Harbor must travel 10 knots or less in critical habitat areas, and those heavier than 300 gross tons must report entrance into key areas and respond in real-time to current observations delivered through the right whale sighting advisory system[4] (L. Ward-Geiger, Silber, Baumstark, & Pulfer, 2005). The notion of pelagic reserves (K. D. Hyrenbach, Forney, & Dayton, 2000) is still young and has been more recently suggested beyond countries' exclusive economic zones (Ardron, Gjerde, Pullen, & Tilot, 2008). The UN Convention on Biological Diversity is reviewing criteria for Ecological and Biological Significant Areas for applying these measures, organized in coordination with the Halpin lab through the Global Ocean Biodiversity Initiative[5]. In short a receptive audience awaits for determining pelagic habitats with the latest predictive tools relevant to policy in process (D. C. Dunn, Boustany, & Halpin, 2010).
 
 Dynamic management can include time-area closures, response to environmental cues, and response to real-time observations. Whenever considering these measures, the question to be asked is how much added value does dynamic management provide in reducing risk versus cost for additional management complexity?
 
@@ -131,7 +152,7 @@ The presence of seasonal migration in a species’ life history can obviously al
 
 Most papers which discuss migration and species distribution modeling are modeling the long term shift in distribution, typically poleward, imposed by climate change (Guisan & Thuiller, 2005; L. M. Robinson et al., 2011), and not the seasonal migrations common to megafauna. Mechanistic species distribution models have been suggested (Kearney & Porter, 2009; L. M. Robinson et al., 2011) but are complicated with energy and mass balance equations using parameters often difficult attain. Complex Markov models have been used with bird data to model bird migrations and trajectories (Sheldon, Elmohamed, & Kozen, 2007).
 
-A simpler method is possible and desirable for easily providing marine stakeholders and the general public (e.g. through OBIS-SEAMAP[5] or GROMS[6]) with a best guess view of what whales are where when. In its simplest form, separate models would be fit from observations separated out seasonally and spatially to distinguish the breeding, foraging and 2 migrating habitats. For the migratory habitat, time would be included as an interaction term for all environmental variables. Another variable could be introduced which measures distance along the axis of the median path, or straight line from the centroids of the breeding and foraging grounds. A significant fit for the interaction with this linear predictor would provide a clear description of where the whale is expected to be on its journey. Using the distance from this median line should give an idea of how widely dispersed the animals are along the way. If using a GAM then to model this interaction term, then it would be a bivariate smoother which could expand and contract along the axis. Compositing these models together could then provide a simple time-varying habitat model incorporating migratory movement.
+A simpler method is possible and desirable for easily providing marine stakeholders and the general public (e.g. through OBIS-SEAMAP[6] or GROMS[7]) with a best guess view of what whales are where when. In its simplest form, separate models would be fit from observations separated out seasonally and spatially to distinguish the breeding, foraging and 2 migrating habitats. For the migratory habitat, time would be included as an interaction term for all environmental variables. Another variable could be introduced which measures distance along the axis of the median path, or straight line from the centroids of the breeding and foraging grounds. A significant fit for the interaction with this linear predictor would provide a clear description of where the whale is expected to be on its journey. Using the distance from this median line should give an idea of how widely dispersed the animals are along the way. If using a GAM then to model this interaction term, then it would be a bivariate smoother which could expand and contract along the axis. Compositing these models together could then provide a simple time-varying habitat model incorporating migratory movement.
 
 I propose to do this with the North Atlantic right whale (*Eubalaena glacialis*) since data is easily obtained through OBIS-SEAMAP over the entire species range and existing datasets are available for habitat in the Gulf of Maine foraging grounds (Best et al., 2012; Department of the Navy (DON), 2007) and calving grounds off Florida (C. P. Good, 2008), as well as comparison with migratory model based on telemetry data (Schick et al., 2009).
 
@@ -309,14 +330,16 @@ Worm, B., Barbier, E. B., Beaumont, N., Duffy, J. E., Folke, C., Halpern, B. S.,
 
 Worm, B., Hilborn, R., Baum, J. K., Branch, T. A., Collie, J. S., Costello, C., … Zeller, D. (2009). Rebuilding Global Fisheries. *Science*, *325*(5940), 578–585. doi:[10.1126/science.1173146](http://dx.doi.org/10.1126/science.1173146)
 
-[1] <http://www.code.env.duke.edu/projects/mget>
+[1] <http://seamap.env.duke.edu/search/?app=serdp>
 
-[2] <http://www.pifsc.noaa.gov/eod/turtlewatch.php>
+[2] <http://www.code.env.duke.edu/projects/mget>
 
-[3] <http://www.nefsc.noaa.gov/psb/surveys/SAS.html>
+[3] <http://www.pifsc.noaa.gov/eod/turtlewatch.php>
 
-[4] <http://www.gobi.org>
+[4] <http://www.nefsc.noaa.gov/psb/surveys/SAS.html>
 
-[5] <http://seamap.env.duke.edu>
+[5] <http://www.gobi.org>
 
-[6] <http://groms.gbif.org>
+[6] <http://seamap.env.duke.edu>
+
+[7] <http://groms.gbif.org>
