@@ -27,7 +27,7 @@ The current state of marine spatial planning begs several broad questions of dec
 
 `r fig('fig_serdp-mapper', 'fig/serdp-mapper_sperm-whale-summer-east_zoom_sized.png', 'Spatial decision support system depicting the input survey tracks (lines), observations (blue dots) and habitat prediction surface (blue=low vs red=high likelihood of encounter) for sperm whales in the US Atlantic east coast region.')`
 
-While much work has been done already to support description of species distributions for planning purposes [@margules_systematic_2007; @pressey_conservation_2007; @elith_species_2009; @pressey_approaches_2009], there is room for improvement in answering the questions above for adopting a marine operational framework. Providing web services makes these data readily available for decision making (see `ref('fig_serdp-mapper')` [^serdp]).
+While much work has been done already to support description of species distributions for planning purposes [@margules_systematic_2007; @pressey_conservation_2007; @elith_species_2009; @pressey_approaches_2009], there is room for improvement in answering the questions above for adopting a marine operational framework. Providing web services makes these data readily available for decision making (see `r ref('fig_serdp-mapper')` [^serdp]).
 
 [^serdp]: http://seamap.env.duke.edu/search/?app=serdp
 
