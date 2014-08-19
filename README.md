@@ -67,35 +67,35 @@ Here are a few related resources from which I borrowed.
 
 Here's a little macro to resize images and add a table of contents. Works in Office 2011 for Mac. Tools > Macro > Macros.. Enter "dissertation_quick_fixes", Create. Then replace with the following code:
 
-  ```vbnet
-  Sub dissertation_quick_fixes()
-  
-  ' resize figures
-  
-  Dim shp As Word.Shape
-  Dim ishp As Word.InlineShape
-  Dim inwidth As Integer
-  
-  width_in = 6
-  
-  For Each shp In ActiveDocument.Shapes
-      shp.LockAspectRatio = True
-      shp.Width = InchesToPoints(width_in)
-  Next
-   
-  For Each ishp In ActiveDocument.InlineShapes
-      ishp.LockAspectRatio = True
-      ishp.Width = InchesToPoints(width_in)
-  Next
-  
-  ' add table of contents
-  
-  Set rangeWord = ActiveDocument.Range(Start:=7, End:=7)
-  ActiveDocument.TablesOfContents.Add rangeWord, _
-      UseFields:=True, _
-      UseHeadingStyles:=True, _
-      LowerHeadingLevel:=3, _
-      UpperHeadingLevel:=1
-      
-  End Sub
-  ```
+```vbnet
+Sub dissertation_quick_fixes()
+
+' resize figures
+
+Dim shp As Word.Shape
+Dim ishp As Word.InlineShape
+Dim inwidth As Integer
+
+width_in = 6
+
+For Each shp In ActiveDocument.Shapes
+    shp.LockAspectRatio = True
+    shp.Width = InchesToPoints(width_in)
+Next
+ 
+For Each ishp In ActiveDocument.InlineShapes
+    ishp.LockAspectRatio = True
+    ishp.Width = InchesToPoints(width_in)
+Next
+
+' add table of contents
+
+Set rangeWord = ActiveDocument.Range(Start:=7, End:=7)
+ActiveDocument.TablesOfContents.Add rangeWord, _
+    UseFields:=True, _
+    UseHeadingStyles:=True, _
+    LowerHeadingLevel:=3, _
+    UpperHeadingLevel:=1
+    
+End Sub
+```
