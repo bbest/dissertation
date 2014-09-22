@@ -14,7 +14,7 @@ Prefixes to Rmarkdown files (\*.Rmd) are simple letters for sorting front matter
 
 Here's the draft defense presentation:
 
-- [defense.**html**](https://www.dropbox.com/s/iaft4jc5xjezmqj/defense.html)
+- [defense.**html**](http://rawgit.com/bbest/dissertation/master/defense.html)
 
 ## Rendering
 
