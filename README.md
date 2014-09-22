@@ -65,37 +65,64 @@ Here are a few related resources from which I borrowed.
 
 ## Word Tweaks
 
-Here's a little macro to resize images and add a table of contents. Works in Office 2011 for Mac. Tools > Macro > Macros.. Enter "dissertation_quick_fixes", Create. Then replace with the following code:
+Here's a little macro to resize images and add a table of contents. Works in Office 2011 for Mac. Tools > Macro > Macros.. Enter "dissertation_quick_fixes", Create. Then replace with the following code and Run. Should save to your Normal.dot so only need to create the macro once, then available to run on any document.
 
 ```vbnet
 Sub dissertation_quick_fixes()
 
+'----
 ' resize figures
 
 Dim shp As Word.Shape
 Dim ishp As Word.InlineShape
-Dim inwidth As Integer
+Dim width_in As Integer
 
 width_in = 6
 
+' iterate over all shapes
 For Each shp In ActiveDocument.Shapes
     shp.LockAspectRatio = True
     shp.Width = InchesToPoints(width_in)
 Next
- 
+
+' iterate over all inline shapes
 For Each ishp In ActiveDocument.InlineShapes
     ishp.LockAspectRatio = True
     ishp.Width = InchesToPoints(width_in)
 Next
 
-' add table of contents
+'----
+' add table of contents after 1st paragraph
 
-Set rangeWord = ActiveDocument.Range(Start:=7, End:=7)
-ActiveDocument.TablesOfContents.Add rangeWord, _
+Dim toc_str As String
+Dim rng As Object
+
+toc_str = "Table of Contents"
+
+' set location in doc
+Set rng = ActiveDocument.range( _
+    Start:=ActiveDocument.Paragraphs(1).range.End, _
+    End:=ActiveDocument.Paragraphs(1).range.End)
+
+' add toc
+ActiveDocument.TablesOfContents.Add rng, _
     UseFields:=True, _
     UseHeadingStyles:=True, _
     LowerHeadingLevel:=3, _
     UpperHeadingLevel:=1
-    
+
+' prefix toc with string
+With ActiveDocument.Paragraphs(1).range
+    .InsertParagraphAfter
+    .InsertAfter (toc_str)
+    .InsertParagraphAfter
+End With
+
+' make toc bold
+With Selection.Find
+    .Replacement.Font.Bold = True
+    .Execute FindText:=toc_str, replaceWith:=toc_str
+End With
+
 End Sub
 ```

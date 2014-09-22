@@ -58,7 +58,7 @@ fig = local({
       return(sprintf(paste(
         '\\begin{figure}[htbp]',
         '\\centering',
-        '\\includegraphics{%s}',
+        '\\includegraphics[width=6in]{%s}',
         '\\caption{%s}',
         '\\label{%s}',
         '\\end{figure}', collapse='\n'),
@@ -254,12 +254,14 @@ render_word = function(
   mv_open(out_word, open_f=open)
   
   # manual post-hoc
-  cat('todo manually:
+  cat('to be handled by dissertation_quick_fixes macro (see dissertation/README):
+    - resize all pictures to 6 inch width
+    - Insert > Index and Tables > Table of Contents\n')
+  cat('to do manually:
     - style Title and Subtitle, center subtitle
-    - Insert > Index and Tables > Table of Contents
     - Insert Watermark > text DRAFT, orientation 45, transparency 60
     - View > Sidebar > Document Map Pane
-    - Add page numbering')
+    - Add page numbering\n')
 }
 
 render_pdf   = function(

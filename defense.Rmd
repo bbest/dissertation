@@ -22,9 +22,9 @@ human uses vs. endangered species
 ![](./fig/marine_conflicts_sized.png)
 
 <div class="notes">
-- To enable presenter mode add `?presentme=true` to URL, and `?presentme=false` to turn off.
+Multiple interactions / conflict possible with variety of human industries.
 
-- to render:
+To enable presenter mode add `?presentme=true` to URL, and `?presentme=false` to turn off.
 
 ```
 library(rmarkdown)
@@ -33,8 +33,6 @@ file.copy('~/github/dissertation/defense.html', '~/Dropbox/dissertation/defense.
 render(from)
 system('open ~/Dropbox/dissertation/defense.html')
 ```
-
-Multiple interactions / conflict possible with variety of human industries.
 </div>
 
 ## Marine Spatial Planning {.flexbox .vcenter}
@@ -49,9 +47,9 @@ Source: Crowder et al. (2006) Resolving Mismatches in U.S. Ocean Governance. _Sc
 <div class="notes">
 need to coordinate multilple uses highlighted by the many operating agencies and activities
 
-- Crowder et al 2006. Resolving Mismatches in U.S. Ocean Governance. **Science**.
-
 Many regulating agencies to oversee all these conflicting uses. Messy. Especially for ad-hoc human decision making. Need a system to handle this.
+
+Crowder et al 2006. Resolving Mismatches in U.S. Ocean Governance. **Science**.
 </div>
 
 ## Spatial Decision Support System {.flexbox .vcenter}
@@ -68,20 +66,18 @@ Need SDSS for conservation management of megafauna.
 
 Who, What, When, Where, How, _Why_?
 
-- Who  = spp: guilds, assoc, trophic links, aggregated into single layer
+**Who** spp: guilds, assoc, trophic links, aggregated into single layer
   ( Ok a little anthropamorphizing xharismatic megafauna)
 
-- What env associations 
-  beyond usual suspects MLD, eddies
+**What** env: associations beyond usual suspects MLD, eddies
 
-- Where space
-  persistent places, shifts in When
+**Where** space: persistent places, shifts in When
 
-- When time (seasons, forecast, climate)
+**When** time: seasons, forecast, climate
 
-- How decision making, using all avail data (multiple platforms, obs portal, expert opinion)
+**How** decision making: using all avail data (multiple platforms, obs portal, expert opinion)
 
-- _Why_ skipping: more of an evolutionary Q.
+**_Why_** skipping: more of an evolutionary Q.
 </div>
 
 ## Data from Many Platforms
@@ -89,11 +85,11 @@ Who, What, When, Where, How, _Why_?
 ![](./fig/data-platforms_sized.png)
 
 <div class="notes">
-- boat
-- plane
-- telemetry
-- land survey. turtle nesting site. pinniped rookery. bird nest. whale observation.
-- expert opinion. charrettes for conservation planning, IUCN species meetings...
+boat, plane, telemetry
+
+land survey. turtle nesting site. pinniped rookery. bird nest. whale observation.
+
+expert opinion. charrettes for conservation planning, IUCN species meetings...
 </div>
 
 ## Questions (themes) {.smaller}
@@ -124,8 +120,9 @@ Who, What, When, Where, How, _Why_?
 1. Conservation Routing (**decision frameworks**)
 
 <div class="notes">
-- Maximizing Species Distribution Models (SDMs) for Decision-Making: Marine Spatial Planning Methods for Cetacean Conservation
+Maximizing Species Distribution Models (SDMs) for Decision-Making: Marine Spatial Planning Methods for Cetacean Conservation
 </div>
+
 
 # 1. Robust, Dynamic Distribution Models
 
@@ -139,7 +136,7 @@ Source: Best BD, PN Halpin _et al_ (**2012**) Online Cetacean Habitat Modeling S
 </footer>
 
 <div class="notes">
-- part of special issue
+part of special issue
 </div>
 
 ## Dynamic Variables from Satellite
@@ -171,7 +168,7 @@ Hybrid Coordinate Ocean Model (HYCOM)
 using ROMS to Oct, Nov (predicting from July)
 
 <div class="notes">
-- Becker et al whale forecasts
+Becker et al whale forecasts
 </div>
 
 
@@ -205,13 +202,19 @@ Hill, K., T. Moltmann, R. Proctor, and S. Allen. 2010. The Australian Integrated
 ![](./fig/gray-whale-migration_sized.png)
 
 <div class="notes">
-- longest mammalian migration on planet
-- Eastern North Pacific gray whales make a mammoth 20,000 km (12,400 mile) round trip between their southern breeding grounds off Baja California, Mexico and their northern feeding grounds off Alaska and the Beaufort Sea. 
-- April - November: Arctic feeding grounds
-- [October - February: migrates south]
-- December - April: Mexican breeding grounds
-- [February - July: migrates north] 
-- In the early winter, they move south to breed in the warm, shallow lagoons along the Mexican coast. The most popular breeding lagoons are San Ignacio lagoon, Scammon's lagoon, and Magdalena Bay, on the Pacific coast of Baja California, Mexico. Around February, the grays migrate north to feed in Arctic waters (western Beaufort Sea and Bering Sea), northwest of Alaska. A few - mainly younger - whales make a shorter journey north from Mexico, stopping off along the coastline stretching between northern California, Oregon, Washington State, USA, and British Columbia, Canada. Some feeding behaviour has been observed in all parts of the range, and around Vancouver Island, British Columbia, Canada, grays are present year-round. 
+longest mammalian migration on planet
+
+Eastern North Pacific gray whales make a mammoth 20,000 km (12,400 mile) round trip between their southern breeding grounds off Baja California, Mexico and their northern feeding grounds off Alaska and the Beaufort Sea. 
+
+April - November: Arctic feeding grounds
+
+[October - February: migrates south]
+
+December - April: Mexican breeding grounds
+
+[February - July: migrates north] 
+
+In the early winter, they move south to breed in the warm, shallow lagoons along the Mexican coast. The most popular breeding lagoons are San Ignacio lagoon, Scammon's lagoon, and Magdalena Bay, on the Pacific coast of Baja California, Mexico. Around February, the grays migrate north to feed in Arctic waters (western Beaufort Sea and Bering Sea), northwest of Alaska. A few - mainly younger - whales make a shorter journey north from Mexico, stopping off along the coastline stretching between northern California, Oregon, Washington State, USA, and British Columbia, Canada. Some feeding behaviour has been observed in all parts of the range, and around Vancouver Island, British Columbia, Canada, grays are present year-round. 
 
 </div>
 
@@ -229,9 +232,12 @@ Hill, K., T. Moltmann, R. Proctor, and S. Allen. 2010. The Australian Integrated
 ![](./fig/migration-model-b_sized.png)
 
 <div class="notes">
-- mid: laggards leaving.  End: over-acheivers.
-- `x`: along-shore distance
-- bivariate smoother (`s(x,t)`)
+
+mid: laggards leaving.  End: over-acheivers.
+
+`x`: along-shore distance
+
+bivariate smoother (`s(x,t)`)
 </div>
 
 
@@ -240,7 +246,7 @@ Hill, K., T. Moltmann, R. Proctor, and S. Allen. 2010. The Australian Integrated
 ![](./fig/migration-model-c_sized.png)
 
 <div class="notes">
-- `w`: width
+`w`: width
 </div>
 
 # 3. Probabilistic Range Maps
@@ -256,10 +262,10 @@ Source: IUCN
 </footer>
 
 <div class="notes">
-- expert-convened range maps of species  
-- attributes of species (eg phylogenetic diversity)
-- International Union of Concerned ... N?
-- 
+expert-convened range maps of species  
+attributes of species (eg phylogenetic diversity)
+International Union of Concerned ... N?
+ 
 </div>
 
 
@@ -414,12 +420,15 @@ prediction from model
 But that model has a certain amount of error. How do we resolve these pieces of information? [Toggle fwd/back]
 
 TODO:
-- Add slide showing distribution of values for different pixels:
-    - precise (narrow CI): low error w/ low & high mean
-    - imprecise (wide CI): high error w/ low & med & high mean
-- Consider how this works with density data, treat as 3rd variable in step loss fxn or swap for integrated "likelihood of encounter"?
-- Compare w/ ROC
-- How much added value with integrated risk-loss function vs just taking the mean?
+Add slide showing distribution of values for different pixels:
+precise (narrow CI): low error w/ low & high mean
+imprecise (wide CI): high error w/ low & med & high mean
+
+Consider how this works with density data, treat as 3rd variable in step loss fxn or swap for integrated "likelihood of encounter"?
+
+Compare w/ ROC
+
+How much added value with integrated risk-loss function vs just taking the mean?
 </div>
 
 ## Weights
@@ -465,7 +474,7 @@ as simple step function.
 - **opportunity loss** of not operating (_no_ go) and _not_ encountering whales
 
 <div class="notes">
-- highlighting the high cost associated with 
+highlighting the high cost associated with 
 </div>
 
 
@@ -501,32 +510,30 @@ Per pixel, choose decision which minimizes risk-loss function.
 ![Whale areas (left) and proposed routes (right) in BC.](./fig/routing-proposed-routes_sized.png)
 
 <div class="notes">
-- Full caption. Maps of British Columbia related to conservation routing. On left, areas for gray, humpback, and sperm whales based on expert opinion (PNCIMA Atlas, 2009). On right, proposed oil tanker vessel route for servicing the forthcoming Kitimat oil and gas project.
+Full caption. Maps of British Columbia related to conservation routing. On left, areas for gray, humpback, and sperm whales based on expert opinion (PNCIMA Atlas, 2009). On right, proposed oil tanker vessel route for servicing the forthcoming Kitimat oil and gas project.
 </div>
 
 
 ## Integrate Marine Mammal Distributions
 
 - Using density spatial models for 9 marine mammal species in BC from Raincoast surveys 2004-2008
-- Composite risk map derived per pixel ($i$) across $n$ species ($s$) by summing relative density ($z_i$), which is based on the pixel values' ($x_i$) deviation ($\sigma_s$) from mean density ($\mu_s$), and multiplying by conservation status ($w_s$)
 
-$$
-z_{i,s} = \frac{ x_{i,s} - \mu_s }{ \sigma_s }
-$$
-$$
-Z_i = \frac{ \sum_{s=1}^{n} z_{i,s} w_s }{ n }
-$$
-
-
-![](./fig/.png)
+- Composite risk map derived per pixel ($i$) across $n$ species ($s$) by summing relative density ($z_i$), which is based on the pixel values' ($x_i$) deviation ($\sigma_s$) from mean density ($\mu_s$), and multiplying by conservation status ($w_s$):
+  $$
+  z_{i,s} = \frac{ x_{i,s} - \mu_s }{ \sigma_s } \\  
+  Z_i = \frac{ \sum_{s=1}^{n} z_{i,s} w_s }{ n }
+  $$
 
 <div class="notes">
-- Density surface model outputs will be assembled into a marine mammal composite risk map, or cost surface. 
-- Each density surface was normalized in order to highlight areas of high density relative to its average.
-- The unitless standard score, or z-value ($z_i$), per pixel ($i$) is calculated as the pixel’s marine mammal density estimate ($x_i$) subtracted from the mean of all density estimates for the strata ($\mu$), divided by the standard deviation of those density estimates ($\sigma$) and finally multiplied by the species weight ($w_s$) according to conservation status. 
+Density surface model outputs will be assembled into a marine mammal composite risk map, or cost surface. 
+
+Each density surface was normalized in order to highlight areas of high density relative to its average.
+The unitless standard score, or z-value ($z_i$), per pixel ($i$) is calculated as the pixel’s marine mammal density estimate ($x_i$) subtracted from the mean of all density estimates for the strata ($\mu$), divided by the standard deviation of those density estimates ($\sigma$) and finally multiplied by the species weight ($w_s$) according to conservation status. 
+
 TODO:
-- Is $\sigma$ per pixel or for entire DSM?
-- How does uncertainty play into this decision making?
+Is $\sigma$ per pixel or for entire DSM?
+How does uncertainty play into this decision making?
+
 </div>
 
 ## Conservation Status ($w_s$) {.flexbox .vcenter}
@@ -552,9 +559,9 @@ TODO:
 - compared with straight line (Euclidean) route
 
 TODO:
-- get feedback from Raincoast, Mersk, Shaun on actual application
-- How could this relate to insurance incentivizing program?
-- Research issues with SB Channel in trying to get rerouting accomplished.
+get feedback from Raincoast, Mersk, Shaun on actual application
+How could this relate to insurance incentivizing program?
+Research issues with SB Channel in trying to get rerouting accomplished.
 </div>
 
 
@@ -594,9 +601,9 @@ Right: Halpern et al. (2008) A Global Map of Human Impact on Marine Ecosystems. 
 ...
 
 <div class="notes">
-- PH with byramid / in tiara
-- Raincoast in field pic
-- Friends collage
+PH with byramid / in tiara
+Raincoast in field pic
+Friends collage
 </div>
 
 # Backup Slides
@@ -605,16 +612,16 @@ Right: Halpern et al. (2008) A Global Map of Human Impact on Marine Ecosystems. 
 
 <div class="notes">
 
-- ROC for optimum
-- Figs from Whitehead, McGill, Worm.  2008. Diversity of deep-water cetaceans in relation to temperature: implications for ocean warming. Ecology Letters
-- Gray whale migration sightings
+ROC for optimum
+Figs from Whitehead, McGill, Worm.  2008. Diversity of deep-water cetaceans in relation to temperature: implications for ocean warming. Ecology Letters
+Gray whale migration sightings
 
 Further Study:
 
-- Niche Modeling
-- Cetacean Ecology
-- Decision Theory
-- Operations Research
-- Environmental Economics
+Niche Modeling
+Cetacean Ecology
+Decision Theory
+Operations Research
+Environmental Economics
 
 </div>

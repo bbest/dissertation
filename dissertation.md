@@ -13,7 +13,7 @@
 **Species Distribution Modeling and Spatial Decision Frameworks for Marine Megafauna**
 Draft PhD dissertation by Benjamin D. Best
 in Marine Science and Conservation, Duke University
-Last modified: 2014-08-15
+Last modified: 2014-09-18
 
 Abstract
 ========
@@ -28,14 +28,14 @@ In order to maintain marine biodiversity, we need to effectively describe the di
 
 <a name="fig_marine_conflicts"></a>
 
-![Figure 1. Example human uses of the ocean with potential for harm to endangered species (upper left, clockwise): pile driving and maintenance from offshore wind energy installations, ship shock trials and low frequency sonar use by military, fisheries gear entanglement, ship strike by transportation and cruise industries.](fig/marine_conflicts.png) <br />
+![Figure 1. Example human uses of the ocean with potential for harm to endangered species (upper left, clockwise): pile driving and maintenance from offshore wind energy installations, ship shock trials and low frequency sonar use by military, fisheries gear entanglement, ship strike by transportation and cruise industries.](fig/marine_conflicts_sized.png) <br />
 *Figure 1. Example human uses of the ocean with potential for harm to endangered species (upper left, clockwise): pile driving and maintenance from offshore wind energy installations, ship shock trials and low frequency sonar use by military, fisheries gear entanglement, ship strike by transportation and cruise industries.*
 
 Concurrent with a rise in conflicting human uses (see [Figure 1](#fig_marine_conflicts)) has been a rapid decline in overall marine biodiversity and ecosystem services (Butchart et al., 2010; B. S. Halpern et al., 2008b; Worm et al., 2006, 2009).
 
 <a name="fig_crowder_resolving_2006"></a>
 
-![Figure 2. Example from Crowder et al.(2006) of the many mixed uses of our oceans necessitating coordinated, holistic approaches to marine spatial management.](fig/Crowder2006_fig1_no-legend.png) <br />
+![Figure 2. Example from Crowder et al.(2006) of the many mixed uses of our oceans necessitating coordinated, holistic approaches to marine spatial management.](fig/Crowder2006_fig1_sized.png) <br />
 *Figure 2. Example from Crowder et al.(2006) of the many mixed uses of our oceans necessitating coordinated, holistic approaches to marine spatial management.*
 
 In response, recent calls for holistic management practices, such as ecosystem-based management and marine spatial planning, are encouraging multi-species, multi-sector approaches (L. B. Crowder et al., 2006; L. Crowder & Norse, 2008; Dahl, Ehler, & Douvere, 2009; F. Douvere, 2008; M. M. Foley et al., 2010; B. S. Halpern, McLeod, Rosenberg, & Crowder, 2008a; Lubchenco & Sutley, 2010; US Commission on Ocean Policy, 2004) (see [Figure 2](#fig_crowder_resolving_2006)). For these applications I’ll be focusing on marine spatial planning of cetaceans, but methods will be transferable to other marine megafauna.

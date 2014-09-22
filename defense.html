@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PhD Defense</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="generator" content="pandoc" />
+
+
+
+  <meta name="date" content="2014-09-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <link rel="stylesheet" media="all" href="defense_files/ioslides-13.5.1/fonts/fonts.css">
+
+  <link rel="stylesheet" media="all" href="defense_files/ioslides-13.5.1/theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="defense_files/ioslides-13.5.1/theme/css/phone.css">
+
+  <base target="_blank">
+
+  <script type="text/javascript">
+    var SLIDE_CONFIG = {
+      // Slide settings
+      settings: {
+                title: 'PhD Defense',
+                        useBuilds: true,
+        usePrettify: true,
+        enableSlideAreas: true,
+        enableTouch: true,
+              },
+
+      // Author information
+      presenters: [
+            {
+        name: 'Ben Best'
+      },
+            ]
+    };
+  </script>
+
+  <style type="text/css">
+
+    b, strong {
+      font-weight: bold;
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    slides > slide {
+      -webkit-transition: all 0.4s ease-in-out;
+      -moz-transition: all 0.4s ease-in-out;
+      -o-transition: all 0.4s ease-in-out;
+      transition: all 0.4s ease-in-out;
+    }
+
+    .auto-fadein {
+      -webkit-transition: opacity 0.6s ease-in;
+      -webkit-transition-delay: 0.4s;
+      -moz-transition: opacity 0.6s ease-in 0.4s;
+      -o-transition: opacity 0.6s ease-in 0.4s;
+      transition: opacity 0.6s ease-in 0.4s;
+      opacity: 0;
+    }
+
+  </style>
+
+
+
+</head>
+
+<body style="opacity: 0">
+
+<slides>
+
+  <slide class="title-slide segue nobackground">
+        <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+            <p style="margin-top: 6px; margin-left: -2px;">2014-09-21</p>
+          </hgroup>
+  </slide>
+
+<slide class=''><hgroup><h2>Marine Conflicts</h2></hgroup><article  id="marine-conflicts">
+
+<p>human uses vs. endangered species</p>
+
+<img src='fig/marine_conflicts_sized.png' title='fig:'/>
+
+<aside class='note'><section><p>Multiple interactions / conflict possible with variety of human industries.</p>
+
+<p>To enable presenter mode add <code>?presentme=true</code> to URL, and <code>?presentme=false</code> to turn off.</p>
+
+<pre >library(rmarkdown)
+render(&#39;~/github/dissertation/defense.Rmd&#39;, ioslides_presentation(self_contained=TRUE))
+file.copy(&#39;~/github/dissertation/defense.html&#39;, &#39;~/Dropbox/dissertation/defense.html&#39;, overwrite=T)
+render(from)
+system(&#39;open ~/Dropbox/dissertation/defense.html&#39;)</pre></section></aside>
+
+</article></slide><slide class=''><hgroup><h2>Marine Spatial Planning</h2></hgroup><article  id="marine-spatial-planning" class="flexbox vcenter">
+
+<p><img src='fig/Crowder2006_fig1_sized.png' height=450></p>
+
+<footer class="source">
+
+Source: Crowder et al. (2006) Resolving Mismatches in U.S. Ocean Governance. <em>Science</em>
+
+</footer>
+
+
+<aside class='note'><section><p>need to coordinate multilple uses highlighted by the many operating agencies and activities</p>
+
+<p>Many regulating agencies to oversee all these conflicting uses. Messy. Especially for ad-hoc human decision making. Need a system to handle this.</p>
+
+Crowder et al 2006. Resolving Mismatches in U.S. Ocean Governance. <strong>Science</strong>.</section></aside>
+
+</article></slide><slide class=''><hgroup><h2>Spatial Decision Support System</h2></hgroup><article  id="spatial-decision-support-system" class="flexbox vcenter">
+
+<p><img src='fig/serdp-mapper_sperm-whale-summer-east_zoom_sized.png' height=450></p>
+
+<footer class="source">
+
+Source: <a href='http://seamap.env.duke.edu/search/?app=serdp' title=''>http://seamap.env.duke.edu/search/?app=serdp</a>
+
+</footer>
+
+
+<aside class='note'><section><p>Need SDSS for conservation management of megafauna.</p>
+
+<p>Who, What, When, Where, How, <em>Why</em>?</p>
+
+<p><strong>Who</strong> spp: guilds, assoc, trophic links, aggregated into single layer ( Ok a little anthropamorphizing xharismatic megafauna)</p>
+
+<p><strong>What</strong> env: associations beyond usual suspects MLD, eddies</p>
+
+<p><strong>Where</strong> space: persistent places, shifts in When</p>
+
+<p><strong>When</strong> time: seasons, forecast, climate</p>
+
+<p><strong>How</strong> decision making: using all avail data (multiple platforms, obs portal, expert opinion)</p>
+
+<strong><em>Why</em></strong> skipping: more of an evolutionary Q.</section></aside>
+
+</article></slide><slide class=''><hgroup><h2>Data from Many Platforms</h2></hgroup><article  id="data-from-many-platforms">
+
+<img src='fig/data-platforms_sized.png' title='fig:'/>
+
+<aside class='note'><section><p>boat, plane, telemetry</p>
+
+<p>land survey. turtle nesting site. pinniped rookery. bird nest. whale observation.</p>
+
+expert opinion. charrettes for conservation planning, IUCN species meetings&#8230;</section></aside>
+
+</article></slide><slide class=''><hgroup><h2>Questions (themes)</h2></hgroup><article  id="questions-themes" class="smaller">
+
+<ul class = 'build'>
+<li><p>How to combine data from many platforms to best predict distribution and abundance of species? (<strong>disperate data</strong>)</p></li>
+<li><p>How do these distributions change over time, seasonally and trending with climate change? (<strong>distributions and time</strong>)</p></li>
+<li><p>What environmental covariates best predict where and when these animals are distributed? (<strong>distributions and environment</strong>)</p></li>
+<li><p>How do we effectively capture and integrate uncertainty for these distributions into decision making? (<strong>uncertainty</strong>)</p></li>
+<li><p>Once we can best describe the distribution of these species in space and time, how can we integrate this information into spatial decision frameworks? (<strong>decision frameworks</strong>)</p>
+
+<ul class = 'build'>
+<li><p>for siting</p></li>
+<li><p>for routing</p></li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Chapters: Data to Decision</h2></hgroup><article  id="chapters-data-to-decision">
+
+<ol class = 'build'>
+<li>Robust, Dynamic Distribution Models
+
+<ul class = 'build'>
+<li>Combine plane and boat observation data (<strong>disperate data</strong>)</li>
+<li>Distance from Gulf Stream (<strong>distributions and environment</strong>)</li>
+<li>Predicting with Uncertainty in Measurement and/or Gap-filled Environment (<strong>uncertainty</strong>)</li>
+</ul></li>
+<li>Predicting Seasonal Migration (<strong>distributions and time</strong>)</li>
+<li>Probabilistic Range Maps (<strong>disperate data</strong>, <strong>decision frameworks</strong>, <strong>uncertainty</strong>)</li>
+<li>Decision Mapping (<strong>decision frameworks</strong>, <strong>uncertainty</strong>)</li>
+<li>Conservation Routing (<strong>decision frameworks</strong>)</li>
+</ol>
+
+<aside class='note'><section>Maximizing Species Distribution Models (SDMs) for Decision-Making: Marine Spatial Planning Methods for Cetacean Conservation</section></aside>
+
+</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>1. Robust, Dynamic Distribution Models</h2></hgroup><article  id="robust-dynamic-distribution-models">
+
+</article></slide><slide class=''><hgroup><h2>Baseline SDM: Boat + Plane</h2></hgroup><article  id="baseline-sdm-boat-plane">
+
+<img src='fig/serdp-mapper-old_sperm-whale-summer-east_sized.png' title='fig:'/>
+
+<footer class="source">
+
+Source: Best BD, PN Halpin <em>et al</em> (<strong>2012</strong>) Online Cetacean Habitat Modeling System for the U.S. East Coast and Gulf of Mexico. <em>Endangered Species Research</em>
+
+</footer>
+
+
+<aside class='note'><section>part of special issue</section></aside>
+
+</article></slide><slide class=''><hgroup><h2>Dynamic Variables from Satellite</h2></hgroup><article  id="dynamic-variables-from-satellite">
+
+<p>Eddies from AVISO          Fronts from Pathfinder / GHRSST</p>
+
+<img src='fig/dynamic-vars-satellite_sized.png' title='fig:'/>
+
+<aside class='note'><section></section></aside>
+
+</article></slide><slide class=''><hgroup><h2>Dynamic Vars from Ocean Models</h2></hgroup><article  id="dynamic-vars-from-ocean-models">
+
+<img src='fig/dynamic-vars-oceanomodel_sized.png' title='fig:'/>
+
+<p>Hybrid Coordinate Ocean Model (HYCOM)</p>
+
+<ul class = 'build'>
+<li>pros: 1/12 °, cloud-free, 3D, forecast</li>
+<li>cons: modeled, since 2003, physical only</li>
+</ul>
+
+<aside class='note'><section></section></aside>
+
+</article></slide><slide class=''><hgroup><h2>Forecast Whales using Ocean Models</h2></hgroup><article  id="forecast-whales-using-ocean-models">
+
+<img src='fig/becker-whale-forecasts_sized.png' title='fig:'/>
+
+<p>using ROMS to Oct, Nov (predicting from July)</p>
+
+<aside class='note'><section>Becker et al whale forecasts</section></aside>
+
+</article></slide><slide class=''><hgroup><h2>Robust Comparison</h2></hgroup><article  id="robust-comparison">
+
+<ul class = 'build'>
+<li>Presence &lt; Presence-Absence &lt; Density?</li>
+<li>Regression (GLM, GAM) vs Machine Learning (Maxent, BRT)</li>
+<li>Predictive Performance vs Ecological Interpretation</li>
+<li>Space Time Lags</li>
+<li>Scaling Effects</li>
+</ul>
+
+<aside class='note'><section></section></aside>
+
+</article></slide><slide class=''><hgroup><h2>Space vs Time</h2></hgroup><article  id="space-vs-time">
+
+<p>           Processes                                     Observations</p>
+
+<img src='fig/oceano-space-time_sized.png' title='fig:'/>
+
+<aside class='note'><section>(after Stommel, 1963 and Dickey, 2004) Hill, K., T. Moltmann, R. Proctor, and S. Allen. 2010. The Australian Integrated Marine Observing System: Delivering Data Streams to Address National and International Research Priorities. Marine Technology Society Journal 44:65–72.</section></aside>
+
+</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>2. Predicting Seasonal Migration</h2></hgroup><article  id="predicting-seasonal-migration">
+
+</article></slide><slide class=''><hgroup><h2>Grey Whale Migration</h2></hgroup><article  id="grey-whale-migration">
+
+<img src='fig/gray-whale-migration_sized.png' title='fig:'/>
+
+<aside class='note'><section><p>longest mammalian migration on planet</p>
+
+<p>Eastern North Pacific gray whales make a mammoth 20,000 km (12,400 mile) round trip between their southern breeding grounds off Baja California, Mexico and their northern feeding grounds off Alaska and the Beaufort Sea.</p>
+
+<p>April - November: Arctic feeding grounds</p>
+
+<p>[October - February: migrates south]</p>
+
+<p>December - April: Mexican breeding grounds</p>
+
+<p>[February - July: migrates north]</p>
+
+<p>In the early winter, they move south to breed in the warm, shallow lagoons along the Mexican coast. The most popular breeding lagoons are San Ignacio lagoon, Scammon&#39;s lagoon, and Magdalena Bay, on the Pacific coast of Baja California, Mexico. Around February, the grays migrate north to feed in Arctic waters (western Beaufort Sea and Bering Sea), northwest of Alaska. A few - mainly younger - whales make a shorter journey north from Mexico, stopping off along the coastline stretching between northern California, Oregon, Washington State, USA, and British Columbia, Canada. Some feeding behaviour has been observed in all parts of the range, and around Vancouver Island, British Columbia, Canada, grays are present year-round.</p></section></aside>
+
+</article></slide><slide class=''><hgroup><h2>Migration Model</h2></hgroup><article  id="migration-model">
+
+<img src='fig/migration-model-a_sized.png' title='fig:'/>
+
+<aside class='note'><section></section></aside>
+
+</article></slide><slide class=''><hgroup><h2>Migration Model</h2></hgroup><article  id="migration-model-1">
+
+<img src='fig/migration-model-b_sized.png' title='fig:'/>
+
+<aside class='note'><section><p>mid: laggards leaving. End: over-acheivers.</p>
+
+<p><code>x</code>: along-shore distance</p>
+
+bivariate smoother (<code>s(x,t)</code>)</section></aside>
+
+</article></slide><slide class=''><hgroup><h2>Migration Model</h2></hgroup><article  id="migration-model-2">
+
+<img src='fig/migration-model-c_sized.png' title='fig:'/>
+
+<aside class='note'><section><code>w</code>: width</section></aside>
+
+</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>3. Probabilistic Range Maps</h2></hgroup><article  id="probabilistic-range-maps">
+
+</article></slide><slide class=''><hgroup><h2>Range Map</h2></hgroup><article  id="range-map">
+
+<p><em>Eubalaena glacialis</em></p>
+
+<img src='fig/range-rwhale-iucn_sized.png' title='fig:'/>
+
+<footer class="source">
+
+Source: IUCN
+
+</footer>
+
+
+<aside class='note'><section><p>expert-convened range maps of species<br/>attributes of species (eg phylogenetic diversity) International Union of Concerned &#8230; N?</p></section></aside>
+
+</article></slide><slide class=''><hgroup><h2>IUCN Range Maps Applied</h2></hgroup><article  id="iucn-range-maps-applied">
+
+<img src='fig/Schipper2008_fig1A_mammal-spp-richness_sized.png' title='fig:'/>
+
+<footer class="source">
+
+Source: Schipper et al. (2008) The Status of the World&#39;s Land and Marine Mammals: Diversity, Threat, and Knowledge. <em>Science</em>
+
+</footer>
+
+
+<aside class='note'><section></section></aside>
+
+</article></slide><slide class=''><hgroup><h2>AquaMaps Environmental Envelope</h2></hgroup><article  id="aquamaps-environmental-envelope">
+
+<img src='fig/range-rwhale-aquamaps_sized.png' title='fig:'/>
+
+<footer class="source">
+
+Source: <em>Eubalaena glacialis</em> from <a href='http://aquamaps.org' title=''>AquaMaps.org</a> (Ready et al. 2010)
+
+</footer>
+
+
+<aside class='note'><section><p>NOTES from AquaMaps: Predictions only describe range of western population of this species, since the eastern population is probably almost extinct. Please view suitable habitat for probable former range of eastern population. Note: eastern limit of bounding box is somewhat arbitrary, but represents the minimum supported by satellite track data and acoustic detection around Cape Farewell. Species is highly migratory and distribution represents a compromise between summer and winter range. Modified SST range, since species does not occur regularly on in large numbers in Gulf of Mexico. Extended primary production envelope, since species is a filter feeder and thus likely to be directly associated with areas of high primary production. (Kristin Kaschner, 2012-04-19 11:42:28)</p></section></aside>
+
+</article></slide><slide class=''><hgroup><h2>AquaMaps Environmental Envelope</h2></hgroup><article  id="aquamaps-environmental-envelope-1" class="flexbox vcenter">
+
+<p>Relative Environmental Suitability</p>
+
+<img src='fig/range-aquamaps-res_sized.png' title='fig:'/>
+
+<aside class='note'><section><p>Fig. 2. Trapezoidal species’ response curve describing the niche categories used in the RES model. \(Min_A\) and \(Max_A\) refer to absolute minimum and maximum predictor ranges, while \(Min_P\) and \(Max_P\) describe the ‘preferred’ range, in terms of habitat usage of a given species</p>
+
+&#8230; Ready(2010) methods added more features and compared with other methods.</section></aside>
+
+<footer class='source'>
+
+Source: Kaschner et al. (2006)
+
+</footer>
+
+
+</article></slide><slide class=''><hgroup><h2>Ocean Health Index: Species</h2></hgroup><article  id="ocean-health-index-species">
+
+<img src='fig/selig2013_ohi-spp-status_sized.png' title='fig:'/><p class='caption'>Species status based on extinction risk and species richness based on range maps from IUCN and AquaMaps (Selig et al., 2013).</p>
+
+<aside class='note'><section>Contributes to OHI Biodiversity. One of two subgoals, the other being HAB.</section></aside>
+
+</article></slide><slide class=''><hgroup><h2>Probabilistic Range Maps</h2></hgroup><article  id="probabilistic-range-maps-1" class="columns-2">
+
+<p>Combine:</p>
+
+<ul class = 'build'>
+<li><p>\(Y\): Occurrences for presence-only observation</p></li>
+<li><p>\(R\): Range map from expert opinion</p></li>
+<li><p>\(E\): &quot;Effort&quot;&quot; proxy from all &quot;Cetacea&quot; occurrences</p></li>
+</ul>
+
+<p>&#8230;</p>
+
+<p><img src='fig/rangemap_rwhale-y-r-e_sized.png' height='500'></p>
+
+<aside class='note'><section></section></aside>
+
+</article></slide><slide class=''><hgroup><h2>Probabilistic Range Maps</h2></hgroup><article  id="probabilistic-range-maps-2" class="columns-2">
+
+<p>Combine:</p>
+
+<p>&#8230;</p>
+
+<ul class = 'build'>
+<li><p>Environment:</p>
+
+<ul class = 'build'>
+<li><p>\(sst\): sea-surface temperature</p></li>
+<li><p>\(depth\): bathymetric depth</p></li>
+<li><p>\(d2shore\): distance to shore</p></li>
+</ul></li>
+</ul>
+
+<img src='fig/rangemap_env-sst-depth-d2shore_resized.png' title='fig:'/>
+
+<aside class='note'><section></section></aside>
+
+</article></slide><slide class=''><hgroup><h2>Bayesian State-Space Model</h2></hgroup><article  id="bayesian-state-space-model">
+
+<p>\[
+\operatorname{p}(\boldsymbol{\lambda}, \boldsymbol{\beta}, \sigma^2, z | \boldsymbol{y}, \boldsymbol{W}, \boldsymbol{E}, \boldsymbol{R}) \alpha \\
+\operatorname{Pois}(\boldsymbol{y}, \boldsymbol{E} \boldsymbol{\lambda}) \\
+\operatorname{N_5}(\operatorname{ln} \boldsymbol{\lambda}, \boldsymbol{W} \boldsymbol{\beta}, \sigma^2 \boldsymbol{I_5}) \\
+\operatorname{Bin}(\boldsymbol{R} │ 1, 1 - exp(-z \boldsymbol{\lambda}) )^{.5} \\
+\operatorname{N_5}(\boldsymbol{\beta} │ \boldsymbol{\beta}_p, \boldsymbol{V}_p ) \\
+\operatorname{IG}(\sigma^2 │ s_1, s_2)
+\]</p>
+
+<div class="columns-2">
+<p>prior densities:</p>
+
+<ul class = 'build'>
+<li>\(N_5(\boldsymbol{\beta}_p, \boldsymbol{V}_p)\)</li>
+<li>\(IG(s_1, s_2)\)</li>
+</ul>
+
+<p><br> <br></p>
+
+<p>hyperparameters:</p>
+
+<ul class = 'build'>
+<li>\(\boldsymbol{\beta}_p = [0,0,0,0,0]\)</li>
+<li>\(\boldsymbol{V}_p = 1000 \boldsymbol{I}_5\)</li>
+<li>\(s_1 = s_2 = 0.1\)</li>
+</ul></div>
+
+<aside class='note'><section></section></aside>
+
+</article></slide><slide class=''><hgroup><h2>Right Whale Estimated Range</h2></hgroup><article  id="right-whale-estimated-range" class="flexbox vcenter">
+
+<img src='fig/rangemap_rwhale-estimate_sized.png' title='fig:'/>
+
+<aside class='note'><section></section></aside>
+
+</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>4. Decision Mapping</h2></hgroup><article  id="decision-mapping">
+
+</article></slide><slide class=''><hgroup><h2>Habitat</h2></hgroup><article  id="habitat" class="flexbox vcenter">
+
+<!--
+![](./fig/decision-map-habitat.png)
+-->
+
+
+<p><img src='fig/decision-map-habitat.png' height='550'></p>
+
+<aside class='note'><section>prediction from model</section></aside>
+
+</article></slide><slide class=''><hgroup><h2>Error</h2></hgroup><article  id="error" class="flexbox vcenter">
+
+<!--
+![](./fig/decision-map-error.png)
+-->
+
+
+<p><img src='fig/decision-map-error.png' height='550'></p>
+
+<aside class='note'><section><p>But that model has a certain amount of error. How do we resolve these pieces of information? [Toggle fwd/back]</p>
+
+<p>TODO: Add slide showing distribution of values for different pixels: precise (narrow CI): low error w/ low &amp; high mean imprecise (wide CI): high error w/ low &amp; med &amp; high mean</p>
+
+<p>Consider how this works with density data, treat as 3rd variable in step loss fxn or swap for integrated &quot;likelihood of encounter&quot;?</p>
+
+<p>Compare w/ ROC</p>
+
+How much added value with integrated risk-loss function vs just taking the mean?</section></aside>
+
+</article></slide><slide class=''><hgroup><h2>Weights</h2></hgroup><article  id="weights">
+
+<table class = 'rmdtable'>
+<tr class="header">
+<th align="left">decision</th>
+<th align="right"><em>p</em>(0-0.5)</th>
+<th align="right"><em>p</em>(0.5-1)</th>
+</tr>
+<tr class="odd">
+<td align="left">go</td>
+<td align="right">0</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">no go</td>
+<td align="right">1</td>
+<td align="right">0</td>
+</tr>
+</table>
+
+<p>Weights associating a decided action with the integrated probability of encounter as a simple step function.</p>
+
+<aside class='note'><section>as simple step function.</section></aside>
+
+</article></slide><slide class=''><hgroup><h2>Weights</h2></hgroup><article  id="weights-1">
+
+<table class="rmdtable">
+<!--caption>Weights associating a decided action with the integrated probability of encounter as a simple step function.</caption-->
+<tbody><tr class="header">
+<th align="left">
+
+decision
+
+</th>
+<th align="right">
+
+<em>p</em>(0-0.5)
+
+</th>
+<th align="center">
+
+<em>p</em>(0.5-1)
+
+</th>
+</tr>
+<tr class="odd">
+<td align="left">
+
+go
+
+</td>
+<td align="right">
+
+0
+
+</td>
+<td align="center" class="highlight">
+
+3
+
+</td>
+</tr>
+<tr class="even">
+<td align="left">
+
+no go
+
+</td>
+<td align="right" class="highlight">
+
+1
+
+</td>
+<td align="center">
+
+0
+
+</td>
+</tr>
+</tbody></table>
+
+
+
+<ul class = 'build'>
+<li><strong>conservation risk</strong> of operating (go) and encountering whales, vs.</li>
+<li><strong>opportunity loss</strong> of not operating (<em>no</em> go) and <em>not</em> encountering whales</li>
+</ul>
+
+<aside class='note'><section>highlighting the high cost associated with</section></aside>
+
+</article></slide><slide class=''><hgroup><h2>Integrated Probabilities</h2></hgroup><article  id="integrated-probabilities">
+
+<img src='fig/decision-step-fxn-curves_sized.png' title='fig:'/>
+
+<aside class='note'><section></section></aside>
+
+</article></slide><slide class=''><hgroup><h2>Cost Maps per Decision</h2></hgroup><article  id="cost-maps-per-decision">
+
+<img src='fig/decision-map-risk-values_sized.png' title='fig:'/>
+
+<aside class='note'><section></section></aside>
+
+</article></slide><slide class=''><hgroup><h2>Decision Map</h2></hgroup><article  id="decision-map" class="flexbox vcenter">
+
+<p>Per pixel, choose decision which minimizes risk-loss function.</p>
+
+<!--![](./fig/decision-map-risk-decided_sized.png)-->
+
+<p><img src='fig/decision-map-risk-decided.png' height='550'></p>
+
+<aside class='note'><section></section></aside>
+
+</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>5. Conservation Routing</h2></hgroup><article  id="conservation-routing">
+
+</article></slide><slide class=''><hgroup><h2>Vessel Routes</h2></hgroup><article  id="vessel-routes">
+
+<img src='fig/routing-proposed-routes_sized.png' title='fig:'/><p class='caption'>Whale areas (left) and proposed routes (right) in BC.</p>
+
+<aside class='note'><section>Full caption. Maps of British Columbia related to conservation routing. On left, areas for gray, humpback, and sperm whales based on expert opinion (PNCIMA Atlas, 2009). On right, proposed oil tanker vessel route for servicing the forthcoming Kitimat oil and gas project.</section></aside>
+
+</article></slide><slide class=''><hgroup><h2>Integrate Marine Mammal Distributions</h2></hgroup><article  id="integrate-marine-mammal-distributions">
+
+<ul class = 'build'>
+<li><p>Using density spatial models for 9 marine mammal species in BC from Raincoast surveys 2004-2008</p></li>
+<li><p>Composite risk map derived per pixel (\(i\)) across \(n\) species (\(s\)) by summing relative density (\(z_i\)), which is based on the pixel values&#39; (\(x_i\)) deviation (\(\sigma_s\)) from mean density (\(\mu_s\)), and multiplying by conservation status (\(w_s\)): \[
+  z_{i,s} = \frac{ x_{i,s} - \mu_s }{ \sigma_s } \\  
+  Z_i = \frac{ \sum_{s=1}^{n} z_{i,s} w_s }{ n }
+  \]</p></li>
+</ul>
+
+<aside class='note'><section><p>Density surface model outputs will be assembled into a marine mammal composite risk map, or cost surface.</p>
+
+<p>Each density surface was normalized in order to highlight areas of high density relative to its average. The unitless standard score, or z-value (\(z_i\)), per pixel (\(i\)) is calculated as the pixel’s marine mammal density estimate (\(x_i\)) subtracted from the mean of all density estimates for the strata (\(\mu\)), divided by the standard deviation of those density estimates (\(\sigma\)) and finally multiplied by the species weight (\(w_s\)) according to conservation status.</p>
+
+<p>TODO: Is \(\sigma\) per pixel or for entire DSM? How does uncertainty play into this decision making?</p></section></aside>
+
+</article></slide><slide class=''><hgroup><h2>Conservation Status (\(w_s\))</h2></hgroup><article  id="conservation-status-w_s" class="flexbox vcenter">
+
+<img src='fig/routing-conservation-status_sized.png' title='fig:'/>
+
+<aside class='note'><section></section></aside>
+
+</article></slide><slide class=''><hgroup><h2>Composite Risk Map</h2></hgroup><article  id="composite-risk-map" class="flexbox vcenter">
+
+<img src='fig/routing-composite-risk-map_sized.png' title='fig:'/>
+
+<aside class='note'><section></section></aside>
+
+</article></slide><slide class=''><hgroup><h2>Routes for Oil Tankers</h2></hgroup><article  id="routes-for-oil-tankers" class="flexbox vcenter">
+
+<img src='fig/routing-tanker-routes_sized.png' title='fig:'/>
+
+<aside class='note'><section><ul class = 'build'>
+<li>compared with straight line (Euclidean) route</li>
+</ul>
+
+TODO: get feedback from Raincoast, Mersk, Shaun on actual application How could this relate to insurance incentivizing program? Research issues with SB Channel in trying to get rerouting accomplished.</section></aside>
+
+</article></slide><slide class=''><hgroup><h2>Routes for Cruise Ships</h2></hgroup><article  id="routes-for-cruise-ships" class="flexbox vcenter">
+
+<img src='fig/routing-cruise-ship-routes_sized.png' title='fig:'/>
+
+<aside class='note'><section></section></aside>
+
+</article></slide><slide class=''><hgroup><h2>Further Application</h2></hgroup><article  id="further-application" class="columns-2">
+
+<p>Boston Harbor Rerouting for Right Whales <img src='fig/routing-boston-harbor_sized.png' width='350'> <br> <br> <br> <br></p>
+
+<p>Global Traffic <img src='fig/routing-global-traffic_sized.png' width='350'></p>
+
+<footer class="source">
+
+Sources:<br> Left: Ward-Geiger et al. (2005) Characterization of Ship Traffic in Right Whale Critical Habitat. <em>Coastal Management</em><br> Right: Halpern et al. (2008) A Global Map of Human Impact on Marine Ecosystems. <em>Science</em>
+
+</footer>
+
+
+<aside class='note'><section></section></aside>
+
+</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Backup Slides</h2></hgroup><article  id="backup-slides">
+
+</article></slide><slide class=''><hgroup><h2>Acknowledgements</h2></hgroup><article  id="acknowledgements">
+
+<p>&#8230;</p>
+
+<aside class='note'><section>PH with byramid / in tiara Raincoast in field pic Friends collage</section></aside>
+
+</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Backup Slides</h2></hgroup><article  id="backup-slides-1">
+
+<p>&#8230;</p>
+
+<aside class='note'><section><p>ROC for optimum Figs from Whitehead, McGill, Worm. 2008. Diversity of deep-water cetaceans in relation to temperature: implications for ocean warming. Ecology Letters Gray whale migration sightings</p>
+
+<p>Further Study:</p>
+
+<p>Niche Modeling Cetacean Ecology Decision Theory Operations Research Environmental Economics</p></section></aside></article></slide>
+
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<script src="defense_files/ioslides-13.5.1/js/modernizr.custom.45394.js"></script>
+<script src="defense_files/ioslides-13.5.1/js/prettify/prettify.js"></script>
+<script src="defense_files/ioslides-13.5.1/js/prettify/lang-r.js"></script>
+<script src="defense_files/ioslides-13.5.1/js/prettify/lang-yaml.js"></script>
+<script src="defense_files/ioslides-13.5.1/js/hammer.js"></script>
+<script src="defense_files/ioslides-13.5.1/js/slide-controller.js"></script>
+<script src="defense_files/ioslides-13.5.1/js/slide-deck.js"></script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<!-- map slide visiblity events into shiny -->
+<script>
+  (function() {
+    if (window.jQuery) {
+       window.jQuery(document).on('slideleave', function(e) {
+         window.jQuery(e.target).trigger('hidden');
+      });
+       window.jQuery(document).on('slideenter', function(e) {
+         window.jQuery(e.target).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>
