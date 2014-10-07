@@ -52,6 +52,20 @@ This dissertation is rendered into a scientifically reproducible document using 
   
 _Aside_. It is possible to your entire Zotero library using [AutoZotBib](http://www.rtwilson.com/academic/autozotbib), but my library is too large to practically use this.
 
+## TODO
+
+From [stackoverflow: How to set different global options in knitr and RStudio for word and html?](http://stackoverflow.com/questions/25236850/how-to-set-different-global-options-in-knitr-and-rstudio-for-word-and-html).
+
+Try putting this code chunk at the beginning of the Rmd document.
+
+```{r setup, cache=FALSE, include=FALSE}
+library(knitr)
+output <- opts_knit$get("rmarkdown.pandoc.to")
+if (output=="html") opts_chunk$set(fig.width=11, fig.height=11)
+if (output=="docx") opts_chunk$set(fig.width=6,  fig.height=6)
+```
+One of the package options returned by opts_knit$get() is markdown.pandoc.to. This is evidently set to "html", "docx", or "latex" depending on the chosen output format (HTML, Word, or PDF). So you can test that and set the chunk options fig.width and fig.height accordingly.
+
 ## Rendering Inspirations
 
 Here are a few related resources from which I borrowed.
