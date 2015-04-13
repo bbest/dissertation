@@ -3,5 +3,6 @@
 .RData
 tmp
 *.html
+*.DS_Store
 !defense.html
 dropbox
