@@ -18,6 +18,8 @@ Here's the draft defense presentation:
 
 ## Rendering
 
+For a simplified example on how this dissertation was rendered into multiple formats, see https://github.com/bbest/rmarkdown-example.
+
 This dissertation is rendered into a scientifically reproducible document using the following free software:
 
 - [**RStudio**](http://www.rstudio.com/): excellent free, cross-platform R integrated development environment for writing code and text.
