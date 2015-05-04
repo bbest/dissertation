@@ -10,7 +10,7 @@
 
 
 
-  <meta name="date" content="2014-09-21" />
+  <meta name="date" content="2015-05-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -36,7 +36,12 @@
       // Author information
       presenters: [
             {
-        name: 'Ben Best'
+        name:  'Ben Best' ,
+        company: '',
+        gplus: '',
+        twitter: '',
+        www: '',
+        github: ''
       },
             ]
     };
@@ -84,7 +89,7 @@
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">2014-09-21</p>
+            <p style="margin-top: 6px; margin-left: -2px;">2015-05-04</p>
           </hgroup>
   </slide>
 
@@ -114,7 +119,6 @@ Source: Crowder et al. (2006) Resolving Mismatches in U.S. Ocean Governance. <em
 
 </footer>
 
-
 <aside class='note'><section><p>need to coordinate multilple uses highlighted by the many operating agencies and activities</p>
 
 <p>Many regulating agencies to oversee all these conflicting uses. Messy. Especially for ad-hoc human decision making. Need a system to handle this.</p>
@@ -130,7 +134,6 @@ Crowder et al 2006. Resolving Mismatches in U.S. Ocean Governance. <strong>Scien
 Source: <a href='http://seamap.env.duke.edu/search/?app=serdp' title=''>http://seamap.env.duke.edu/search/?app=serdp</a>
 
 </footer>
-
 
 <aside class='note'><section><p>Need SDSS for conservation management of megafauna.</p>
 
@@ -202,7 +205,6 @@ expert opinion. charrettes for conservation planning, IUCN species meetings&#823
 Source: Best BD, PN Halpin <em>et al</em> (<strong>2012</strong>) Online Cetacean Habitat Modeling System for the U.S. East Coast and Gulf of Mexico. <em>Endangered Species Research</em>
 
 </footer>
-
 
 <aside class='note'><section>part of special issue</section></aside>
 
@@ -311,7 +313,6 @@ Source: IUCN
 
 </footer>
 
-
 <aside class='note'><section><p>expert-convened range maps of species<br/>attributes of species (eg phylogenetic diversity) International Union of Concerned &#8230; N?</p></section></aside>
 
 </article></slide><slide class=''><hgroup><h2>IUCN Range Maps Applied</h2></hgroup><article  id="iucn-range-maps-applied">
@@ -323,7 +324,6 @@ Source: IUCN
 Source: Schipper et al. (2008) The Status of the World&#39;s Land and Marine Mammals: Diversity, Threat, and Knowledge. <em>Science</em>
 
 </footer>
-
 
 <aside class='note'><section></section></aside>
 
@@ -337,7 +337,6 @@ Source: <em>Eubalaena glacialis</em> from <a href='http://aquamaps.org' title=''
 
 </footer>
 
-
 <aside class='note'><section><p>NOTES from AquaMaps: Predictions only describe range of western population of this species, since the eastern population is probably almost extinct. Please view suitable habitat for probable former range of eastern population. Note: eastern limit of bounding box is somewhat arbitrary, but represents the minimum supported by satellite track data and acoustic detection around Cape Farewell. Species is highly migratory and distribution represents a compromise between summer and winter range. Modified SST range, since species does not occur regularly on in large numbers in Gulf of Mexico. Extended primary production envelope, since species is a filter feeder and thus likely to be directly associated with areas of high primary production. (Kristin Kaschner, 2012-04-19 11:42:28)</p></section></aside>
 
 </article></slide><slide class=''><hgroup><h2>AquaMaps Environmental Envelope</h2></hgroup><article  id="aquamaps-environmental-envelope-1" class="flexbox vcenter">
@@ -350,12 +349,11 @@ Source: <em>Eubalaena glacialis</em> from <a href='http://aquamaps.org' title=''
 
 &#8230; Ready(2010) methods added more features and compared with other methods.</section></aside>
 
-<footer class='source'>
+<footer class="source">
 
 Source: Kaschner et al. (2006)
 
 </footer>
-
 
 </article></slide><slide class=''><hgroup><h2>Ocean Health Index: Species</h2></hgroup><article  id="ocean-health-index-species">
 
@@ -444,7 +442,6 @@ Source: Kaschner et al. (2006)
 ![](./fig/decision-map-habitat.png)
 -->
 
-
 <p><img src='fig/decision-map-habitat.png' height='550'></p>
 
 <aside class='note'><section>prediction from model</section></aside>
@@ -454,7 +451,6 @@ Source: Kaschner et al. (2006)
 <!--
 ![](./fig/decision-map-error.png)
 -->
-
 
 <p><img src='fig/decision-map-error.png' height='550'></p>
 
@@ -495,61 +491,80 @@ How much added value with integrated risk-loss function vs just taking the mean?
 </article></slide><slide class=''><hgroup><h2>Weights</h2></hgroup><article  id="weights-1">
 
 <table class="rmdtable">
+
 <!--caption>Weights associating a decided action with the integrated probability of encounter as a simple step function.</caption-->
-<tbody><tr class="header">
+
+<tbody>
+
+<tr class="header">
+
 <th align="left">
 
 decision
 
 </th>
+
 <th align="right">
 
 <em>p</em>(0-0.5)
 
 </th>
+
 <th align="center">
 
 <em>p</em>(0.5-1)
 
 </th>
+
 </tr>
+
 <tr class="odd">
+
 <td align="left">
 
 go
 
 </td>
+
 <td align="right">
 
 0
 
 </td>
+
 <td align="center" class="highlight">
 
 3
 
 </td>
+
 </tr>
+
 <tr class="even">
+
 <td align="left">
 
 no go
 
 </td>
+
 <td align="right" class="highlight">
 
 1
 
 </td>
+
 <td align="center">
 
 0
 
 </td>
+
 </tr>
-</tbody></table>
 
+</tbody>
 
+</table>
 
 <ul class = 'build'>
 <li><strong>conservation risk</strong> of operating (go) and encountering whales, vs.</li>
@@ -643,7 +658,6 @@ TODO: get feedback from Raincoast, Mersk, Shaun on actual application How could 
 Sources:<br> Left: Ward-Geiger et al. (2005) Characterization of Ship Traffic in Right Whale Critical Habitat. <em>Coastal Management</em><br> Right: Halpern et al. (2008) A Global Map of Human Impact on Marine Ecosystems. <em>Science</em>
 
 </footer>
-
 
 <aside class='note'><section></section></aside>
 
