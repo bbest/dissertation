@@ -12,7 +12,7 @@ render_md()
 render_html(move=T)
 
 # word: track changes for committee feedback
-render_doc()
+render_docx()
 
 # pdf: final submission to graduate school
 render_pdf(cleanup=T, debug=F)

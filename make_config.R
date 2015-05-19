@@ -231,7 +231,7 @@ render_html = function(
   mv_open(out_html, mv_f=move, open_f=open)
 }
 
-render_doc = function(
+render_docx = function(
   in_Rmd   = 'dissertation.Rmd', 
   out_word = sprintf('%s.docx', tools::file_path_sans_ext(in_Rmd)),
   open     = T,
@@ -256,12 +256,12 @@ render_doc = function(
   # manual post-hoc
   cat('to be handled by dissertation_quick_fixes macro (see dissertation/README):
     - resize all pictures to 6 inch width
-    - Insert > Index and Tables > Table of Contents\n')
+    - Insert > Index and Tables > Table of Contents
+    - Add page numbering\n')
   cat('to do manually:
     - style Title and Subtitle, center subtitle
     - Insert Watermark > text DRAFT, orientation 45, transparency 60
-    - View > Sidebar > Document Map Pane
-    - Add page numbering\n')
+    - View > Sidebar > Document Map Pane\n')
 }
 
 render_pdf   = function(

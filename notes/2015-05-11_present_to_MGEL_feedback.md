@@ -6,3 +6,5 @@
 - Shiny intro
 
 - timing work with uncertainty work with Brian Kinlan
+
+- review paper w/ pseudo-absence from OBIS

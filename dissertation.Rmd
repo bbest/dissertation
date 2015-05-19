@@ -16,9 +16,7 @@ Furthermore, reduction and/or accurate description of this uncertainty is demons
 <!--- `source('make_config.R'); render_html('a_intro.Rmd')` # run for quick render -->
 # Introduction
 
-In order to maintain marine biodiversity, we need to effectively describe the distributions of endangered marine life and mitigate potential impacts from human uses of the ocean. Successful conservation of marine megafauna is dependent upon identifying times and places of greatest use, within the context of a changing climate and increasing array of human activities.
-
-![Example human uses of the ocean with potential for harm to endangered species (upper left, clockwise): pile driving and maintenance from offshore wind energy installations, ship shock trials and low frequency sonar use by military, fisheries gear entanglement, ship strike by transportation and cruise industries.](fig/marine_conflicts_sized.png)
+In order to maintain marine biodiversity, we need to effectively describe the distributions of endangered marine life and mitigate potential impacts from human uses of the ocean. Successful conservation of marine megafauna is dependent upon identifying times and places of greatest use, within the context of a changing climate and increasing array of human activities. 
 
 `r fig('fig_marine_conflicts', 'fig/marine_conflicts_sized.png', 'Example human uses of the ocean with potential for harm to endangered species (upper left, clockwise): pile driving and maintenance from offshore wind energy installations, ship shock trials and low frequency sonar use by military, fisheries gear entanglement, ship strike by transportation and cruise industries.')`
 
@@ -38,7 +36,7 @@ While much work has been done already to support description of species distribu
 
 [^serdp]: http://seamap.env.duke.edu/search/?app=serdp
 
-Over the next 5 chapters I propose methods for addressing these questions within two study areas, British Columbia and US Atlantic (see [[TODO: study area map]]).
+Over the next 5 chapters I propose methods for addressing these questions within two study areas, British Columbia and US Atlantic (see [[TODO: study area map]]). 
 
 1. I start with pooling boat and plane datasets in order to incorporate more data into the species distribution models (SDMs). A variety of SDMs will be compared for their requirements, outputs and performance. Improvements in the SDMs will include novel environmental predictors, addressing scale and exploring lags in space and time.
 

@@ -1,13 +1,13 @@
-<!--- `source('make_config.R'); render_html('a_intro.Rmd')` # run for quick render -->
+<!--- `source('make_config.R'); render_docx('a_intro.Rmd'); render_html('a_intro.Rmd')` # run for quick render -->
 # Introduction
 
 In order to maintain marine biodiversity, we need to effectively describe the distributions of endangered marine life and mitigate potential impacts from human uses of the ocean. Successful conservation of marine megafauna is dependent upon identifying times and places of greatest use, within the context of a changing climate and increasing array of human activities. 
 
-`r fig('fig_marine_conflicts', 'fig/marine_conflicts_sized.png', 'Example human uses of the ocean with potential for harm to endangered species (upper left, clockwise): pile driving and maintenance from offshore wind energy installations, ship shock trials and low frequency sonar use by military, fisheries gear entanglement, ship strike by transportation and cruise industries.')`
+`r fig('fig_marine_conflicts', 'fig/marine_conflicts_redo.png', 'Example human uses of the ocean with potential for harm to endangered species (upper left, clockwise): pile driving and maintenance from offshore wind energy installations, ship shock trials and low frequency sonar use by military, fisheries gear entanglement, ship strike by transportation and cruise industries.')`
 
-Concurrent with a rise in conflicting human uses (see `r ref('fig_marine_conflicts')`) has been a rapid decline in overall marine biodiversity and ecosystem services [@worm_impacts_2006; @halpern_global_2008; @worm_rebuilding_2009; @butchart_global_2010]. 
+Concurrent with a rise in conflicting human uses (see `r ref('fig_marine_conflicts')`) has been a rapid decline in overall marine biodiversity and ecosystem services [@worm_impacts_2006; @halpern_global_2008; @worm_rebuilding_2009; @butchart_global_2010].
 
-`r fig('fig_crowder_resolving_2006', 'fig/Crowder2006_fig1_sized.png', 'Example from Crowder et al.(2006) of the many mixed uses of our oceans necessitating coordinated, holistic approaches to marine spatial management.')`
+`r fig('fig_crowder_resolving_2006', 'fig/Crowder2006_fig1_redo.png', 'Example from Crowder et al.(2006) of the many mixed uses of our oceans necessitating coordinated, holistic approaches to marine spatial management.')`
 
 In response, recent calls for holistic management practices, such as ecosystem-based management and marine spatial planning, are encouraging multi-species, multi-sector approaches [@uscommissiononoceanpolicy_ocean_2004; @crowder_resolving_2006; @halpern_managing_2008; @crowder_essential_2008; @douvere_importance_2008; @dahl_marine_2009; @lubchenco_proposed_2010; @foley_guiding_2010] (see `r ref('fig_crowder_resolving_2006')`). For these applications I’ll be focusing on marine spatial planning of cetaceans, but methods will be transferable to other marine megafauna.
 
@@ -15,11 +15,27 @@ In the US, marine mammals are legally protected through the Marine Mammal Protec
 
 The current state of marine spatial planning begs several broad questions of decision makers and decision support scientists. How do you optimize use of ocean resources to provide long-term ecosystem services in a sustainable manner while minimizing impacts on endangered species?  How much risk are you willing to accept?  What are the tradeoffs between conservation value and economic impact?  How do you handle poor data availability within marine systems?  How do you manage the dynamic nature of the environment with species distributions?  How do you handle uncertainty while making spatial decisions?  Which human uses require custom applications?
 
-`r fig('fig_serdp-mapper', 'fig/serdp-mapper_sperm-whale-summer-east_zoom_sized.png', 'Spatial decision support system depicting the input survey tracks (lines), observations (blue dots) and habitat prediction surface (blue=low vs red=high likelihood of encounter) for sperm whales in the US Atlantic east coast region.')`
+`r fig('fig_serdp-mapper', 'fig/serdp-mapper_sperm-whale-summer-east_zoom_redo.png', 'Spatial decision support system depicting the input survey tracks (lines), observations (blue dots) and habitat prediction surface (blue=low vs red=high likelihood of encounter) for sperm whales in the US Atlantic east coast region.')`
 
 While much work has been done already to support description of species distributions for planning purposes [@margules_systematic_2007; @pressey_conservation_2007; @elith_species_2009; @pressey_approaches_2009], there is room for improvement in answering the questions above for adopting a marine operational framework. Providing web services makes these data readily available for decision making (see `r ref('fig_serdp-mapper')` [^serdp]).
 
 [^serdp]: http://seamap.env.duke.edu/search/?app=serdp
+
+`r fig('fig_mixed-platforms', 'fig/mixed_platforms.png', 'Observational data on species distributions can be very heterogenous, coming from a variety of platforms (clockwise from upper left): ship, plane, telemetry, expert opinion, and shore.')`
+
+
+`r fig('fig_predictors-dynamic', 'fig/predictors-dynamic.png', 'Environmental predictors which are temporally dynamic and more closely aligned with the aggregation and visibility of potential prey-rich areas can significantly improve the species distribution model. Here are examples of extracting: eddies from the AVISO satellite sea-surface height data using the Okubo-Weiss equation(left); fronts from Pathfinder satellite sea-surface temperature data using the Cayula-Cornillon bimodal detection algorithm (right).')`
+
+
+|chapter | component | improvement |
+|--------|-----------|-------------|
+|1. siting | decision framework | site in space & time with tradeoff |
+|2. routing | decision framework | pose siting as routing problem |
+|3. mixed platform | species distribution | incorporate survey data from multiple platforms |
+|4. probabalistic range mapping | species distribution | where survey data is unavailable, mix expert opinion with presence-only observations |
+|5. gap filling / migration | species distribution | where clouds create gaps in satellite data, fill in with cascadable measures of uncertainty |
+
+  : Relationship of chapters to broad themes.
 
 Over the next 5 chapters I propose methods for addressing these questions within two study areas, British Columbia and US Atlantic (see [[TODO: study area map]]). 
 
@@ -35,6 +51,8 @@ Over the next 5 chapters I propose methods for addressing these questions within
 
 <!--
 ## Notes
+
+- PBR potential biological removal
 
 - Titles to consider:
   - Data to Decisions: Applying Dynamic Species Distribution Models to Cetacean Conservation Management

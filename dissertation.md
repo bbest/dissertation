@@ -13,7 +13,7 @@
 **Spatio-Temporal Decision Framework for Minimizing Impact of Human Activities on Marine Megafauna**
 Draft PhD dissertation by Benjamin D. Best
 in Marine Science and Conservation, Duke University
-Last modified: 2015-05-18
+Last modified: 2015-05-19
 
 <!--- `source('make_config.R'); render_html('a_abstract.Rmd')` # run for quick render -->
 Abstract
@@ -30,8 +30,6 @@ Introduction
 ============
 
 In order to maintain marine biodiversity, we need to effectively describe the distributions of endangered marine life and mitigate potential impacts from human uses of the ocean. Successful conservation of marine megafauna is dependent upon identifying times and places of greatest use, within the context of a changing climate and increasing array of human activities.
-
-![Example human uses of the ocean with potential for harm to endangered species (upper left, clockwise): pile driving and maintenance from offshore wind energy installations, ship shock trials and low frequency sonar use by military, fisheries gear entanglement, ship strike by transportation and cruise industries.](fig/marine_conflicts_sized.png)
 
 <a name="fig_marine_conflicts"></a>
 
