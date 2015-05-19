@@ -31,27 +31,27 @@ This dissertation is rendered into a scientifically reproducible document using 
 - [**Zotero**](https://www.zotero.org): excellent free bibliographic management software, like Endnote. With the [BetterBibtex](https://github.com/ZotPlus/zotero-better-bibtex) extension, I can simply drag and drop from a Zotero collection to get the inline citation and pandoc will later generate the full bibliography at the end of the document.  To get this to work:
 
   - Install [Zotero Better Bibtex](https://github.com/ZotPlus/zotero-better-bibtex)
-  
+
   - In Zotero Preferences, set:
-  
+
     1. Export: "Default Output Format" to `Pandoc citation`
-    
+
     1. Better Bib(La)tex: "Citation key format" to `[auth:lower]_[veryshorttitle:lower]_[year]`
-    
+
   - Process:
-  
+
     1. Place all references used by dissertation into its own dedicated collection (eg "dissertation").
-    
+
     1. Drag and drop references from this collection into the document editor (I like RStudio or [Sublime](http://www.sublimetext.com)). This will add a text citation, eg `@worm_impacts_2006`.
-    
+
     1. Right-click on collection > Export Collection and choose `Better BibTex` and export to `dissertation.bib` file (which is assigned to `cite_bib` variable in make.R).
 
     1. You can get a quick formatted view of the document as you write with 'Knit HTML' button (or Ctrl+Shift+Y of [RStudio shortcuts](https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts)). Note that the *.html files are ignored by git in [.gitignore](./.gitignore).
-    
+
     1. Run [./make.R](make.R) to generate collated document in all formats.
-      
+
     1. Repeat as you write. For more, see [**pandoc citations**](http://johnmacfarlane.net/pandoc/demo/example19/Citations.html).
-  
+
 _Aside_. It is possible to your entire Zotero library using [AutoZotBib](http://www.rtwilson.com/academic/autozotbib), but my library is too large to practically use this.
 
 ## TODO
@@ -138,6 +138,22 @@ End With
 With Selection.Find
     .Replacement.Font.Bold = True
     .Execute FindText:=toc_str, replaceWith:=toc_str
+End With
+
+'----
+' add page and line numbering
+
+' add page numbers
+ActiveDocument.Sections(1).Footers(1).PageNumbers.Add PageNumberAlignment:= _
+        wdAlignPageNumberRight, FirstPage:=True
+
+' add line numbers
+With ActiveDocument.PageSetup.LineNumbering
+    .Active = True
+    .StartingNumber = 1
+    .CountBy = 1
+    .RestartMode = wdRestartContinuous
+    .DistanceFromText = InchesToPoints(0)
 End With
 
 End Sub

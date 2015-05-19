@@ -2,6 +2,7 @@
 .Rhistory
 .RData
 tmp
+*.tex
 *.html
 *.DS_Store
 !defense.html

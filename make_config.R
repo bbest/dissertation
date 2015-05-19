@@ -14,7 +14,7 @@ library(brew)
 # set variables ----
 
 # strings for substitution
-title       = 'Species Distribution Modeling and Spatial Decision Frameworks for Marine Megafauna'
+title       = 'Spatio-Temporal Decision Framework for Minimizing Impact of Human Activities on Marine Megafauna'
 author      = 'Benjamin D. Best'
 supervisor  = 'Patrick N. Halpin'
 department  = 'Marine Science and Conservation'
@@ -231,7 +231,7 @@ render_html = function(
   mv_open(out_html, mv_f=move, open_f=open)
 }
 
-render_word = function(
+render_doc = function(
   in_Rmd   = 'dissertation.Rmd', 
   out_word = sprintf('%s.docx', tools::file_path_sans_ext(in_Rmd)),
   open     = T,

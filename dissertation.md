@@ -10,21 +10,28 @@
 -   Appendix
 -   References
 
-**Species Distribution Modeling and Spatial Decision Frameworks for Marine Megafauna**
+**Spatio-Temporal Decision Framework for Minimizing Impact of Human Activities on Marine Megafauna**
 Draft PhD dissertation by Benjamin D. Best
 in Marine Science and Conservation, Duke University
-Last modified: 2014-09-18
+Last modified: 2015-05-18
 
+<!--- `source('make_config.R'); render_html('a_abstract.Rmd')` # run for quick render -->
 Abstract
 ========
 
-Our ability to conserve and manage endangered species at sea is limited by our ability to predict species distributions. Herein I describe improvements on predicting distribution and abundance of species as well as decision frameworks for siting potentially harmful activities to times and places that minimize risk to the animals.
+Human use of the oceans is increasingly in conflict with conservation of endangered species. Methods for managing the spatial and temporal placement of industries such as military, fishing, transportation and offshore energy, have historically been post-hoc; ie the time and place of human activity is already determined before assessment of environmental impacts. Instead, I describe a spatio-temporal decision framework that transparently optimizes the tradeoff between conservation risk and industry profit for placement of human activities in space and time. Spatially, placement is framed either as a siting or routing problem. For instance, determination of military exercises, fishing grounds and offshore pile driving get sited based on determining times and places that minimize conservation risk and industry costs. Whereas the transportation or cruise line industries need to route between destinations in a manner so as to minimize risk of encounter with endangered species as well as minimize cost of extra travel.
+
+The reliability of this spatio-temporal decision framework depends on the input species distributions, which are inherently uncertain. Accounting for this uncertainty within the decision framework is therefore essential.
+
+Furthermore, reduction and/or accurate description of this uncertainty is demonstrated through several methods. Where marine animal observation data are readily available from scientific surveys, data from multiple platforms can be combined so as to provide the most complete description of the species distribution. In data poor areas, expert range maps can be combined with environmental covariates to achieve a probabilistic distribution having a measure of uncertainty. Another common problem with marine environmental predictors are data gaps caused by cloud cover in remotely sensed imagery. These gaps are filled using neighboing data in space and time such that the associated uncertainty is passed along to the species distribution and decision framework. Finally, rather than the usual suspects of readily available environmental predictors, I propose a suite of comprehensive predictors that includes distances from dominant current, sea surface temperature fronts and eddy structures. Beyond simply remotely sensed variables, oceanographic model data are used such as mixed layer depth.
 
 <!--- `source('make_config.R'); render_html('a_intro.Rmd')` # run for quick render -->
 Introduction
 ============
 
 In order to maintain marine biodiversity, we need to effectively describe the distributions of endangered marine life and mitigate potential impacts from human uses of the ocean. Successful conservation of marine megafauna is dependent upon identifying times and places of greatest use, within the context of a changing climate and increasing array of human activities.
+
+![Example human uses of the ocean with potential for harm to endangered species (upper left, clockwise): pile driving and maintenance from offshore wind energy installations, ship shock trials and low frequency sonar use by military, fisheries gear entanglement, ship strike by transportation and cruise industries.](fig/marine_conflicts_sized.png)
 
 <a name="fig_marine_conflicts"></a>
 
@@ -78,7 +85,6 @@ Over the next 5 chapters I propose methods for addressing these questions within
 - counting whales from satellite [@fretwell_whales_2014]
 
 -->
-
 <!--- `source('make_config.R'); render_html('c_sdm.Rmd') # run for quick render` -->
 Robust and Dynamic Distribution Models
 ======================================
@@ -108,7 +114,7 @@ An elegant solution for incorporating risk into decision making is to use a loss
 todo: Simulations
 -----------------
 
-``` {.r}
+``` r
 install.packages(c('mrds','Distance','dsm','DSsim','mads','DSpat'))
 ```
 
@@ -166,7 +172,7 @@ Integrated spatial decision support frameworks should maximize use of all availa
 
 Military exercises require environmental impact assessment in relation to cetaceans (S. J. Dolman et al., 2009). More recently, facilities for offshore renewable energies, such as wind and wave, pose another potential impact on cetaceans (S. Dolman & Simmonds, 2010). All of these human activities, which continue to be on the rise, have been prioritized for systematic planning under the auspices of “ocean zoning” (L. B. Crowder et al., 2006; B. S. Halpern et al., 2008a) or “marine spatial planning” (F. Douvere, 2008) by the United States (Lubchenco & Sutley, 2010) and internationally (Ardron et al., 2008; Dahl et al., 2009). In order to best plan for such activities, there will be a continuing need to improve our models.
 
-I have data and much of the analysis already completed for all of the above with several collaborators. The conservation climate is ripe for application of these analysis to real world scenarios. The US Navy is responding to lawsuits by the Environmental Defense Fund over whale strandings from use of low-frequency sonar. In British Columbia, the largest oil pipeline in Canada is terminating at port Kittimat where heavy oil tankers will traffic waters rich in wildlife not too far in memory or geography from the Valdez disaster. Renewable energies are on the rise, with offshore development most recently highlighted by a Google investment of \$5 billion for an offshore wind backbone in the US East coast. These marine developments are now part of a presidential mandate to address marine spatial planning in the US outlined by the Ocean Task Force. The Global Ocean Biodiversity Initiative is now in process through United Nations Convention on Biological Diversity to address pelagic conservation strategies. These projects further fit into actively funded and proposed projects in the Halpin Marine Geospatial Ecology Lab:
+I have data and much of the analysis already completed for all of the above with several collaborators. The conservation climate is ripe for application of these analysis to real world scenarios. The US Navy is responding to lawsuits by the Environmental Defense Fund over whale strandings from use of low-frequency sonar. In British Columbia, the largest oil pipeline in Canada is terminating at port Kittimat where heavy oil tankers will traffic waters rich in wildlife not too far in memory or geography from the Valdez disaster. Renewable energies are on the rise, with offshore development most recently highlighted by a Google investment of $5 billion for an offshore wind backbone in the US East coast. These marine developments are now part of a presidential mandate to address marine spatial planning in the US outlined by the Ocean Task Force. The Global Ocean Biodiversity Initiative is now in process through United Nations Convention on Biological Diversity to address pelagic conservation strategies. These projects further fit into actively funded and proposed projects in the Halpin Marine Geospatial Ecology Lab:
 
 1.  NASA funded SDSS for Integrating Ocean Observing Data to Enhance Protected Species,
 
