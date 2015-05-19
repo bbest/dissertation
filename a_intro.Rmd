@@ -1,11 +1,21 @@
 <!--- `source('make_config.R'); render_docx('a_intro.Rmd'); render_html('a_intro.Rmd')` # run for quick render -->
 # Introduction
 
+```{r}
+library(captioner)
+tbl <- captioner(prefix = 'Table')
+fig <- captioner(prefix = 'Figure')
+```
+
+
 In order to maintain marine biodiversity, we need to effectively describe the distributions of endangered marine life and mitigate potential impacts from human uses of the ocean. Successful conservation of marine megafauna is dependent upon identifying times and places of greatest use, within the context of a changing climate and increasing array of human activities. 
 
-`r fig('fig_marine_conflicts', 'fig/marine_conflicts_redo.png', 'Example human uses of the ocean with potential for harm to endangered species (upper left, clockwise): pile driving and maintenance from offshore wind energy installations, ship shock trials and low frequency sonar use by military, fisheries gear entanglement, ship strike by transportation and cruise industries.')`
+![](fig/marine_conflicts_redo.png)
+```{r marine_conflicts_caption}
+fig('fig_marine_conflicts', 'Example human uses of the ocean with potential for harm to endangered species (upper left, clockwise): pile driving and maintenance from offshore wind energy installations, ship shock trials and low frequency sonar use by military, fisheries gear entanglement, ship strike by transportation and cruise industries.')
+```
 
-Concurrent with a rise in conflicting human uses (see `r ref('fig_marine_conflicts')`) has been a rapid decline in overall marine biodiversity and ecosystem services [@worm_impacts_2006; @halpern_global_2008; @worm_rebuilding_2009; @butchart_global_2010].
+Concurrent with a rise in conflicting human uses (see `fig('fig_marine_conflicts', cite=T)`) has been a rapid decline in overall marine biodiversity and ecosystem services [@worm_impacts_2006; @halpern_global_2008; @worm_rebuilding_2009; @butchart_global_2010].
 
 `r fig('fig_crowder_resolving_2006', 'fig/Crowder2006_fig1_redo.png', 'Example from Crowder et al.(2006) of the many mixed uses of our oceans necessitating coordinated, holistic approaches to marine spatial management.')`
 
