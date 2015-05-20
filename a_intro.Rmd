@@ -2,18 +2,18 @@
 bibliography: dissertation.bib
 csl: csl/apa-single-spaced.csl
 output:
-  html_document:
+  word_document:
     fig_caption: yes
   pdf_document:
     fig_caption: yes
-  word_document:
+  html_document:
     fig_caption: yes
 ---
 
 # Introduction
 
 ```{r caption_setup, echo=FALSE,results='hide'}
-library(captioner)
+library(captioner) # devtools::install_github('adletaw/captioner')
 # TODO: for collating, swap this chunk with `bump(fig, 1); bump(tbl, 1)` for all chapters after first
 tbl <- captioner(prefix =  'Table', levels=2, type=c('n','n'))
 fig <- captioner(prefix = 'Figure', levels=2, type=c('n','n'))
@@ -40,6 +40,10 @@ fig(
 fig(
   'predictors-dynamic', 
   'Environmental predictors which are temporally dynamic and more closely aligned with the aggregation and visibility of potential prey-rich areas can significantly improve the species distribution model. Here are examples of extracting: eddies from the AVISO satellite sea-surface height data using the Okubo-Weiss equation(left); fronts from Pathfinder satellite sea-surface temperature data using the Cayula-Cornillon bimodal detection algorithm (right).')
+
+fig(
+  'components', 
+  'Components (and corresponding chapter numbers) of the dissertation are summarized by the decision framework posed as either a siting (1) or routing (2) problem that transparently weighs the tradeoff between species conservation and industry costs while accounting for uncertainty inherent in the species distibution model. Further chapters minimize or account for this level of uncertainty by either: combining boat and plane platforms of data in survey rich areas (3), combining expert opinion and presence-only observations in data poor areas (4), and gap filling satellite derived environmental predictors with measures of uncertainty.')
 
 # TABLES ----
 tbl(
@@ -71,6 +75,8 @@ While much work has been done already to support description of species distribu
 ![`r fig('mixed-platforms')`](fig/serdp-mapper_sperm-whale-summer-east_zoom_redo.png)
 
 ![`r fig('predictors-dynamic')`](fig/predictors-dynamic.png)
+
+![`r fig('components')`](fig/components.png)
 
 |chapter | component | improvement |
 |--------|-----------|-------------|
