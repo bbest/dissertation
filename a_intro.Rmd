@@ -43,7 +43,7 @@ fig(
 
 fig(
   'components', 
-  'Components (and corresponding chapter numbers) of the dissertation are summarized by the decision framework posed as either a siting (1) or routing (2) problem that transparently weighs the tradeoff between species conservation and industry costs while accounting for uncertainty inherent in the species distibution model. Further chapters minimize or account for this level of uncertainty by either: combining boat and plane platforms of data in survey rich areas (3), combining expert opinion and presence-only observations in data poor areas (4), and gap filling satellite derived environmental predictors with measures of uncertainty.')
+  "Components (and corresponding chapter numbers) of the dissertation are summarized by the decision framework posed as either a siting (1) or routing (2) problem that transparently weighs the tradeoff between species conservation and industry costs while accounting for uncertainty inherent in the species distribution model (SDM). Further chapters minimize or account for the SDM's uncertainty by either: combining boat and plane platforms of data in survey rich areas (3), combining expert opinion of species ranges and presence-only observations in data poor areas (4), and filling in gaps due to cloud cover with satellite derived environmental predictors (5).")
 
 # TABLES ----
 tbl(
