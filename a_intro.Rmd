@@ -72,7 +72,7 @@ While much work has been done already to support description of species distribu
 
 [^serdp]: http://seamap.env.duke.edu/search/?app=serdp
 
-![`r fig('mixed-platforms')`](fig/serdp-mapper_sperm-whale-summer-east_zoom_redo.png)
+![`r fig('mixed-platforms')`](fig/mixed_platforms.png)
 
 ![`r fig('predictors-dynamic')`](fig/predictors-dynamic.png)
 
