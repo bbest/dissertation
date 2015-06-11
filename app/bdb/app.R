@@ -15,12 +15,15 @@ library(sp)
 library(rgdal)
 library(raster)
 library(gdistance)
+library(scales)
+library(rasterfaster) # devtools::install_github("jcheng5/rasterfaster")
+library(leaflet)      # devtools::install_github("rstudio/leaflet@joe/feature/raster-image")
+library(htmltools)
 library(shiny)
-library(shinyjs)   # devtools::install_github("daattali/shinyjs")
+library(shinyjs)      # devtools::install_github("daattali/shinyjs")
 show = sp::show
-library(leaflet)   # devtools::install_github("rstudio/leaflet@joe/feature/raster-image")
-#library(DT)       # devtools::install_github("rstudio/DT")
-library(ggvis)     # devtools::install_github("rstudio/ggvis") # https://github.com/rstudio/ggvis/pull/381
+#library(DT)          # devtools::install_github("rstudio/DT")
+library(ggvis)        # devtools::install_github("rstudio/ggvis") # https://github.com/rstudio/ggvis/pull/381
 library(markdown)
 
 # params
@@ -30,8 +33,9 @@ load_rdata = T
 
 # paths
 app_dir = '~/github/dissertation/app/bdb'
-rdata = '~/Google Drive/dissertation/data/routing/demo.Rdata'
-grd = '~/Google Drive/dissertation/data/bc/v72zw_epsg3857.grd'
+if (!file.exists('data')) setwd(app_dir) 
+rdata = 'data/routes.Rdata' # '~/Google Drive/dissertation/data/routing/demo.Rdata'
+grd = 'data/v72zw_epsg3857.grd' # '~/Google Drive/dissertation/data/bc/v72zw_epsg3857.grd'
 
 # read in raster ----
 r = raster(grd)
@@ -160,7 +164,9 @@ ui <- fluidPage(
     tabPanel(
       "Routing",
       fluidRow(
-        helpText('Click on a point in the tradeoff chart below to display the mapped route to the right and values below. Map is zoomable/pannable and start/end points clickable.')),
+        helpText(HTML(renderMarkdown(text="**Instructions.** Click on a point in the tradeoff chart below to display the mapped route to the right and values below. 
+                 Map is zoomable/pannable and start/end points clickable.
+                 Eventually you'll be able to create arbitrary start/end points for tradeoff analysis of conservation routing.")))),
 
       fluidRow(
         column(
@@ -189,7 +195,7 @@ ui <- fluidPage(
             )),
         column(
           8,
-          helpText(HTML(renderMarkdown(text='Welcome to Conservation Routing! Least cost routes are calculated based on different cost surfaces. 
+          helpText(HTML(renderMarkdown(text='**Background.** Welcome to Conservation Routing! Least cost routes are calculated based on different cost surfaces. 
                    The initial cost surface applies a constant value for all cells resulting in a Euclidean path
                    with the minimum distance. This path would be the least costly to industry, making it 
                    the reference point (_min(dist)_) to which other routes are compared. Other paths are calculated
@@ -198,7 +204,8 @@ ui <- fluidPage(
                    the conservation score. The reference point (_min(cost)_) is subtracted from all values.')))))),
     
     tabPanel(
-      "Siting")))
+      "Siting",
+      helpText('Coming soon...'))))
 
 # server ----
 server <- function(input, output, session) {
@@ -344,11 +351,6 @@ server <- function(input, output, session) {
 
 shinyApp(ui, server)
 
-# 
-# deploy by copying over ssh to the NCEAS server with Nick Brand
-#   system(sprintf('sudo chown -R %s /srv/shiny-server/%s'), nceas_user, app_name) # may have to run this from Terminal if permission errors
-system(sprintf('rsync -r --delete %s bbest@fitz.nceas.ucsb.edu:/srv/shiny-server/', app_dir))
-system(sprintf("ssh bbest@fitz.nceas.ucsb.edu 'chmod g+w -R /srv/shiny-server/%s'", basename(app_dir)))
-
-# push files to github app branch
-system('git add -A; git commit -a -m "deployed app"; git push origin app')
+# deploy by copying over ssh to the NCEAS server
+# system(sprintf('rsync -r --delete %s bbest@fitz.nceas.ucsb.edu:/srv/shiny-server/', app_dir))
+# system(sprintf("ssh bbest@fitz.nceas.ucsb.edu 'chmod g+w -R /srv/shiny-server/%s'", basename(app_dir)))

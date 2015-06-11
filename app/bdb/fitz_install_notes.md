@@ -16,17 +16,20 @@ sudo apt-get install libproj-dev
 sudo R
 ```
 
-In R:
+In R install packages:
 ```r
-install.packages(
-  c('sp','rgdal','raster','gdistance'))
-devtools::install_github(
-  c(
-    'rstudio/htmltools',
-    'hadley/scales',
-    'rstudio/leaflet@joe/feature/raster-image',
-    'daattali/shinyjs',
-    'rstudio/ggvis'))
+# from CRAN
+install.packages(c(
+  'sp','rgdal','raster','gdistance','shiny'))
 
-# existing: 'shiny','markdown'
+# from Github
+devtools::install_github(c(
+  'rstudio/htmltools',
+  'hadley/scales',
+  'rstudio/ggvis',
+  'jcheng5/rasterfaster',
+  'rstudio/leaflet@joe/feature/raster-image',
+  'daattali/shinyjs'))
+
+# existing: 'markdown'
 ```
