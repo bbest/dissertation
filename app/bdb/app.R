@@ -9,11 +9,14 @@
 #   https://rstudio.github.io/leaflet/shiny.html#inputsevents
 #   http://stackoverflow.com/questions/28938642/marker-mouse-click-event-in-r-leaflet-for-shiny
 # - try cells as polygons
+# - add offshore wind raster. see marine cadastre w/ leases (active?), http://atlanticwindconnection.com/
 
+library(readr)
 library(dplyr)
 library(sp)
 library(rgdal)
 library(raster)
+select = dplyr::select
 library(gdistance)
 library(scales)
 library(rasterfaster) # devtools::install_github("jcheng5/rasterfaster")
@@ -36,29 +39,24 @@ app_dir = '~/github/dissertation/app/bdb'
 if (!file.exists('data')) setwd(app_dir) 
 rdata = 'data/routes.Rdata' # '~/Google Drive/dissertation/data/routing/demo.Rdata'
 grd = 'data/v72zw_epsg3857.grd' # '~/Google Drive/dissertation/data/bc/v72zw_epsg3857.grd'
+extents_csv = 'data/extents.csv'
+points_csv = 'data/points.csv'
 
-# read in raster ----
+# read data ----
+
+# check all files exist
+stopifnot(all(file.exists(c(rdata,grd,extents_csv,points_csv))))
+
+# raster
 r = raster(grd)
 
-# create points -----
-pts = read.csv(
-  text = '
-  name, x, y
-  Port Kitimat, -14323291, 7171167
-  S of Haida Gwaii, -14580291, 6780167')
-  # Port Kitimat (http://www.kitimat.ca/EN/main/business/invest-in-kitimat/port-of-kitimat.html)
+# points
+pts = read_csv(points_csv)
 
-# project pts from web mercator to gcs
-pts_mer = pts
-coordinates(pts_mer) = c('x', 'y')
-proj4string(pts_mer) <- epsg3857
-pts_gcs = spTransform(pts_mer, crs(epsg4326))
-pts = pts %>%
-  cbind(
-    coordinates(pts_gcs) %>%
-    as.data.frame() %>%
-      dplyr::select(lon=x, lat=y))
-
+# points
+extents = read_csv(extents_csv) %>%
+  arrange(country, name, code)
+  
 # default transform for d data.frame
 d_transform = 'x * 10'
   
@@ -100,8 +98,9 @@ if (load_rdata){
     routes = append(routes, list(list(
       transform = transforms[i],
       route_gcs = spTransform(rt, crs(epsg4326)),
-      cost_x = sum(unlist(extract(x, rt)), na.rm=T), # sum(extract(x, rt)),
-      dist_km = SpatialLinesLengths(rt) / 1000)))
+      cost_x    = sum(unlist(extract(x, rt)), na.rm=T), # sum(extract(x, rt)),
+      dist_km   = SpatialLinesLengths(rt) / 1000,
+      place     = 'British Columbia, Canada')))
   }
   
   # save
@@ -111,11 +110,16 @@ if (load_rdata){
 # # quick routes update #routes0 = routes
 # for (i in 1:length(routes)){ # i=1
 #   #routes[[i]]$dist_km = routes[[i]]$dist_m / 1000
-#   routes[[i]]$dist_m <- NULL
+#   #routes[[i]]$dist_m <- NULL
+#   #routes[[i]]$place = 'British Columbia, Canada'
+#   routes[[i]]$extent = 'British Columbia, Canada'
+#   routes[[i]]$place = NULL
 # }
+# save(routes, file = rdata)
 
 # extract data from routes
 d = data.frame(
+  extent    = sapply(routes, function(z) z$extent),
   transform = sapply(routes, function(z) z$transform),
   dist_km = sapply(routes, function(z) z$dist_km),
   cost_x = sapply(routes, function(z) z$cost_x)) %>%
@@ -163,6 +167,25 @@ ui <- fluidPage(
     "Conservation",
     tabPanel(
       "Routing",
+      fluidRow(
+        column(
+          6, 
+         selectInput(
+           'sel_extent', 'Study Area:',
+           extents %>% 
+             filter(routing==T) %$% 
+             split(.[,c('name','code')], country) %>%
+             lapply(function(x) setNames(x$code, x$name)))),
+        column(
+          6,
+         selectInput(
+           'sel_industry', 'Industry Profile:',
+           c('Oil Tanker'='rt_oil','Shipping Tanker'='rt_ship','Cruise Ship'='rt_cruise')),
+         hidden(helpText(
+           id='hlp_industry', 
+           'Eventually these industry profiles will enable customized species responses depending on types of impact.')))),
+      hr(),
+      
       fluidRow(
         helpText(HTML(renderMarkdown(text="**Instructions.** Click on a point in the tradeoff chart below to display the mapped route to the right and values below. 
                  Map is zoomable/pannable and start/end points clickable.
@@ -303,10 +326,35 @@ server <- function(input, output, session) {
   # http://shiny.rstudio.com/articles/selecting-rows-of-data.html
 
   # map ----
-  b = extent(pts_gcs)
+  get_bbox <- reactive({
+    # if have 2 or more points for selected extent
+    if (nrow(filter(pts, extent == input$sel_extent)) >= 2){
+      # return bbox of points
+      pts %>% 
+        as.data.frame() %>%
+        filter(extent == input$sel_extent) %>%
+        #filter(extent == 'British Columbia, Canada') %>%
+        SpatialPointsDataFrame(
+          data=., coords = .[,c('lon','lat')], proj4string = CRS(epsg4326)) %>%
+        extent() %>%
+        c(.@xmin, .@ymin, .@xmax, .@ymax) %>%
+        .[-1] %>% unlist() %>%
+        return()
+    } else {
+      # return bbox of extent
+      extents %>%
+        filter(code == input$sel_extent) %>%
+        select(lon_min, lat_min, lon_max, lat_max) %>%
+        as.numeric() %>%
+        return()
+    }
+  })
+
   x = (r / cellStats(r,'max'))
   x_rng = c(cellStats(x,'min'), cellStats(x,'max'))
+  
   output$mymap <- renderLeaflet({
+    b = get_bbox()
     leaflet() %>%
       addProviderTiles("Stamen.TonerLite", options = providerTileOptions(noWrap = TRUE)) %>% 
       addRasterImage(
@@ -319,7 +367,7 @@ server <- function(input, output, session) {
         'bottomleft', 
         pal = colorNumeric(palette = 'Reds', domain = x_rng),
         values = x_rng, title = 'Conservation <br> Risk') %>%
-      fitBounds(b@xmin, b@ymin, b@xmax, b@ymax)
+      fitBounds(b[1], b[2], b[3], b[4])
   })
 
   
@@ -346,6 +394,29 @@ server <- function(input, output, session) {
       removeShape(c('routes')) %>% 
       addPolylines(data = routes[[i]][['route_gcs']], layerId='routes', color='blue') # , color='purple', weight=3)
   })
+  
+  observeEvent(input$sel_industry, {
+    if (input$sel_industry != 'rt_oil'){
+      shinyjs::show('hlp_industry')
+    } else {
+      shinyjs::hide('hlp_industry')
+    }
+  })
+  
+#   observeEvent(input$sel_extent, {
+#     
+#     b = extents %>%
+#       filter(code == input$sel_extent)
+#     
+#     pts_gcs = pts %>% 
+#       as.data.frame() %>%
+#       SpatialPointsDataFrame(
+#         data=., coords = .[,c('lon','lat')], proj4string = CRS(epsg4326))
+#     
+#     
+#     leafletProxy('mymap') %>%
+#       fitBounds(b$lon_min, b$lat_min, b$lon_max, b$lat_max)
+#   })
   
 }
 
