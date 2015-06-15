@@ -10,6 +10,7 @@
 #   http://stackoverflow.com/questions/28938642/marker-mouse-click-event-in-r-leaflet-for-shiny
 # - try cells as polygons
 # - add offshore wind raster. see marine cadastre w/ leases (active?), http://atlanticwindconnection.com/
+# - consider click/hover on spp weights to show species distribution map on right
 
 library(readr)
 library(dplyr)
@@ -28,6 +29,7 @@ show = sp::show
 #library(DT)          # devtools::install_github("rstudio/DT")
 library(ggvis)        # devtools::install_github("rstudio/ggvis") # https://github.com/rstudio/ggvis/pull/381
 library(markdown)
+library(ggplot2)
 
 # params
 epsg4326 <- "+proj=longlat +datum=WGS84 +no_defs"
@@ -35,35 +37,50 @@ epsg3857 <- "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y
 load_rdata = T
 
 # paths
-app_dir = '~/github/dissertation/app/bdb'
-if (!file.exists('data')) setwd(app_dir) 
-rdata = 'data/routes.Rdata' # '~/Google Drive/dissertation/data/routing/demo.Rdata'
-grd = 'data/v72zw_epsg3857.grd' # '~/Google Drive/dissertation/data/bc/v72zw_epsg3857.grd'
-extents_csv = 'data/extents.csv'
-points_csv = 'data/points.csv'
+app_dir        = '~/github/dissertation/app/bdb'
+data = c(
+  rdata          = 'routes.Rdata',       # '~/Google Drive/dissertation/data/routing/demo.Rdata'
+  grd            = 'v72zw_epsg3857.grd', # '~/Google Drive/dissertation/data/bc/v72zw_epsg3857.grd'
+  extents_csv    = 'extents.csv',
+  points_csv     = 'points.csv',
+  spp_ranks_csv   = 'spp_ranks.csv',
+  spp_weights_csv = 'spp_weights.csv') 
+data = setNames(sprintf('data/%s', data), names(data))
 
 # read data ----
 
+# change dir if not running in Shiny server mode
+if (!file.exists('data')) setwd(app_dir) 
+
 # check all files exist
-stopifnot(all(file.exists(c(rdata,grd,extents_csv,points_csv))))
+stopifnot(all(file.exists(data)))
 
 # raster
-r = raster(grd)
+r = raster(data[['grd']])
 
 # points
-pts = read_csv(points_csv)
+pts = read_csv(data[['points_csv']])
 
-# points
-extents = read_csv(extents_csv) %>%
+# extents
+extents = read_csv(data[['extents_csv']]) %>%
   arrange(country, name, code)
+
+# species weights
+spp_ranks = read_csv(data[['spp_ranks_csv']])
+spp_weights = read_csv(data[['spp_weights_csv']])
+spp_labels = spp_ranks %>%
+  group_by(SRANK) %>%
+  summarize(
+    label = paste(SP, collapse=',')) %>%
+  left_join(spp_weights, by='SRANK')
   
 # default transform for d data.frame
 d_transform = 'x * 10'
   
 # routes: load or get shortestPath
 if (load_rdata){
-  stopifnot(file.exists(rdata))
-  load(rdata)
+  stopifnot(file.exists(data[['rdata']]))
+  load(data[['rdata']])
   stopifnot(exists(c('routes')))
 } else {
   
@@ -104,7 +121,7 @@ if (load_rdata){
   }
   
   # save
-  save(routes, file = rdata)
+  save(routes, file = data[['rdata']])
 }
 
 # # quick routes update #routes0 = routes
@@ -115,7 +132,7 @@ if (load_rdata){
 #   routes[[i]]$extent = 'British Columbia, Canada'
 #   routes[[i]]$place = NULL
 # }
-# save(routes, file = rdata)
+# save(routes, file = data[['rdata']])
 
 # extract data from routes
 d = data.frame(
@@ -169,21 +186,21 @@ ui <- fluidPage(
       "Routing",
       fluidRow(
         column(
-          6, 
-         selectInput(
-           'sel_extent', 'Study Area:',
-           extents %>% 
-             filter(routing==T) %$% 
-             split(.[,c('name','code')], country) %>%
-             lapply(function(x) setNames(x$code, x$name)))),
-        column(
           6,
          selectInput(
            'sel_industry', 'Industry Profile:',
            c('Oil Tanker'='rt_oil','Shipping Tanker'='rt_ship','Cruise Ship'='rt_cruise')),
          hidden(helpText(
            id='hlp_industry', 
-           'Eventually these industry profiles will enable customized species responses depending on types of impact.')))),
+           'Eventually these industry profiles will enable customized species responses depending on types of impact.'))),
+        column(
+          6, 
+          selectInput(
+            'sel_extent', 'Study Area:',
+            extents %>% 
+              filter(routing==T) %$% 
+              split(.[,c('name','code')], country) %>%
+              lapply(function(x) setNames(x$code, x$name))))),
       hr(),
       
       fluidRow(
@@ -214,17 +231,42 @@ ui <- fluidPage(
           #DT::dataTableOutput('dt_tbl'))
           p(
             "Tradeoff selected: ",
-            div(id = "txt_tradeoff", HTML(cat_txt_tradeoff(d_transform)))
+            div(id = 'txt_tradeoff', HTML(cat_txt_tradeoff(d_transform)))
             )),
         column(
           8,
-          helpText(HTML(renderMarkdown(text='**Background.** Welcome to Conservation Routing! Least cost routes are calculated based on different cost surfaces. 
-                   The initial cost surface applies a constant value for all cells resulting in a Euclidean path
-                   with the minimum distance. This path would be the least costly to industry, making it 
-                   the reference point (_min(dist)_) to which other routes are compared. Other paths are calculated
-                   by applying transformations to the conservation risk surface, which is calculated as the cumulative species score 
-                   weighted by extinction risk. The summation of conservation risk values traversed by the path determines
-                   the conservation score. The reference point (_min(cost)_) is subtracted from all values.')))))),
+          helpText(HTML(renderMarkdown(
+            text='**Background.** Welcome to Conservation Routing! Least cost routes are calculated based on different cost surfaces. 
+            The initial cost surface applies a constant value for all cells resulting in a Euclidean path
+            with the minimum distance. This path would be the least costly to industry, making it 
+            the reference point (_min(dist)_) to which other routes are compared. Other paths are calculated
+            by applying transformations to the conservation risk surface, which is calculated as the cumulative species score 
+            weighted by extinction risk. The summation of conservation risk values traversed by the path determines
+            the conservation score. The reference point (_min(cost)_) is subtracted from all values.'))))),
+      
+      hr(),
+      
+      fluidRow(
+        column(
+          4,
+          # speceis weight plot
+          plotOutput('plt_spp_weights')),
+        column(
+          8,
+          helpText(HTML(renderMarkdown(
+            text="**Conservation Risk**. The conservation risk surface is a cumulative species hotspot map that
+            provides the cost against which the least-cost path is routed. This surface is constructed from the
+            individual species distribution maps which are weighted by the species' extinction risk before each
+            pixel is summed. Finally the resistance surface is divided by the maximum value to normalize it to 
+            a maximum of 1."))),
+          withMathJax(helpText(
+            "More formally, each pixel (\\(i\\)) across \\(n\\) species (\\(s\\)) is summed by its 
+            relative density (\\(z_i\\)), which is based on the pixel values' (\\(x_i\\)) deviation (\\(\\sigma_s\\)) from 
+            mean density (\\(\\mu_s\\)), and multiplying by the species' extinction risk weight (\\(w_s\\)):
+            $$
+            z_{i,s} = \\frac{ x_{i,s} - \\mu_s }{ \\sigma_s } \\\\
+            Z_i = \\frac{ \\sum_{s=1}^{n} z_{i,s} * w_s }{ n }
+            $$"))))),
     
     tabPanel(
       "Siting",
@@ -417,6 +459,15 @@ server <- function(input, output, session) {
 #     leafletProxy('mymap') %>%
 #       fitBounds(b$lon_min, b$lat_min, b$lon_max, b$lat_max)
 #   })
+  
+  output$plt_spp_weights = renderPlot({
+    
+    g = ggplot(aes(x=SRANK, y=WEIGHT.LOGIT, group=1), data=spp_weights) +
+      geom_point() + geom_line(col='slategray') +
+      annotate('text', x=spp_labels$SRANK, y=spp_labels$WEIGHT.LOGIT+0.01, label=spp_labels$label)
+    print(g)
+    
+  })
   
 }
 

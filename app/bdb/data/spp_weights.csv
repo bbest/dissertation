@@ -1,0 +1,10 @@
+SRANK,BC.List,RANK,WEIGHT.INVERSE,WEIGHT.LOGIT,DESCRIPTION,DESCRIP
+S1,Red,1,1,0.321038,Critically Imperiled,Crit. Imperiled
+S1S2,Red,2,0.5,0.3177,,
+S2,Red,3,0.333333,0.308977,Imperiled,Imperiled
+S2S3,Blue,4,0.25,0.28754,,
+S3,Blue,5,0.2,0.241957,Vulnerable,Vulnerable
+S3S4,Blue,6,0.166667,0.169148,,
+S4,Unlisted,7,0.142857,0.0930873,Apparently Secure,App. Secure
+S4S5,Unlisted,8,0.125,0.0419125,,
+S5,Unlisted,9,0.111111,0.0168138,Secure,Secure
