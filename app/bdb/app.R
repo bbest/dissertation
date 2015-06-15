@@ -476,3 +476,13 @@ shinyApp(ui, server)
 # deploy by copying over ssh to the NCEAS server
 # system(sprintf('rsync -r --delete %s bbest@fitz.nceas.ucsb.edu:/srv/shiny-server/', app_dir))
 # system(sprintf("ssh bbest@fitz.nceas.ucsb.edu 'chmod g+w -R /srv/shiny-server/%s'", basename(app_dir)))
+
+# deploy to shinyapps
+#library(shinyapps)
+#library(devtools)
+# appDependencies()
+# i = devtools::session_info()
+# cat(as.character(as.list(i)[[1]]), file='data/R_environment.txt', sep='\n')
+# as.list(i)[[2]] %>% 
+#   as.data.frame() %>%
+#   write_csv('data/R_packages.csv')

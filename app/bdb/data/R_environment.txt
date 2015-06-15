@@ -1,0 +1,6 @@
+R version 3.1.2 (2014-10-31)
+x86_64, darwin13.4.0
+RStudio (0.99.441)
+(EN)
+en_US.UTF-8
+America/Los_Angeles
