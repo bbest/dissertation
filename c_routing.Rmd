@@ -1,23 +1,159 @@
+---
+bibliography: dissertation.bib
+csl: csl/conservation-biology.csl
+output:
+  word_document:
+    fig_caption: yes
+  pdf_document:
+    fig_caption: yes
+  html_document:
+    fig_caption: yes
+---
 <!--- `source('make_config.R'); render_html('c_routing.Rmd') # run for quick render` -->
+
+```{r caption_setup, echo=FALSE,results='hide'}
+library(captioner) # devtools::install_github('adletaw/captioner')
+# TODO: for collating, swap this chunk with `bump(fig, 1); bump(tbl, 1)` for all chapters after first
+tbl <- captioner(prefix =  'Table', levels=2, type=c('n','n'))
+fig <- captioner(prefix = 'Figure', levels=2, type=c('n','n'))
+```
+
+```{r caption_list, echo=FALSE,results='hide'}
+# FIGURES ----
+
+fig(
+  'bc_routes_proposed',
+  'On the left, polygons of important areas for gray, humpback, and sperm whales derived from expert opinion in the PNCIMA Atlas (Draft 2009). On the right, proposed tanker vessel route for servicing the forthcoming Kitimat oil and gas projects (EnviroEmerg Consulting Services 2008).')
+
+fig(
+  'bc_species_weights',
+  'Weighting by BC conservation status for fin whale (FW), Steller sea lion (SSL), harbour porpoise (HP), humpback whale (HW), killer whale (KW), Elephant seal (ES), minke whale (MW), Dall’s porpoise (DP), Pacific white-sided dolphin, and harbour seal (HS).')
+
+fig(
+  'bc_composite_risk_map',
+  'Conservation-weighted composite map of all marine mammal z-scored densities.')
+
+fig(
+  'bc_route_oil_tankers',
+  'Proposed, linear (Euclidean), and least-cost routes for oil tankers to Port Kitimat. The least-cost route uses the conservation weighted cost surface.')
+
+fig(
+  'bc_route_cruise_ships',
+  'Existing, Euclidean and least-cost routes for cruise ships along the BC coast. The least-cost route uses a cost surface which is the sum of the conservation risk surface and a surface of distance from existing routes scaled to the equivalent range. The least cost-path is chosen which thus avoids biological hotspots while being equally attracted to existing routes.')
+
+fig(
+  'routing_boston_harbor',
+  'Ships were rerouted in Boston Harbor around hotspots of right whale observations, but in ad-hoc fashion without quantitifying the tradeoff between cost to industry and conservation gain. Source: [@ward-geiger_characterization_2005].')
+
+fig(
+  'routing_global_traffic',
+  'Given this spatial decision framework, routes to all ports globally could be similarly proposed. [@halpern_global_2008].')
+
+
+# TABLES ----
+
+tbl(
+  'route_distances',
+  'Distances of routes in km. For the oil transportation example in and out of the Kitimat port only the conservation surface is used for generating the least-cost route, compared to the industry-proposed route and Euclidean path. The cruise ship industry path comes from existing routes, the distance from which is summed with the conservation surface to provide the total cost surface with which to route the least-cost path. Since the cruise ship route splits, the distance for the one going up Principe Channel is shown.
+')
+```
+
 # Conservation Routing
+
+## Introduction (report)
+
+Reducing risk to endangered wildlife while maintaining human resource uses and maritime operations requires objective assessment of species habitats and human uses in both space and time. In order to better assess management options for separating endangered species and potentially harmful interactions we need to develop a synthetic, composite valuation of our marine species and then apply explicit optimization methods. A specific application of this type of approach is the development of cost-surface models based on expected species distributions that are then applied to optimize the routing of vessels in the region to potentially reduce the risk of adverse interactions.
+
+One method to conduct this type of assessment is to conflate the marine mammal density surfaces into a single layer that will serve as a synthetic environmental cost surface for the analysis. To create this synthetic cost surface, individual species density surfaces were first relativized, and then weighted by conservation score before adding them up into a single cost surface layer. The cost surface was then used to determine alternate navigation routes for ships, which have the potential for striking animals or fouling habitat from potential spills. These methods employ least-cost path algorithms as a means to develop vessel paths that follow the most economical path through the environment while avoiding areas of high environmental risk.
+
+While a wide variety of industries are increasingly active in the coastal waters of British Columbia, many environmental groups (PNCIMA, BCMCA, LOS) are seeking conservation-minded solutions for locating safely locating activities. The current ecological data layers in widest use are based on an expert feedback approach delineating important areas. For example, (see `r fig('bc_routes_proposed', cite=T)`) depicts the areas in the latest draft PNCIMA Atlas, originally provided by Clarke et al. (2006). The maps in these atlases identify areas of importance as polygons. These polygon areas are then overlaid and summed to create an index of potential importance and environmental sensitivity.  In the absence of observational data, this qualitative approach is the best available science. Given the availability of Raincoast surveys, the density surfaces of each species can be combined to provide a more quantitative layer for planning purposes.
+
+The ability to operationally provide a framework for minimizing impacts on marine animals is especially appealing. For example, ship traffic lanes have been re-routed in Boston Harbor to reduce likelihood of striking right whales (Russell 2001; Ward-Geiger et al. 2005; Fonnesbeck et al. 2008). Global data layers on human impacts in marine systems are being actively developed, including vessel traffic density (Halpern et al. 2008). Here we provide a simple framework for proposing alternative shipping routes to minimize impacts on marine animals. In this framework competing priorities, such as cost of additional travel distance and time versus risk of striking a marine mammal can be more objectively assessed.
+
+Several large oil and gas projects that are currently underway are likely to increase heavy shipping into Kitimat (EnviroEmerg Consulting Services 2008), making this a useful example of the approach.
+
+## Introduction (proposal)
 
 Vessel traffic poses the threat of ship strike and spill of oil or other toxins in the cargo. In Boston harbor where the critically endangered right whales are of concern, shipping lanes were redrawn around a simple right whale density of historical opportunistic sightings [@ward-geiger_characterization_2005]. This ad-hoc method doesn’t account for variability (which may be currently infeasible for management) or observational bias or other analytical rigor. Methods for incorporating multiple species in such a routing analysis are untested to my knowledge. Studies have worked on risk of ship strike vs. cost of vessel rerouting based on pre-defined track [@ward-geiger_characterization_2005; @vanderlaan_vessel_2007; @vanderlaan_reducing_2008; @vanderlaan_probability_2009; @vanderlaan_efficacy_2009; @fonnesbeck_bayesian_2008; @schick_striking_2009].
 
 To avoid encounters with marine mammals, relative hotspots of expected encounter are to be avoided, and routed around. Least-cost algorithms, such as Djikstra’s algorithm, are commonly used with the prevalence of online driving directions and many other route-optimization applications. These graph-theoretic algorithms have also been playing an increasing role in routing corridors of habitat and testing connectivity of habitat patches [@chetkiewicz_corridors_2006] for both terrestrial [@urban_landscape_2001; @urban_graph_2009] and marine applications [@treml_modeling_2008].
 
-Density surface model outputs will be assembled into a marine mammal composite risk map, or cost surface. Each density surface was normalized in order to highlight areas of high density relative to its average. The unitless standard score, or z-value ($z_i$), per pixel ($i$) is calculated as the pixel’s marine mammal density estimate ($x_i$) subtracted from the mean of all density estimates for the strata ($\mu$), divided by the standard deviation of those density estimates ($\sigma$) and finally multiplied by the species weight ($w$). 
-
-$$
-z_i = \frac{x_i - \mu}{\sigma}*w
-$$
-$$
-Z_i = \sum_{j=1}^{n}z_i
-$$
-
-An inverse weighting scheme based on species conservation status will be applied to favor representation of more endangered species [@wood_gis_2007]. These rankings were obtained from the Provincial listing status at British Columbia’s Endangered Species and Ecosystems website . Elephant seal is listed as SNA, species “not applicable”, presumably because of its semi-migratory status in BC waters. Given that it’s status is S4 in California and Alaska to the south and north of BC, this status was used to conform with the scheme. The values on the y-axis indicate the relativised weight used in the analysis.
 
 The cost surface from the composite risk map provides the biological hotspot surface around which to route. The routing will be performed with Python scripts using ESRI’s ArcGIS ArcInfo version 9.3 with the Spatial Analyst toolbox. The CostPath function was used with input cost distance and back-directional raster grids generated from the CostDistance function. The 5km original density surface grids will be resampled to a 1km resolution for use as the resistance cost surface to provide finer spatial resolution and routing within the inlets. An alternative raster grid in which all cells would be assigned a cost value of 1 serves as the Euclidean linear distance optimal spatial route providing a comparison of direct routing.
 
 Oil tanker routes were proposed for the inside waters of BC to Port Kittimat. This figure will be digitized and endpoints for north and south approaches used with the exercise to test the framework moving in and out of Kitimat. Routes between all navigation points, originally including other ports (Prince Rupert and Port Hardy), will also be calculated. Existing routes may have preference for other factors than efficiency, such as scenic beauty or protection against inclement weather. Given that existing routes are generally preferred, a cost can be associated with movement away from these preferred routes. Here we take the case of cruise routes reported online . Euclidean distance from existing cruise route was relativized by the maximum within the study area and multiplied by the maximum cost surface value. The two surfaces will be added to obtain the final cost surface for routing, providing an example of equal weighting to conservation and routing goals.
 
-The relative weights of these layers could be gleaned from the past precedent of re-routing shipping lanes in Boston Harbor based on overlap with a density of right whale observations. A similar spatial decision-making process could then be applied globally as thought experiment using the global shipping layer from [@halpern_global_2008]. 
+The relative weights of these layers could be gleaned from the past precedent of re-routing shipping lanes in Boston Harbor based on overlap with a density of right whale observations. A similar spatial decision-making process could then be applied globally as thought experiment using the global shipping layer from [@halpern_global_2008].
+
+
+## Methods
+
+
+### Cumulative Risk Map
+
+Density surface model outputs were assembled into a marine mammal composite risk map, or cost surface. Each species density surface was normalized in order to highlight areas of high density relative to its average. The unitless standard score, or z-value ($z$), per species ($s$) and pixel ($i$) is calculated as the pixel’s marine mammal density estimate ($x_{i,s}$) subtracted from the mean of all density estimates for the species ($\mu_s$), divided by the standard deviation of those density estimates ($\sigma$). The final conservation score per pixel ($Z_i$) represents the sum of all species scores ($z_{i,s}$) weighted by the extinction risk ($w_s$).
+
+$$
+z_{i,s} = \frac{ x_{i,s} - \mu_s }{ \sigma_s }
+$$
+$$
+Z_i = \frac{ \sum_{s=1}^{n} z_{i,s} w_s }{ n }
+$$
+
+<!---
+TODO:
+Is $\sigma$ per pixel or for entire DSM?
+How does uncertainty play into this decision making?
+--->
+
+An inverse weighting scheme based on species extinction risk (`r fig('bc_species_weights', cite=T)`) was applied to favor representation of more endangered species [@wood_gis_2007]. These rankings were obtained from the Provincial listing status at British Columbia’s Endangered Species and Ecosystems website (http://www.env.gov.bc.ca/atrisk). Elephant seal is listed as SNA, species “not applicable”, presumably because of its semi-migratory status in BC waters. Given that its status is S4 in California and Alaska to the south and north of BC, this status was used to conform with the scheme. The values on the y-axis indicate the relativised weight used in the analysis.
+
+### Vessel Routing
+
+To avoid encounters with marine mammals, relative hotspots of expected encounter are to be avoided, and routed around. Least-cost algorithms, such as Djikstra’s algorithm, are commonly used with the prevalence of online driving directions and many other route-optimization applications. They have also been playing an increasing role in routing corridors of habitat and testing connectivity of habitat patches (Chetkiewicz, Clair, and Boyce 2006) for both terrestrial (Dean Urban and Keitt 2001) and marine applications (Treml et al. 2008).
+
+The cost surface from the composite risk map provides the biological hotspot surface around which to route. The routing was performed with Python scripts using ESRI’s ArcGIS ArcInfo version 9.3 with the Spatial Analyst toolbox. The CostPath function was used with input cost distance and back-directional raster grids generated from the CostDistance function. The 5km original density surface grids were resampled to a 1km resolution for use as the resistance cost surface to provide finer spatial resolution and routing within the inlets. An alternative raster grid in which all cells were assigned a cost value of 1 served as the Euclidean linear distance optimal spatial route providing a comparison of direct routing.
+
+The proposed routes from Figure 10 were digitized and endpoints for north and south approaches used with the exercise to test the framework moving in and out of Kitimat. Routes between all navigation points, originally including other ports (Prince Rupert and Port Hardy), were also calculated. Existing routes may have preference for other factors than efficiency, such as scenic beauty or protection against inclement weather. Given that existing routes are generally preferred, a cost can be associated with movement away from these preferred routes. Here we take the case of cruise routes reported online . Euclidean distance from existing cruise route was relativized by the maximum within the study area and multiplied by the maximum cost surface value. The two surfaces were added to obtain the final cost surface for routing, providing an example of equal weighting to conservation and routing goals.
+
+## Results
+
+The composite risk map for all marine mammals (Figure 12) is very similarly distributed as just the large whales (Figure 13) composed of killer, humpback, fin and minke whale. Consistent with Clarke et al. (2006), Hecate Strait was found to be relatively important, along with the Dixon entrance. The highest value hotspot is in Gwaii Hanas Reserve, already under some level of protection. The high levels in stratum 3 Johnstone  Strait (see zoom view) may be an anomaly of the environmental conditions there, since few sightings were made by comparison.
+
+The routes do differ markedly (Figure 14). It is not clear whether Grenville Channel is deep and wide enough to support the kind of tanker traffic envisioned. Besides being closer to the northern approach, as evidenced by that inlet choice with the Euclidean path, Grenville Channel exhibits a lower level of potential marine mammal interaction as predicted by the composite marine mammal densities than through the Principe Channel as proposed. By routing through the Grenville Channel the potential interactions in the Hecate Strait could also be avoided. The proposed Southern approach exhibits relatively lower potential interactions with the least-cost route even dipping south around the Gwaii Haanas Reserve.
+
+The existing ship routes pass through both the Principe and Grenville Channels. Models developed to conduct least-cost path analysis use raster grid cells. For modeling purposes these cells provide eight possible directions at each step (i.e. 4 side and 4 diagonal directions). These models create uneven turns when compared to the smoother Euclidean route or with the proposed routes (Figure 15). Although the Euclidean path should be the shortest, the existing industry route up the Principe Channel is the shortest (`r tbl('route_distances', cite=T)`).
+
+## Tables
+
+| Route | Euclidean | Industry | Least-Cost |
+|-------|-----------|----------|------------|
+| Kitimat to N. Approach (Conservation) | 391 | 410 | 425 |
+| Kitimat to S. Approach (Conservation) | 304 | 319 | 336 |
+| S. to N. Cruise Route (Conservation + Distance to Route) | 470 | 450 | 504 |
+
+  : `r tbl('route_distances')`
+
+## Figures
+
+![`r fig('bc_routes_proposed')`](fig/bc_routes_proposed.png)
+
+![`r fig('bc_species_weights')`](fig/bc_species_weights.png)
+
+![`r fig('bc_composite_risk_map')`](fig/bc_composite_risk_map.png)
+
+![`r fig('bc_route_oil_tankers')`](fig/bc_route_oil_tankers.png)
+<!---
+TODO:
+get feedback from Raincoast, Mersk, Shaun on actual application
+How could this relate to insurance incentivizing program?
+Research issues with SB Channel in trying to get rerouting accomplished.
+--->
+
+![`r fig('bc_route_cruise_ships')`](fig/bc_route_cruise_ships.png)
+
+![`r fig('routing_boston_harbor')`](fig/routing_boston_harbor.png)
+
+![`r fig('routing_global_traffic')`](fig/routing-global-traffic_sized.png)
+
+## References

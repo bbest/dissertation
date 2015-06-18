@@ -1,3 +1,9 @@
+<!-- TOC depth:6 withLinks:1 updateOnSave:1 -->
+	- [Abstract](#abstract)
+	- [Introduction / Overview](#introduction-overview)
+	- [Questions woven into Chapters](#questions-woven-into-chapters)
+<!-- /TOC -->
+
 ## Abstract
 
 So far, two separate themes:

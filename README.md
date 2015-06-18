@@ -78,7 +78,6 @@ Here are a few related resources from which I borrowed.
 - [knitr-examples / 070-caption-num.Rmd](https://github.com/yihui/knitr-examples/blob/master/070-caption-num.Rmd): trick with use of `local` and `global` variable assignment for caption counter
 - [brew: Creating Repetitive Reports](http://learnr.wordpress.com/2009/09/09/brew-creating-repetitive-reports/): used to substitute variables `dissertation.brew.tex` -> `dissertation.tex`.
 
-
 ## Word Tweaks
 
 Here's a little macro to resize images and add a table of contents. Works in Office 2011 for Mac. Tools > Macro > Macros.. Enter "dissertation_quick_fixes", Create. Then replace with the following code and Run. Should save to your Normal.dot so only need to create the macro once, then available to run on any document.
@@ -86,75 +85,89 @@ Here's a little macro to resize images and add a table of contents. Works in Off
 ```vbnet
 Sub dissertation_quick_fixes()
 
-'----
-' resize figures
-
-Dim shp As Word.Shape
-Dim ishp As Word.InlineShape
-Dim width_in As Integer
-
-width_in = 6
-
-' iterate over all shapes
-For Each shp In ActiveDocument.Shapes
-    shp.LockAspectRatio = True
-    shp.Width = InchesToPoints(width_in)
-Next
-
-' iterate over all inline shapes
-For Each ishp In ActiveDocument.InlineShapes
-    ishp.LockAspectRatio = True
-    ishp.Width = InchesToPoints(width_in)
-Next
-
-'----
-' add table of contents after 1st paragraph
-
-Dim toc_str As String
-Dim rng As Object
-
-toc_str = "Table of Contents"
-
-' set location in doc
-Set rng = ActiveDocument.range( _
-    Start:=ActiveDocument.Paragraphs(1).range.End, _
-    End:=ActiveDocument.Paragraphs(1).range.End)
-
-' add toc
-ActiveDocument.TablesOfContents.Add rng, _
-    UseFields:=True, _
-    UseHeadingStyles:=True, _
-    LowerHeadingLevel:=3, _
-    UpperHeadingLevel:=1
-
-' prefix toc with string
-With ActiveDocument.Paragraphs(1).range
-    .InsertParagraphAfter
-    .InsertAfter (toc_str)
-    .InsertParagraphAfter
-End With
-
-' make toc bold
-With Selection.Find
-    .Replacement.Font.Bold = True
-    .Execute FindText:=toc_str, replaceWith:=toc_str
-End With
-
-'----
-' add page and line numbering
-
-' add page numbers
-ActiveDocument.Sections(1).Footers(1).PageNumbers.Add PageNumberAlignment:= _
-        wdAlignPageNumberRight, FirstPage:=True
-
-' add line numbers
-With ActiveDocument.PageSetup.LineNumbering
-    .Active = True
-    .StartingNumber = 1
-    .CountBy = 1
-    .RestartMode = wdRestartContinuous
-    .DistanceFromText = InchesToPoints(0)
-End With
+    '----
+    ' resize figures
+    
+    Dim shp As Word.Shape
+    Dim ishp As Word.InlineShape
+    Dim width_in As Integer
+    
+    width_in = 6
+    
+    ' iterate over all shapes
+    For Each shp In ActiveDocument.Shapes
+        shp.LockAspectRatio = True
+        shp.Width = InchesToPoints(width_in)
+    Next
+    
+    ' iterate over all inline shapes
+    For Each ishp In ActiveDocument.InlineShapes
+        If ishp.Width > 0 Then
+            ishp.LockAspectRatio = True
+            ishp.Width = InchesToPoints(width_in)
+        End If
+    Next
+    
+    '----
+    ' add page and line numbers, line space
+    
+    ' add page numbers
+    ActiveDocument.Sections(1).Footers(1).PageNumbers.Add PageNumberAlignment:= _
+            wdAlignPageNumberRight, FirstPage:=True
+    
+    ' add line numbers
+    With ActiveDocument.PageSetup.LineNumbering
+        .Active = True
+        .StartingNumber = 1
+        .CountBy = 1
+        .RestartMode = wdRestartContinuous
+        .DistanceFromText = InchesToPoints(0)
+    End With
+    
+    ' make line spacing 1.5 for Normal style
+    ActiveDocument.Styles("Normal").ParagraphFormat.LineSpacingRule = wdLineSpace1pt5
+    
+    ' make other styles single spaced
+    Dim vFonts As Variant
+    Dim vF As Variant
+    vFonts = Array("Image Caption", "Table Caption", "Compact", "Bibliography", "TOC 1", "TOC 2", "TOC 3", "TOC 4", "TOC 5")
+    For Each vF In vFonts
+        Debug.Print vF
+        ActiveDocument.Styles(vF).ParagraphFormat.LineSpacingRule = wdLineSpace1
+    Next
+    
+    '----
+    ' add table of contents after 1st paragraph
+    
+    Dim toc_str As String
+    Dim rng As Object
+    
+    toc_str = "Table of Contents"
+    
+    ' set location in doc
+    Set rng = ActiveDocument.range( _
+        Start:=ActiveDocument.Paragraphs(1).range.End, _
+        End:=ActiveDocument.Paragraphs(1).range.End)
+    
+    ' add toc
+    ActiveDocument.TablesOfContents.Add rng, _
+        UseFields:=True, _
+        UseHeadingStyles:=True, _
+        LowerHeadingLevel:=3, _
+        UpperHeadingLevel:=1
+    
+    ' prefix toc with string
+    With ActiveDocument.Paragraphs(1).range
+        .InsertParagraphAfter
+        .InsertAfter (toc_str)
+        .InsertParagraphAfter
+    End With
+    
+    ' make toc bold
+    With Selection.Find
+        .Replacement.Font.Bold = True
+        .Execute FindText:=toc_str, replaceWith:=toc_str
+    End With
 
 End Sub
 ```
