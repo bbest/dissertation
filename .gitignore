@@ -4,7 +4,13 @@
 tmp
 *.tex
 *.html
-*.DS_Store
 !defense.html
+*.pdf
+*.docx
+*.md
+!README.md
+!dissertation.md
+!c_routing.md
+*.DS_Store
 dropbox
 a_intro.docx
