@@ -1,8 +1,5 @@
-<!--- `source('make_config.R'); render_html('c_routing.Rmd') # run for quick render` -->
-    ## Loading captioner
-
-Conservation Routing
-====================
+Marine Conservation Routing: Transparently Deciding Tradeoffs between Risk to Species and Cost to Industry
+==========================================================================================================
 
 Abstract
 --------
@@ -22,7 +19,7 @@ To create this synthetic cost surface, individual species density surfaces were 
 
 In our case study area of British Columbia, an oil pipeline has been routed to Port Kittimat and oil tankers are being routed from the points of entry north and south of the Haida Gwaii islands (FIGURE XX).
 
-While a wide variety of industries are increasingly active in the coastal waters of British Columbia, many environmental groups (PNCIMA, BCMCA, LOS) are seeking conservation-minded solutions for safely locating activities. The current ecological data layers in widest use are based on an expert feedback approach delineating important areas. Several large oil and gas projects that are currently underway are likely to increase heavy shipping into Kitimat (EnviroEmerg Consulting Services 2008), making this a useful example of the approach. One map ([Figure 1](#Figure_1)) depicts the areas in the latest draft PNCIMA Atlas, originally provided by (Clarke & Jamieson 2006). The maps in these atlases identify areas of importance as polygons. These polygon areas are then overlaid and summed to create an index of potential importance and environmental sensitivity. In the absence of observational data, this qualitative approach is the best available science. Given the availability of Raincoast surveys (Best et al. 2015), the density surfaces of each species can be combined to provide a more quantitative layer for planning purposes.
+While a wide variety of industries are increasingly active in the coastal waters of British Columbia, many environmental groups (PNCIMA, BCMCA, LOS) are seeking conservation-minded solutions for safely locating activities. The current ecological data layers in widest use are based on an expert feedback approach delineating important areas. Several large oil and gas projects that are currently underway are likely to increase heavy shipping into Kitimat (EnviroEmerg Consulting Services 2008), making this a useful example of the approach. One map ([Figure 3](#bc_routes_proposed)) depicts the areas in the latest draft PNCIMA Atlas, originally provided by (Clarke & Jamieson 2006). The maps in these atlases identify areas of importance as polygons. These polygon areas are then overlaid and summed to create an index of potential importance and environmental sensitivity. In the absence of observational data, this qualitative approach is the best available science. Given the availability of Raincoast surveys (Best et al. 2015), the density surfaces of each species can be combined to provide a more quantitative layer for planning purposes.
 
 Existing routes may have preference for other factors than efficiency, such as scenic beauty or protection against inclement weather. Given that existing routes are generally preferred, a cost can be associated with movement away from these preferred routes. Here we take the case of cruise routes reported online. Euclidean distance from existing cruise route was relativized by the maximum within the study area and multiplied by the maximum cost surface value. The two surfaces can be added to obtain the final cost surface for routing, providing an example of equal weighting to conservation and routing goals.
 
@@ -30,6 +27,10 @@ The relative weights of these layers could be gleaned from the past precedent of
 
 Methods
 -------
+
+### Species Distributions
+
+See (Best et al. 2015).
 
 ### Cumulative Risk Map
 
@@ -46,7 +47,9 @@ TODO:
 Is $\sigma$ per pixel or for entire DSM?
 How does uncertainty play into this decision making?
 --->
-An inverse weighting scheme based on species extinction risk ([Figure 2](#Figure_2)) was applied to favor representation of more endangered species (Wood & Dragicevic 2007). These rankings were obtained from the Provincial listing status at British Columbia’s Endangered Species and Ecosystems website (<http://www.env.gov.bc.ca/atrisk>). Elephant seal is listed as SNA, species “not applicable”, presumably because of its semi-migratory status in BC waters. Given that its status is S4 in California and Alaska to the south and north of BC, this status was used to conform with the scheme. The values on the y-axis indicate the relativised weight used in the analysis.
+An inverse weighting scheme based on species extinction risk (Figure 4) was applied to favor representation of more endangered species (Wood & Dragicevic 2007). These rankings were obtained from the Provincial listing status at British Columbia’s Endangered Species and Ecosystems website (<http://www.env.gov.bc.ca/atrisk>). Elephant seal is listed as SNA, species “not applicable”, presumably because of its semi-migratory status in BC waters. Given that its status is S4 in California and Alaska to the south and north of BC, this status was used to conform with the scheme. The values on the y-axis indicate the relativised weight used in the analysis.
+
+See
 
 ### Vessel Routing
 
@@ -63,10 +66,22 @@ The composite risk map for all marine mammals (Figure 12) is very similarly dist
 
 The routes do differ markedly (Figure 14). It is not clear whether Grenville Channel is deep and wide enough to support the kind of tanker traffic envisioned. Besides being closer to the northern approach, as evidenced by that inlet choice with the Euclidean path, Grenville Channel exhibits a lower level of potential marine mammal interaction as predicted by the composite marine mammal densities than through the Principe Channel as proposed. By routing through the Grenville Channel the potential interactions in the Hecate Strait could also be avoided. The proposed Southern approach exhibits relatively lower potential interactions with the least-cost route even dipping south around the Gwaii Haanas Reserve.
 
-The existing ship routes pass through both the Principe and Grenville Channels. Models developed to conduct least-cost path analysis use raster grid cells. For modeling purposes these cells provide eight possible directions at each step (i.e. 4 side and 4 diagonal directions). These models create uneven turns when compared to the smoother Euclidean route or with the proposed routes (Figure 15). Although the Euclidean path should be the shortest, the existing industry route up the Principe Channel is the shortest ([Table 1](#Table_1)).
+The existing ship routes pass through both the Principe and Grenville Channels. Models developed to conduct least-cost path analysis use raster grid cells. For modeling purposes these cells provide eight possible directions at each step (i.e. 4 side and 4 diagonal directions). These models create uneven turns when compared to the smoother Euclidean route or with the proposed routes (Figure 15). Although the Euclidean path should be the shortest, the existing industry route up the Principe Channel is the shortest (Table 2).
+
+TODO: describe Table 1.
+
+Discussion
+----------
 
 Tables
 ------
+
+| Species        | Oil Tanker | Shipping Tanker | Cruise Ship |
+|----------------|------------|-----------------|-------------|
+| fin whale      | 100        | 100             | 100         |
+| humpback whale | 70         | 70              | 70          |
+| killer whale   | 100        |                 |             |
+| ...            |            |                 | ...         |
 
 | Route                                                    | Euclidean | Industry | Least-Cost |
 |----------------------------------------------------------|-----------|----------|------------|
@@ -77,19 +92,23 @@ Tables
 Figures
 -------
 
-![<a name="Figure_1"}></a>Figure 1: On the left, polygons of important areas for gray, humpback, and sperm whales derived from expert opinion in the PNCIMA Atlas (Draft 2009). On the right, proposed tanker vessel route for servicing the forthcoming Kitimat oil and gas projects (EnviroEmerg Consulting Services 2008).](fig/bc_routes_proposed.png)
+![Figure 1: The process of conservation routing starts with gathering species densities (1a) created from species distribution models that correlate the environment with the observations. Industries (1b) can have differential impacts on species and costs associated with routing.](fig/routing_process.png)
 
-![<a name="Figure_2"}></a>Figure 2: Weighting by BC conservation status for fin whale (FW), Steller sea lion (SSL), harbour porpoise (HP), humpback whale (HW), killer whale (KW), Elephant seal (ES), minke whale (MW), Dall’s porpoise (DP), Pacific white-sided dolphin, and harbour seal (HS).](fig/bc_species_weights.png)
+![Figure 2: Interactive routing application with chart (left) of cost to industry versus risk to species in which the selected tradeoff (blue point) corresponds to the route (blue line) displayed within the interactive map (right) of the study area. Available online at [<http://bdbest.shinyapps.io/consmap>](http://bdbest.shinyapps.io/consmap).](fig/routing_app_tradeoff-map.png)
 
-![<a name="Figure_3"}></a>Figure 3: Conservation-weighted composite map of all marine mammal z-scored densities.](fig/bc_composite_risk_map.png)
+![Figure 3: On the left, polygons of important areas for gray, humpback, and sperm whales derived from expert opinion in the PNCIMA Atlas (Draft 2009). On the right, proposed tanker vessel route for servicing the forthcoming Kitimat oil and gas projects (EnviroEmerg Consulting Services 2008).](fig/bc_routes_proposed.png)
 
-![<a name="Figure_4"}></a>Figure 4: Proposed, linear (Euclidean), and least-cost routes for oil tankers to Port Kitimat. The least-cost route uses the conservation weighted cost surface.](fig/bc_route_oil_tankers.png)
+![Figure 4: Weighting by BC conservation status for fin whale (FW), Steller sea lion (SSL), harbour porpoise (HP), humpback whale (HW), killer whale (KW), Elephant seal (ES), minke whale (MW), Dall’s porpoise (DP), Pacific white-sided dolphin, and harbour seal (HS).](fig/bc_species_weights.png)
 
-![<a name="Figure_5"}></a>Figure 5: Existing, Euclidean and least-cost routes for cruise ships along the BC coast. The least-cost route uses a cost surface which is the sum of the conservation risk surface and a surface of distance from existing routes scaled to the equivalent range. The least cost-path is chosen which thus avoids biological hotspots while being equally attracted to existing routes.](fig/bc_route_cruise_ships.png)
+![Figure 5: Conservation-weighted composite map of all marine mammal z-scored densities.](fig/bc_composite_risk_map.png)
 
-![<a name="Figure_6"}></a>Figure 6: Ships were rerouted in Boston Harbor around hotspots of right whale observations, but in ad-hoc fashion without quantitifying the tradeoff between cost to industry and conservation gain. Source: (Ward-Geiger et al. 2005).](fig/routing_boston_harbor.png)
+![Figure 6: Proposed, linear (Euclidean), and least-cost routes for oil tankers to Port Kitimat. The least-cost route uses the conservation weighted cost surface.](fig/bc_route_oil_tankers.png)
 
-![<a name="Figure_7"}></a>Figure 7: Given this spatial decision framework, routes to all ports globally could be similarly proposed. (Halpern et al. 2008).](fig/routing-global-traffic_sized.png)
+![Figure 7: Existing, Euclidean and least-cost routes for cruise ships along the BC coast. The least-cost route uses a cost surface which is the sum of the conservation risk surface and a surface of distance from existing routes scaled to the equivalent range. The least cost-path is chosen which thus avoids biological hotspots while being equally attracted to existing routes.](fig/bc_route_cruise_ships.png)
+
+![Figure 8: Ships were rerouted in Boston Harbor around hotspots of right whale observations, but in ad-hoc fashion without quantitifying the tradeoff between cost to industry and conservation gain. Source: (Ward-Geiger et al. 2005).](fig/routing_boston_harbor.png)
+
+![Figure 9: Given this spatial decision framework, routes to all ports globally could be similarly proposed. (Halpern et al. 2008).](fig/routing-global-traffic_sized.png)
 
 Notes
 -----
