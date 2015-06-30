@@ -12,7 +12,7 @@ for (pkg in c('readr','stringr','dplyr','devtools')){
 }
 
 # read output from as.list(devtools::session_info())[[2]]
-p = read_csv('https://raw.githubusercontent.com/bbest/consmap/master/prep/R_packages.csv')
+p = read_csv('https://raw.githubusercontent.com/bbest/dissertation/master/app_prep/R_packages.csv')
 # debug: setwd('Z:/bbest On My Mac/github/consmap'); p = read_csv('prep/R_packages.csv')
 
 # iterate through packages
