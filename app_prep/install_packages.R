@@ -36,7 +36,7 @@ for (i in 1:nrow(p)){
         .[,'source'] %>%
         str_match("Github \\((.*)\\)") %>%
         .[,2]
-      if (gh != gh0){
+      if (!identical(gh,gh0)){
         cat(sprintf('----\n%s: RE-INSTALLING from GITHUB (%s -> %s)\n...\n', pkg, gh0, gh))
         install_github(gh)
       } else {
