@@ -10,3 +10,12 @@ An elegant solution for incorporating risk into decision making is to use a loss
 ```{r simulate, eval=FALSE}
 install.packages(c('mrds','Distance','dsm','DSsim','mads','DSpat'))
 ```
+
+
+## Methods
+
+### Species Distributions
+
+See [@best_updated_2015].
+
+For harbour seals and stellar sea lions, the in and out of water densities were added to produce the single species density estimates. The standard errors were also added using the delta method (Seber Ref).

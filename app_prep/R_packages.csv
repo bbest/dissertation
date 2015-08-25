@@ -33,7 +33,7 @@
 "readr","","0.1.1","2015-05-29","CRAN (R 3.1.3)",NA,FALSE
 "reshape2","*","1.4.1","2014-12-06","CRAN (R 3.1.2)",NA,FALSE
 "rgdal","","0.8-16","2014-02-07","CRAN (R 3.1.0)",NA,FALSE
-"rstudioapi","*","0.3.1","2015-04-07","CRAN (R 3.1.3)",NA,FALSE
+ "rstudioapi","*","0.3.1","2015-04-07","CRAN (R 3.1.3)",NA,FALSE
 "shiny","","0.12.0","2015-05-18","CRAN (R 3.1.3)",NA,FALSE
 "shinyjs","","0.0.6.2","2015-05-29","CRAN (R 3.1.3)",NA,FALSE
 "sp","","1.0-17","2015-01-08","CRAN (R 3.1.2)",NA,FALSE
@@ -41,8 +41,9 @@
 "stringr","","1.0.0","2015-04-30","CRAN (R 3.1.3)",NA,FALSE
 "xtable","*","1.7-4","2014-09-12","CRAN (R 3.1.1)",NA,FALSE
 "yaml","*","2.1.13","2014-06-12","CRAN (R 3.1.0)",NA,FALSE
+"leaflet","*","1.0.0","2014-08-20","CRAN (R 3.2.2)",NA,FALSE
+"scales","*","1.0.0","2014-08-20","CRAN (R 3.2.2)",NA,FALSE
+"tidyr","*","0.2.0","2014-08-20","CRAN (R 3.2.2)",NA,FALSE
 "ggvis","","0.4.1.9000","2015-06-10","Github (rstudio/ggvis@d2a2a36)","rstudio/ggvis@d2a2a36",FALSE
 "htmltools","","0.2.6","2014-09-18","Github (rstudio/htmltools@097ce08)","rstudio/htmltools@097ce08",FALSE
-"scales","","0.2.4.99","2015-06-04","Github (hadley/scales@f0f93ac)","hadley/scales@f0f93ac",FALSE
 "rasterfaster","","0.1","2015-05-28","Github (jcheng5/rasterfaster@7d00a09)","jcheng5/rasterfaster@7d00a09",FALSE
-"leaflet","","0.0.16","2015-06-15","Github (rstudio/leaflet@00d02b8)","rstudio/leaflet@00d02b8",TRUE

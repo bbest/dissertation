@@ -2,10 +2,13 @@
 bibliography: c_routing.bib
 csl: csl/conservation-biology.csl
 output:
+  html_document:
+    fig_caption: yes
+    keep_md: yes
+    toc: yes
+    toc_depth: 3
   md_document:
     variant: markdown_github
-  word_document:
-    fig_caption: yes
   pdf_document:
     fig_caption: yes
     fig_crop: no
@@ -13,11 +16,8 @@ output:
     fig_width: 7
     toc: yes
     toc_depth: 3
-  html_document:
+  word_document:
     fig_caption: yes
-    keep_md: yes
-    toc: yes
-    toc_depth: 3
 ---
 
 ```{r caption_setup, echo=FALSE,results='hide'}
@@ -64,7 +64,7 @@ fig(
 
 fig(
   'routing_boston_harbor',
-  'Ships were rerouted in Boston Harbor around hotspots of right whale observations, but in ad-hoc fashion without quantitifying the tradeoff between cost to industry and conservation gain. Source: [@ward-geiger_characterization_2005a].')
+  'Ships were rerouted in Boston Harbor around hotspots of right whale observations, but in ad-hoc fashion without quantitifying the tradeoff between cost to industry and conservation gain. Source: [@ward-geiger_characterization_2005].')
 
 fig(
   'routing_global_traffic',
@@ -93,7 +93,7 @@ Human activities such as shipping and cruising can harm endangered marine mammal
 
 Vessel traffic poses the threat of ship strike, acoustic noise and spill of oil or other cargo pollutants. Reducing risk to endangered wildlife while maintaining human activities and maritime operations requires objective assessment of species habitats and human uses in both space and time. In order to better assess management options for separating endangered species and potentially harmful interactions we need to develop a synthetic, composite valuation of our marine species and then apply explicit optimization methods. Here we build a cost surface based on species distributions that are then applied to optimize the routing of vessels in the region to potentially reduce the risk of adverse interactions.
 
-In Boston harbor where the critically endangered right whales are of concern, shipping lanes were redrawn around a simple right whale density of historical opportunistic sightings [@ward-geiger_characterization_2005a]. This ad-hoc method doesn’t account for variability in species distribution, observational bias or other analytical rigor for easily applying elsewhere. Methods for incorporating multiple species in such a routing analysis are untested. Studies have worked on risk of ship strike vs. cost of vessel rerouting based on a pre-defined track [@ward-geiger_characterization_2005a; @vanderlaan_vessel_2007; @vanderlaan_probability_2009a; @vanderlaan_efficacy_2009; @vanderlaan_reducing_2008; @fonnesbeck_bayesian_2008; @schick_striking_2009], but have yet to be suggested in a prescriptive manner.
+In Boston harbor where the critically endangered right whales are of concern, shipping lanes were redrawn around a simple right whale density of historical opportunistic sightings [@ward-geiger_characterization_2005]. This ad-hoc method doesn’t account for variability in species distribution, observational bias or other analytical rigor for easily applying elsewhere. Methods for incorporating multiple species in such a routing analysis are untested. Studies have worked on risk of ship strike vs. cost of vessel rerouting based on a pre-defined track [@ward-geiger_characterization_2005; @vanderlaan_vessel_2007; @vanderlaan_probability_2009; @vanderlaan_efficacy_2009; @vanderlaan_reducing_2008; @fonnesbeck_bayesian_2008; @schick_striking_2009], but have yet to be suggested in a prescriptive manner.
 
 To avoid encounters with marine mammals, hotspots of expected encounters are to be avoided, and routed around. Least-cost path algorithms, such as Djikstra’s, are commonly used in online driving directions and many other route-optimization applications. These graph-theoretic algorithms have also been playing an increasing role in routing corridors of habitat and testing connectivity of habitat patches [@chetkiewicz_corridors_2006] for both terrestrial [@urban_landscape_2001; @urban_graph_2009] and marine applications [@treml_modeling_2008]. The algorithm minimizes the total cost of travel between two points traversing over a resistance surface. For the sake of this conservation routing problem, the resistance surface represents the risk of species encounter.
 
@@ -101,11 +101,11 @@ To create this synthetic cost surface, individual species density surfaces were 
 
 In our case study area of British Columbia, an oil pipeline has been routed to Port Kittimat and oil tankers are being routed from the points of entry north and south of the Haida Gwaii islands (FIGURE XX).
 
-While a wide variety of industries are increasingly active in the coastal waters of British Columbia, many environmental groups (PNCIMA, BCMCA, LOS) are seeking conservation-minded solutions for safely locating activities. The current ecological data layers in widest use are based on an expert feedback approach delineating important areas. Several large oil and gas projects that are currently underway are likely to increase heavy shipping into Kitimat [@enviroemergconsultingservices_major_2008], making this a useful example of the approach. One map ([`r fig('bc_routes_proposed', cite=T)`](#bc_routes_proposed)) depicts the areas in the latest draft PNCIMA Atlas, originally provided by [@clarke_identification_2006a]. The maps in these atlases identify areas of importance as polygons. These polygon areas are then overlaid and summed to create an index of potential importance and environmental sensitivity.  In the absence of observational data, this qualitative approach is the best available science. Given the availability of Raincoast surveys [@best_updated_2015], the density surfaces of each species can be combined to provide a more quantitative layer for planning purposes.
+While a wide variety of industries are increasingly active in the coastal waters of British Columbia, many environmental groups (PNCIMA, BCMCA, LOS) are seeking conservation-minded solutions for safely locating activities. The current ecological data layers in widest use are based on an expert feedback approach delineating important areas. Several large oil and gas projects that are currently underway are likely to increase heavy shipping into Kitimat [@enviroemergconsultingservices_major_2008], making this a useful example of the approach. One map ([`r fig('bc_routes_proposed', display='cite')`](#bc_routes_proposed)) depicts the areas in the latest draft PNCIMA Atlas, originally provided by [@clarke_identification_2006]. The maps in these atlases identify areas of importance as polygons. These polygon areas are then overlaid and summed to create an index of potential importance and environmental sensitivity.  In the absence of observational data, this qualitative approach is the best available science. Given the availability of Raincoast surveys [@best_updated_2015], the density surfaces of each species can be combined to provide a more quantitative layer for planning purposes.
 
 Existing routes may have preference for other factors than efficiency, such as scenic beauty or protection against inclement weather. Given that existing routes are generally preferred, a cost can be associated with movement away from these preferred routes. Here we take the case of cruise routes reported online. Euclidean distance from existing cruise route was relativized by the maximum within the study area and multiplied by the maximum cost surface value. The two surfaces can be added to obtain the final cost surface for routing, providing an example of equal weighting to conservation and routing goals.
 
-The relative weights of these layers could be gleaned from the past precedent of re-routing shipping lanes in Boston Harbor based on overlap with a density of right whale observations. A similar spatial decision-making process could then be applied globally as thought experiment using the global shipping layer from [@halpern_global_2008]. The ability to operationally provide a framework for minimizing impacts on marine animals is especially appealing. For example, ship traffic lanes have been re-routed in Boston Harbor to reduce likelihood of striking right whales [@russell_recommended_2001; @ward-geiger_characterization_2005a; @fonnesbeck_bayesian_2008]. Global data layers on human impacts in marine systems are being actively developed, including vessel traffic density [@halpern_global_2008]. Here we provide a simple framework for proposing alternative shipping routes to minimize impacts on marine animals. In this framework competing priorities, such as cost of additional travel distance and time versus risk of striking a marine mammal can be more objectively assessed.
+The relative weights of these layers could be gleaned from the past precedent of re-routing shipping lanes in Boston Harbor based on overlap with a density of right whale observations. A similar spatial decision-making process could then be applied globally as thought experiment using the global shipping layer from [@halpern_global_2008]. The ability to operationally provide a framework for minimizing impacts on marine animals is especially appealing. For example, ship traffic lanes have been re-routed in Boston Harbor to reduce likelihood of striking right whales [@russell_recommended_2001; @ward-geiger_characterization_2005; @fonnesbeck_bayesian_2008]. Global data layers on human impacts in marine systems are being actively developed, including vessel traffic density [@halpern_global_2008]. Here we provide a simple framework for proposing alternative shipping routes to minimize impacts on marine animals. In this framework competing priorities, such as cost of additional travel distance and time versus risk of striking a marine mammal can be more objectively assessed.
 
 ## Methods
 
@@ -113,7 +113,9 @@ The relative weights of these layers could be gleaned from the past precedent of
 
 See [@best_updated_2015].
 
-### Cumulative Risk Map
+For harbour seals and stellar sea lions, the in and out of water densities were added to produce the single species density estimates. The standard errors were also added using the delta method (Seber Ref).
+
+### Cumulative Risk Surface
 
 Density surface model outputs were assembled into a marine mammal composite risk map, or cost surface. Each species density surface was normalized in order to highlight areas of high density relative to its average. The unitless standard score, or z-value ($z$), per species ($s$) and pixel ($i$) is calculated as the pixel’s marine mammal density estimate ($x_{i,s}$) subtracted from the mean of all density estimates for the species ($\mu_s$), divided by the standard deviation of those density estimates ($\sigma$). The final conservation score per pixel ($Z_i$) represents the sum of all species scores ($z_{i,s}$) weighted by the extinction risk ($w_s$).
 
@@ -124,16 +126,66 @@ $$
 Z_i = \frac{ \sum_{s=1}^{n} z_{i,s} w_s }{ n }
 $$
 
+**ALTERNATIVE**. The problem with 
+
+Rank density into:
+
+1. 0, or negligibly present.
+1. 1 = low
+1. 2 = below average
+1. 3 = average ($\mu$ +/- )
+1. 4 = above average ()
+1. 5 = high (2x $\mu$)
+1. 6 = very high
+
 <!---
 TODO:
 Is $\sigma$ per pixel or for entire DSM?
 How does uncertainty play into this decision making?
 --->
 
-An inverse weighting scheme based on species extinction risk (`r fig('bc_species_weights', cite=T)`) was applied to favor representation of more endangered species [@wood_gis_2007]. These rankings were obtained from the Provincial listing status at British Columbia’s Endangered Species and Ecosystems website (http://www.env.gov.bc.ca/atrisk). Elephant seal is listed as SNA, species “not applicable”, presumably because of its semi-migratory status in BC waters. Given that its status is S4 in California and Alaska to the south and north of BC, this status was used to conform with the scheme. The values on the y-axis indicate the relativised weight used in the analysis.
+An inverse weighting scheme based on species extinction risk (`r fig('bc_species_weights', display='cite')`) was applied to favor representation of more endangered species [@wood_gis_2007]. These rankings were obtained from the Provincial listing status at British Columbia’s Endangered Species and Ecosystems website (http://www.env.gov.bc.ca/atrisk). Elephant seal is listed as SNA, species “not applicable”, presumably because of its semi-migratory status in BC waters. Given that its status is S4 in California and Alaska to the south and north of BC, this status was used to conform with the scheme. The values on the y-axis indicate the relativised weight used in the analysis.
 
-See
+From supplemental in [@maxwell_cumulative_2013]...
 
+> _**Methods**_
+> The vulnerability weight of each stressor was determined through ranking of six measures: (1) stressor frequency, (2) if the impact was direct or indirect, (3) resistance of the species to the stressor, (4) recovery time of an individual from the impact, (5) relative impact on reproduction and (6) relative impact on the population (detailed description in Supplementary Table S4). All vulnerability measures were normalized (scaled between 0 and 1) and summed to obtain a weight for each stressor for each species (Supplementary Table S2; Supplementary Note 1 for summary of each impact).
+
+> **Supplementary Table S4**. Summary of vulnerability measures used to determine the weightings for impact scores across species.
+
+> 1. **Frequency** (0 - 4): What is the frequency of the impact?
+> 1. **Direct/Indirect impact** (0 - 3): What’s the mechanism by which it is affecting the _individual_?
+> 1. **Resistance (Likelihood of mortality)** (0 - 3): How likely is that impact to affect the individual?
+> 1. **Recovery time of individual (years)** (0 - 4): How long does it take the individual to recover from exposure to the impact?
+> 1. **Reproductive Impacts** (0 - 3): What is the level of impact on reproduction of an individual?
+> 1. **Population Effects** (0 - 3): How are the impact distributed across the population?
+
+[TODO: get original summaries of these for described spp. Max possible: `r 4+3+3+4+3+3 `]
+
+> _**Ocean-Based Pollution**_
+> Ocean-based pollution in the form of discharge from ships or large-scale oil spills can impact all predator species but has perhaps the greatest impacts on seabirds111-113. Oiled birds can lose flight capability in addition to wasting fat and muscle tissues, abnormal conditions in the lungs, kidneys and other organs from even small amounts of exposure to oil slicks97,114,115.
+  
+  
+> _**Shipping**_
+> Impacts on marine mammals and sea turtles from shipping occur in the form of ship strikes128,129. Though rare for most species, this impact is of particular concern to even the largest whales that are killed as a result of ship strikes130-132. Studies in the North Atlantic have shown that over 40% of right whale mortalities are attributable to ship strikes133. Seabirds are attracted to ship lights at night and are killed or injured when they strike parts of the ship134, though this has not been well studied in the California Current region.
+
+from [@wiley_modeling_2011]:
+
+$ v_i$
+
+- speed by industry (v_i)
+
+Table 1
+The probability of lethality resulting from a collision between a whale and ship in the Stellwagen Bank National Marine Sanctuary and percent risk reductions achieved by limiting ship speed to thresholds of 16, 14, 12, or 10 knots (29.6, 25.9, 22.2, and 18.5 km/h, respectively).
+
+Table 2
+Probability of lethality to a whale struck by a ship in the sanctuary (SPLETH)
+0.67 0.645 0.597 0.473 0.29
+Percent reduction (observed-status quo SPLETH)/ status quo SPLETH
+NA 􏰀3.7 􏰀11.0 􏰀29.4 􏰀56.7
+￼￼Characteristics of vessel traffic (502 unique vessels) in the Stellwagen Bank National Marine Sanctuary for the year 2006. Data derived from the US Coast Guard’s Automatic Identification System.
+
+speed
 
 ### Vessel Routing
 
@@ -145,19 +197,23 @@ The proposed routes from Figure 10 were digitized and endpoints for north and so
 
 ## Results
 
-The composite risk map for all marine mammals (Figure 12) is very similarly distributed as just the large whales (Figure 13) composed of killer, humpback, fin and minke whale. Consistent with [@clarke_identification_2006a], Hecate Strait was found to be relatively important, along with the Dixon entrance. The highest value hotspot is in Gwaii Hanas Reserve, already under some level of protection. The high levels in stratum 3 Johnstone  Strait (see zoom view) may be an anomaly of the environmental conditions there, since few sightings were made by comparison.
+The composite risk map for all marine mammals (Figure 12) is very similarly distributed as just the large whales (Figure 13) composed of killer, humpback, fin and minke whale. Consistent with [@clarke_identification_2006], Hecate Strait was found to be relatively important, along with the Dixon entrance. The highest value hotspot is in Gwaii Hanas Reserve, already under some level of protection. The high levels in stratum 3 Johnstone  Strait (see zoom view) may be an anomaly of the environmental conditions there, since few sightings were made by comparison.
 
 The routes do differ markedly (Figure 14). It is not clear whether Grenville Channel is deep and wide enough to support the kind of tanker traffic envisioned. Besides being closer to the northern approach, as evidenced by that inlet choice with the Euclidean path, Grenville Channel exhibits a lower level of potential marine mammal interaction as predicted by the composite marine mammal densities than through the Principe Channel as proposed. By routing through the Grenville Channel the potential interactions in the Hecate Strait could also be avoided. The proposed Southern approach exhibits relatively lower potential interactions with the least-cost route even dipping south around the Gwaii Haanas Reserve.
 
-The existing ship routes pass through both the Principe and Grenville Channels. Models developed to conduct least-cost path analysis use raster grid cells. For modeling purposes these cells provide eight possible directions at each step (i.e. 4 side and 4 diagonal directions). These models create uneven turns when compared to the smoother Euclidean route or with the proposed routes (Figure 15). Although the Euclidean path should be the shortest, the existing industry route up the Principe Channel is the shortest (`r tbl('route_distances', cite=T)`).
+The existing ship routes pass through both the Principe and Grenville Channels. Models developed to conduct least-cost path analysis use raster grid cells. For modeling purposes these cells provide eight possible directions at each step (i.e. 4 side and 4 diagonal directions). These models create uneven turns when compared to the smoother Euclidean route or with the proposed routes (Figure 15). Although the Euclidean path should be the shortest, the existing industry route up the Principe Channel is the shortest (`r tbl('route_distances', display='cite')`).
 
-TODO: describe `r tbl('bc_species_industry_impacts', cite=T)`.
+TODO: describe `r tbl('bc_species_industry_impacts', display='cite')`.
 
 ## Discussion
 
+NOTES
+- GoalIdeally win win situation.
+-  is to make routing around whale traffic in ocean as common as getting directions in Google Maps. Trend of AI.
+- Incentivize conscientious behavior by industries similar to good driver discounts withfor insurance.
 
-
-## Tables
+## - Recent Supreme Court ruled against EPA carbon emissions regulation on the grounds that costs to industry were not considered. [Supreme Court rules EPA did not compute cost of regulation on industry - MRT.com: Business](http://www.mrt.com/business/article_bb80953c-20e5-11e5-9efa-cb4dd8fa86eb.html)
+Tables
 
 | Species        | Oil Tanker | Shipping Tanker | Cruise Ship |
 |----------------|------------|-----------------|-------------|
@@ -200,6 +256,10 @@ TODO: describe `r tbl('bc_species_industry_impacts', cite=T)`.
 ## Notes
 
 TODO:
+- add layer: ports
+- add layer: MPAs
+  `~/github/consmap/data/mpas_canada/CARTS_20141231_noQC/CARTS_20141231_noQC.shp`
+
 - add figure: tradeoff points + route map, color coded
     - optimal least-cost on outside
     - less optimal, linearized for IMO shipping lane standards
