@@ -14,7 +14,7 @@ library(brew)
 # set variables ----
 
 # strings for substitution
-title       = 'Spatio-Temporal Decision Framework for Minimizing Impact of Human Activities on Marine Megafauna'
+title       = 'Spatio-Temporal Decision Frameworks for Minimizing Impact of Human Activities on Marine Megafauna'
 author      = 'Benjamin D. Best'
 supervisor  = 'Patrick N. Halpin'
 department  = 'Marine Science and Conservation'

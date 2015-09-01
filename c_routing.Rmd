@@ -20,18 +20,18 @@ output:
     fig_caption: yes
 ---
 
-```{r caption_setup, echo=FALSE,results='hide'}
+```{r routing_caption_setup, echo=FALSE,results='hide'}
 library(captioner) # devtools::install_github('bbest/captioner') # adletaw/captioner
 # TODO: for collating, swap this chunk with `bump(fig, 1); bump(tbl, 1)` for all chapters after first
 # # embedded as chapter:
-# tbl <- captioner(prefix =  'Table', levels=2, type=c('n','n'))
-# fig <- captioner(prefix = 'Figure', levels=2, type=c('n','n'))
+tbl <- captioner(prefix =  'Table', levels=2, type=c('n','n'))
+fig <- captioner(prefix = 'Figure', levels=2, type=c('n','n'))
 # standalone:
-tbl <- captioner(prefix =  'Table', link=T)
-fig <- captioner(prefix = 'Figure', link=T)
+#tbl <- captioner(prefix =  'Table', link=T)
+#fig <- captioner(prefix = 'Figure', link=T)
 ```
 
-```{r caption_list, echo=FALSE,results='hide'}
+```{r routing_caption_list, echo=FALSE,results='hide'}
 # FIGURES ----
 
 fig(
@@ -40,7 +40,7 @@ fig(
 
 fig(
   'routing_app_tradeoff-map',
-  'Interactive routing application with chart (left) of cost to industry versus risk to species in which the selected tradeoff (blue point) corresponds to the route (blue line) displayed within the interactive map (right) of the study area. Available online at [http://bdbest.shinyapps.io/consmap](http://bdbest.shinyapps.io/consmap).')
+  'Interactive routing application with chart (left) of cost to industry versus risk to species in which the selected tradeoff (blue point) corresponds to the route (blue line) displayed within the interactive map (right) of the study area. Available online at http://shiny.env.duke.edu/bbest/consmap/.')
 
 fig(
   'bc_routes_proposed',
@@ -126,7 +126,7 @@ $$
 Z_i = \frac{ \sum_{s=1}^{n} z_{i,s} w_s }{ n }
 $$
 
-**ALTERNATIVE**. The problem with 
+**ALTERNATIVE**. The problem with
 
 Rank density into:
 
@@ -164,8 +164,8 @@ From supplemental in [@maxwell_cumulative_2013]...
 
 > _**Ocean-Based Pollution**_
 > Ocean-based pollution in the form of discharge from ships or large-scale oil spills can impact all predator species but has perhaps the greatest impacts on seabirds111-113. Oiled birds can lose flight capability in addition to wasting fat and muscle tissues, abnormal conditions in the lungs, kidneys and other organs from even small amounts of exposure to oil slicks97,114,115.
-  
-  
+
+
 > _**Shipping**_
 > Impacts on marine mammals and sea turtles from shipping occur in the form of ship strikes128,129. Though rare for most species, this impact is of particular concern to even the largest whales that are killed as a result of ship strikes130-132. Studies in the North Atlantic have shown that over 40% of right whale mortalities are attributable to ship strikes133. Seabirds are attracted to ship lights at night and are killed or injured when they strike parts of the ship134, though this has not been well studied in the California Current region.
 
@@ -180,10 +180,8 @@ The probability of lethality resulting from a collision between a whale and ship
 
 Table 2
 Probability of lethality to a whale struck by a ship in the sanctuary (SPLETH)
-0.67 0.645 0.597 0.473 0.29
-Percent reduction (observed-status quo SPLETH)/ status quo SPLETH
-NA 􏰀3.7 􏰀11.0 􏰀29.4 􏰀56.7
-￼￼Characteristics of vessel traffic (502 unique vessels) in the Stellwagen Bank National Marine Sanctuary for the year 2006. Data derived from the US Coast Guard’s Automatic Identification System.
+Percent reduction (observed-status quo SPLETH)/ status quo SPLETHh
+aracteristics of vessel traffic (502 unique vessels) in the Stellwagen Bank National Marine Sanctuary for the year 2006. Data derived from the US Coast Guard’s Automatic Identification System.
 
 speed
 
@@ -211,8 +209,7 @@ NOTES
 - GoalIdeally win win situation.
 -  is to make routing around whale traffic in ocean as common as getting directions in Google Maps. Trend of AI.
 - Incentivize conscientious behavior by industries similar to good driver discounts withfor insurance.
-
-## - Recent Supreme Court ruled against EPA carbon emissions regulation on the grounds that costs to industry were not considered. [Supreme Court rules EPA did not compute cost of regulation on industry - MRT.com: Business](http://www.mrt.com/business/article_bb80953c-20e5-11e5-9efa-cb4dd8fa86eb.html)
+- Recent Supreme Court ruled against EPA carbon emissions regulation on the grounds that costs to industry were not considered. [Supreme Court rules EPA did not compute cost of regulation on industry - MRT.com: Business](http://www.mrt.com/business/article_bb80953c-20e5-11e5-9efa-cb4dd8fa86eb.html)
 Tables
 
 | Species        | Oil Tanker | Shipping Tanker | Cruise Ship |

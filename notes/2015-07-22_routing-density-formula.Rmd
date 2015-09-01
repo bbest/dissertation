@@ -1,0 +1,500 @@
+---
+title: "2015-07-22_routing-density-formula"
+author: "Ben Best"
+date: "July 22, 2015"
+bibliography: ../c_routing.bib
+csl: ../csl/conservation-biology.csl
+output:
+  html_document:
+    fig_caption: yes
+    keep_md: yes
+    toc: yes
+    toc_depth: 4
+---
+
+# TODO (ordered)
+- 2015-08-24, end:
+  - split app.R into: gui.R, server.R, global.R
+  - create drop-down for begin, end. with ports.
+  - add to begin/end: North/South Entrance
+  - add Mark... to drop-down with functionality to create start/end points. And run all possible routes.
+- app:
+  - include school size. now just encounter rate. tell Raincoast.
+- include school size, not just encounter rate
+- calculate $ER * school size = density$ or $o/km^2 * n/o = n / km^2$
+- determine framework:
+    - $S = c * N * V$ where:
+        - $S$: probability of a ship strike
+        - $c$ is an estimated parameter which scaled the estimated ship strikes
+        - $N$: population size
+        - is the estimated population size from Equation (3), 
+        - $V$ is the estimated number of vessels (defined below) for the given industry
+    - $S = c * ER * L_s * T$ where:
+        - $c$ is an estimated parameter which scales strikes with encounter rate. incorporate time of day?
+        - $ER$: probability of encounter
+        - $L$: lethality at given speed
+        - $T$: number of transits, pulled from industry average (GUI modifiable to individual)
+- read major papers:
+    - [@laist_collisions_2001]: imp quanitification by ship type & speed, < 14 knots 
+    - [@laist_effectiveness_2014]: effectiveness
+    - [@redfern_assessing_2013]: SB, density * risk
+    - [@williams_modelling_2010]: BC, PBR approach
+    - [@webb_activity_2015]: data/`area_traffic_Webb2015.xlsx` transits per day/km2: highest for SB per [@mckenna_response_2012], Alaska, Stellwagen per [@wiley_modeling_2011]
+    - [@maxwell_cumulative_2013]: SB, index approach
+    - [@fonnesbeck_bayesian_2008]: improvement w/ rerouting
+    - : non-lethal effects
+    - dynamic nature like 
+- identify environmental risks ([@huntington_vessels_2015]): quantify (likelihood of occurrence) * (intensity of impact) per industry profile
+    - Ship strikes
+    - Noise 
+    - Discharges and contamination
+    - Oil spills
+    - others skipping but could be incorporated into framework with additional data: Vessel collisions, Disturbance to hunting heritage, Damage to cultural
+- fit lethality rates based on past data [refs!], with offset by those likely missed [refs!]
+- apply single route based on individual ship vs whole industry for area [@webb_activity_2015]
+- consider optimal route strategies:
+    - high speed around hotspots
+    - low speed through hotspots
+    - optimal combination of two
+- Reduction in whale strikes since designation of specially managed areas suggests expansion of these areas could further reduce anthropogenic mortality (see @laist_effectiveness_2014] for r whales / humpbacks in US Atlantic; see [@geijer_network_2015] for Mediterranean MPA network evaluation); . This method provides an alternative dynamic method.
+- area vs stock!? perhaps ratio of density representing stock
+- migratory / seasonal nature?
+- behavioral avoidance by whale. not r whale (Nowacek et al, 2004).
+- Unlike other studies which evaluated predetermined routes [@fonnesbeck_bayesian_2008; @redfern_assessing_2013], here we introduce a dynamic method to be applicable to any study area. This is in keeping with dynamic management perspectives [@maxwell_dynamic_2015] that can account for changes in species ranges due to climatic shifts. Leads to possibility of industry.
+- + protected areas!
+- SeaSketch style transparency for public decision making. Gaming to solution.
+- see major **Publications** listed at [Reducing Ship Strikes to North Atlantic Right Whales :: NOAA Fisheries](http://www.nmfs.noaa.gov/pr/shipstrike/), [NOAA Ship Strike  | Greater Atlantic](http://www.greateratlantic.fisheries.noaa.gov/protected/shipstrike):
+    - Compliance with vessel speed restrictions to protect North Atlantic right whales (PeerJ)
+    - Large Whale Ship Strike Database [pdf] (NMFS-OPR-25)
+    - The role of the International Maritime Organization in reducing vessel threat to whales [pdf] (Marine Policy)
+    - Vessel speed restrictions reduce risk of collision-related mortality for North Atlantic right whales [pdf] (Ecosphere)
+    - An Assessment of the Final Rule to Implement Vessel Speed Restrictions to Reduce the Threat of Vessel Collisions with North Atlantic Right Whales [pdf] (NMFS-OPR-48)
+    - Vessel Operations in Right Whale Protection Areas in 2009 [pdf] (NMFS-OPR-44)
+    - Workshop Report: Technologies to Reduce Ship Strikes of Large Whales [pdf] (NMFS-OPR-42)
+- and **More Information** from [More Information on Right Whale Ship Strikes :: NOAA Fisheries](http://www.nmfs.noaa.gov/pr/shipstrike/archive.htm):
+    - Recovery Plan for the North Atlantic Right Whale (2005)
+    - Hydrodynamics of a ship/whale collision [pdf]
+    - Applying a Spatial Model to Evaluate the Risk of Interactions Between Vessels and Right Whales in the Southeast U.S. Critical Habitat [pdf] [4.4 MB], L.P. Garrison, 2005.
+    - Atlantic Large Whale Take Reduction Team (ALWTRT)
+- contact **Living Oceans** with proposed routes, tanker history, MPAs, etc. See [Oil and Water - Navigate the Facts](http://www.livingoceans.org/maps/oil-and-water-navigate-the-facts)
+  - [Oil Spill Model](http://www.livingoceans.org/maps/oil-spill-model) and [details](http://www.livingoceans.org/maps/oil-spill-model/sources-and-credits)
+
+```{r caption_setup, echo=FALSE,results='hide'}
+library(captioner) # devtools::install_github('bbest/captioner') # adletaw/captioner
+# TODO: for collating, swap this chunk with `bump(fig, 1); bump(tbl, 1)` for all chapters after first
+# # embedded as chapter:
+# tbl <- captioner(prefix =  'Table', levels=2, type=c('n','n'))
+# fig <- captioner(prefix = 'Figure', levels=2, type=c('n','n'))
+# standalone:
+tbl <- captioner(prefix =  'Table', link=T)
+fig <- captioner(prefix = 'Figure', link=T)
+```
+
+```{r caption_list, echo=FALSE,results='hide'}
+# FIGURES ----
+
+fig(
+  'bc_species_weights',
+  'Weighting by BC conservation status for fin whale (FW), Steller sea lion (SSL), harbour porpoise (HP), humpback whale (HW), killer whale (KW), Elephant seal (ES), minke whale (MW), Dall’s porpoise (DP), Pacific white-sided dolphin, and harbour seal (HS).')
+
+# TABLES ----
+
+tbl(
+  'bc_species_industry_impacts',
+  'Impact scores [0 to 100] on species by human activity.')
+
+```
+
+## Introduction
+
+Dynamic oceanography is increasingly possible [@maxwell_dynamic_2015], whereby solutions are provided in real time.
+
+- relative index vs quantitative PBR approach. Embed within environmental management frameworks established by MMPA.
+
+### Cumulative Risk Surface
+
+
+#### Original
+Density surface model outputs were assembled into a marine mammal composite risk map, or cost surface. Each species density surface was normalized in order to highlight areas of high density relative to its average. The unitless standard score, or z-value ($z$), per species ($s$) and pixel ($i$) is calculated as the pixel’s marine mammal density estimate ($x_{i,s}$) subtracted from the mean of all density estimates for the species ($\mu_s$), divided by the standard deviation of those density estimates ($\sigma$). The final conservation score per pixel ($Z_i$) represents the sum of all species scores ($z_{i,s}$) weighted by the extinction risk ($w_s$).
+
+$$
+z_{i,s} = \frac{ x_{i,s} - \mu_s }{ \sigma_s }
+$$
+$$
+Z_i = \frac{ \sum_{s=1}^{n} z_{i,s} w_s }{ n }
+$$
+
+#### Alternatives
+
+For compositing species into a cumulative risk surface, densities need to be standardized across species relative to their population size. Standardization of cell densities ($x$) by z-score ( $[x - mean(x)] / sd(x)$ ) was considered, however suffers from inherent variability within the distribution of the density (encounter rate X school size) given the width of the standard deviation; a slightly higher score than average shouldn't be  exagerated if school sizes did not vary widely, and conversely. Instead, densities were standardized by deviation from the mean ($\mu$).
+
+Should we take $log(x)$ ?
+
+Let's check the data
+```{r check density, eval=FALSE}
+suppressMessages(suppressWarnings({
+  library(rgdal)
+  library(ggplot2)
+  library(scales)
+  library(readxl)
+  library(stringr)
+  library(dplyr)
+  library(tidyr)}))
+
+spp_shp = '~/github/consmap/data/bc_spp_gcs.shp'
+spp_ply = readOGR(
+  dirname(spp_shp),
+  tools::file_path_sans_ext(basename(spp_shp)), verbose=F)
+#summary(spp_ply@data)
+
+prj_aea = proj4string(readOGR('/users/bbest/Dropbox/raincoast/tippy/data/shp','dsm_ply5k_final_alb', verbose=F))
+spp_ply_aea = spTransform(spp_ply, CRS(prj_aea))
+A_km2 = rgeos::gArea(spp_ply_aea) / (1000*1000)
+
+#summary(spp_ply@data['CellArea'])
+max(spp_ply@data['CellArea']) / (1000 * 1000)
+
+# subset to spp density columns
+#cols_d = c('CellID', 'CellArea', names(spp_ply@data)[str_detect(names(spp_ply@data), '([A-Z]+)_d')])
+d = spp_ply@data %>%
+  # select_(.dots=cols_d) %>%
+  select(CellID, CellArea, ends_with('_d')) %>%
+  gather(spp_d, d, -CellID, -CellArea) %>%
+  mutate(
+    cellid = CellID,
+    km2   = CellArea / (1000 * 1000),
+    spp   = str_replace(spp_d, '_d', ''),
+    n_km2 = d,
+    n     = d * km2) %>% # add tiny value to prevent log(0)
+  select(cellid, km2, spp, n_km2, n)
+head(d)
+table(d$spp)
+
+# spot check DP_v50
+d %>%
+  filter(spp=='DP') %>%
+  arrange(desc(n_km2)) %>%
+  head
+
+# Q: WHY??? is mean(PW_d) = 0.0158585 < mean(DP_d) = 0.0265842 vs 
+# PW > DP in ~/Documents/svn_win/raincoast/viz/dsm_figs4publish_2014/_means.pdf
+# A: *_d in spp_shp are for encounter rate only, not inclusive of school size.
+
+# 83,547km2 study area
+# 
+# harbour porpoise (Phocoena phocoena) 8,091 (4,885–13,401); Dall’s porpoise (Phocoenoides dalli) 5,303 (4,638–6,064); Pacific white-sided dolphin (Lagenorhynchus obliquidens) 22,160 (16,522–29,721); humpback whale (Megaptera novaeangliae) 1,092 (993–1,200); fin whale (Balaenoptera physalus) 329 (274–395); killer whale (all ecotypes; Orcinus orca), 371 (222–621); common minke whale (B. acutorostrata) 522 (295–927); harbour seal (total; Phoca vitulina) 24,916 (19,666–31,569); Steller sea lion (total; Eumetopias jubatus) 4,037 (1,100–14,815); and northern elephant seal (CDS method; Mirounga angustirostris) 65 (35–121)
+
+# fields:
+# e_km2: encounters per km^2 (*_d in shp)
+# n_e: number of individuals per encounter, ie avg school size
+# n: number of individuals predicted in given cell
+
+# summarize by spp
+d %>%
+  group_by(spp) %>%
+  summarize(
+    n_km2_max  = max(n_km2),
+    n_na       = sum(is.na(n_km2)),
+    zeros      = sum(n_km2==0),
+    n_km2_mean = mean(n_km2),
+    n_sum      = sum(n))
+
+#    spp   n_km2_mean        n_sum
+# 1   DP 0.0265842429  2200.576085
+# 2   ES 0.0003085827     8.762993
+# 3   FW 0.0016755596   184.831445
+# 4   HP 0.0667147973  4844.862916
+# 5   HS 0.3886679044 14340.309504
+# 6   HW 0.0071682616   723.022784
+# 7   KW 0.0015025846   101.026132
+# 8   MW 0.0048520476   527.772285
+# 9   PW 0.0158584823  1558.360940
+# 10 SSL 0.0007408767    60.934266
+
+# read published values
+d_0 = read_excel('~/Documents/svn_win/raincoast/params/tables_publish.xls','density_dsm_v60')
+names(d_0)[1] = 'var'
+
+# read school sizes
+schools = read.csv('~/Documents/svn_win/raincoast/params/dsm_schoolsizes.csv', row.names=1)
+
+# TODO: create/extract bootstraps per pixel for c_siting
+
+d_0 %>%
+  gather(spp, all_n, -var) %>%
+  filter(var=='all.N' & spp=='DP')
+# 5303.388
+
+spp_order = c(
+  'DP','HP','PW',
+  'FW','HW','KW','MW',
+  'ES', 'HS','SSL')
+d$spp = factor(d$spp, levels = spp_order)
+
+# density hist, overlaid semi-transparent polys
+#ggplot(d, aes(log10(d), fill=spp)) + geom_density(alpha = 0.2)
+
+# violin plots
+ggplot(d, aes(x=spp, y=n_km2)) + 
+  geom_violin(trim=T) +
+  scale_y_log10(
+    'Density (#/km)', 
+    breaks = trans_breaks("log10", function(x) 10^x),
+    labels = trans_format("log10", math_format(10^.x))) +
+  stat_summary(
+    fun.data=mean_sdl, mult=1, 
+    geom="pointrange", color="red")
+ggsave(file='~/github/dissertation/fig/bc_d_violin.pdf')
+
+d %>%
+  group_by(spp) %>%
+  summarise(
+    mean = mean(n_km2),
+    max  = max(n_km2),
+    n_na = sum(is.na(n_km2)),
+    zeros = sum(n_km2==0))
+```
+
+
+Rank density into:
+
+1. 0, or negligibly present.
+1. 1 = low
+1. 2 = below average
+1. 3 = average ($\mu$ +/- )
+1. 4 = above average ()
+1. 5 = high (2x $\mu$)
+1. 6 = very high
+
+<!---
+TODO:
+Is $\sigma$ per pixel or for entire DSM?
+How does uncertainty play into this decision making?
+--->
+
+An inverse weighting scheme based on species extinction risk (`r fig('bc_species_weights', display='cite')`) was applied to favor representation of more endangered species [@wood_gis_2007]. These rankings were obtained from the Provincial listing status at British Columbia’s Endangered Species and Ecosystems website (http://www.env.gov.bc.ca/atrisk). Elephant seal is listed as SNA, species “not applicable”, presumably because of its semi-migratory status in BC waters. Given that its status is S4 in California and Alaska to the south and north of BC, this status was used to conform with the scheme. The values on the y-axis indicate the relativised weight used in the analysis.
+
+
+# Conclusion
+
+- Since the interface code is freely available and modular in design, the hope is that this framework can be expanded depending on the demand for detail on a per use case basis.
+
+- In the end, these tools are assistive rather than dictatorial/prescriptive. Hopefully the most rational decision is made more obvious.
+
+- Complex systems [Liu et al. (2015) Systems integration for global sustainability _Science_].
+
+- Hopefully embraced by industry, such as World Ocean Council.
+
+# Economic impact to industry
+
+- **[@silber_assessment_2012a]**: 
+    Appendix K. Initial Estimate of Economic Impact of the Right Whale Ship Strike Reduction Vessel Speed Restrictions 
+    From: Richard Blankfeld and Gerardo Ayzanoa Nathan Associates Inc.
+    Subject: Initial Estimate of Economic Impact of the Right Whale Ship Strike Reduction Vessel Speed Restrictions
+    
+- **[@lu_economic_2014]**. **Shipping cost model**.
+  $$
+  Z= L(X)T_T + C_{FO} (X)P_{FO}T_V  + C_{DO}(X)P_{DO}T_T + CanalToll + ISF + E^A + E^B
+  $$
+  $$
+  T_T = (T_V + T_H + T_C) / 24
+  $$
+  $$
+  T_V = T_O + T_I = \frac{L_O}{V(X)} + \frac{L_I}{V_I}
+  $$
+  Let:
+      - $Z$ denote the shipping cost of a container ship in a round way. 
+      - $X$ is the container ship size.
+      - $L(X)$ is the rental fee, 
+      - $(T_T)$ is total required time to sail the route, including the required time in
+    open water conditions ($T_O$), icy conditions ($T_I$), harbor ($T_H$), and canal transit ($T_C$), 
+      - $T_O$ plus $T_I$ is the navigation time ($T_V$). 
+      - $C_{FO}(X)$ and $C_{DO}(X)$ are oil consumption of fuel oil and diesel oil separately, and both are a function of ship size. 
+      - $P_{FO}$ and $P_{DO}$ are the price of fuel oil and diesel oil separately. 
+      - $CanalToll$ is the toll fee to transit the canal
+      - $ISF$ is the ice breaking service fee. 
+      - $E^A$ and $E^B$ are the harbor fees. 
+      - $L_O$ is the round trip distance in open water, and 
+      - $L_I$ is the round trip distance in icy areas. 
+      - $V(X)$ is navigation speed in open water conditions, and it is a function of
+    ship size. 
+      - $V_I$ is the navigation speed in icy conditions.
+      
+    **Relative functions**. As the rental fee, oil consumption and ship speed are all related to the ship size, we use data from [www.clarksons.com](http://www.clarksons.com) to monitor the relationship between these indexes and ship size. Take the rental fee as an example: firstly we put all the data in excel and made a scatter diagram, and then we used adjusted R2 to choose the most appropriate line. The figure is as follows. So the rental fee function is
+  $$
+  L(X) = -0.001 x^2 + 5.9079 x + 5312.8
+  $$
+  Likewise, we can get the functions of fuel oil consumption, diesel oil consumption and ship speed.
+  $$
+  C_{DO}(X) = -2E - 07 x^2 + 0.0036 x + 18.841
+  $$
+  $$
+  C_{FO}(X) = 3E - 06 x^2 + 0.0162 x + 16.507 
+  $$
+  $$
+  V(X) = 3.6594 ln(x) - 7.0282
+  $$
+  
+- [@kaluza_complex_2010a] The complex network of global cargo ship movements
+- Mental risk more real by convey in forward thinking.
+
+# Quantifying Risk
+
+- Rather than simply quantify co-occurrence [@redfern_assessing_2013], we measure risk in terms of lethality proportional to potential biological removal.
+- need to get more specific by 
+
+# Functionality
+
+- report densities encountered
+- select any/all:
+  - species: for impacts on given species. all for shipping lanes
+  - industry: all for shipping lanes
+- add routes
+  - existing & proposed shipping lanes
+  - 
+  
+
+# Summary by article
+
+- **[@fonnesbeck_bayesian_2008]**: risk framework
+
+- **[@maxwell_cumulative_2013]**: index of cumulative impacts
+
+- **[@webb_activity_2015]**: cruise ships humpback whales, lethal ship–whale collisions, used AIS, 451 voyages representing 26 cruise ships (avg length = 270 m). traffic intensity, speed, and timing (day vs. night) for the 2012 summer cruise season in Southeast Alaska. exceeded 700 transits in some areas, up to 10 ships transiting these areas per day during peak. Most of the study area (68% of 5 × 5 km cells) average ship speed was >16 knots, and often >18 knots. About half (47%) of the time spent cruising occurred at night when detection and avoidance of whales by ships is likely low.
+    - We summarized ship speed in 2-knot increments, each of which have relative management thresholds including 10 knots (Seasonal Management Areas in the Northwest Atlantic; 50 CFR §224.105—Federal Register 2008), 12 knots (probability of severe encounters, probability of lethal collisions; Vanderlaan and Taggart 2007; Gende at el. 2011), 14 knots (Laist et al. 2001) and 16 knots (when effective probability of lethality reaches 1; Vanderlaan and Taggart 2007).
+    - Other places surveyed, see Table 3:
+        - Santa Barbara Channel, CA (Table 1 in McKenna et al. 2012)
+        - Stellwagen Banks National Marine Sanctuary, MA  (Table 2 in Wiley et al. 2011)
+        - Gulf of Panama (Table 1 in Guzman et al. 2012)
+        
+- **[@monnahan_ship_2015]** ship strikes & Pacific blue whales
+    - $S_y = c N_y V_y$ where $S_y$ is the estimated fatal ship strikes during year $y$, $N_y$ is the estimated population size from Equation (3), $V_y$ is the estimated number of vessels (defined below), and $c$ is an estimated parameter which scaled the estimated ship strikes
+
+- **[@huntington_vessels_2015]**
+    - regulatory measures implementable with framework:
+        - Shipping lanes: go
+        - Areas-to-be-avoided (ATBAs): no-go, ie seasonal management areas (SMAs) [@laist_effectiveness_2014]
+        - Speed limits
+        - Communications
+        - Reporting systems
+        - Emission controls
+        - Salvage and oil spill prevention and preparedness
+        - Rescue tug capability
+        - Voyage and contingency planning Charting
+
+- **[@laist_effectiveness_2014]**: r whale + humpback ship strikes greatly reduced since rule
+    - Dec 2008 rule: vessels ≥ 65 feet ≤ 10 knots in 10 seasonal management areas (SMAs)
+    - 1990 to 2008: 13 of 15 (87%) right whales and 12 of 26 (46%) humpback whales killed by ships were found inside later SMA boundaries or within 45 nmi (83 km) of their perimeters
+    - 2008 to 2013: no ship-struck right whales were found inside or within 45 nmi of any active SMA. success!
+    - suggest enlarging SMAs to include additional parts of the right whale migratory corridor
+
+- **[@conn_vessel_2013]**, more quantitative than [@laist_effectiveness_2014]
+
+- **[@mullen_has_2013]**, similar to [@conn_vessel_2013, @laist_effectiveness_2014]
+
+- **[@redfern_assessing_2013]**: SB, density * risk
+
+    - MSP: humpback, blue and fin vs alt ship routes in SoCal
+    - Optimal routes can vary depending on species [@redfern_assessing_2013], which justifies a comprehensive approach.
+    - whale-habitat models
+    - assumed ship-strike risk proportional to number of whales predicted within each route
+    - Also calculated risk assuming ships travel via multiple routes
+    - shipping and other uses (military training and fishing) 
+    - overlap between shipping routes and protected areas
+    - lowest risk for humpback whales had highest risk for fin whales and vice versa
+    - best to create a new route south of the northern Channel Islands
+    - reducing ship-strike risk for blue whales necessary because our estimate of the potential number of strikes suggests that they are likely to exceed allowable levels of anthropogenic impacts established under U.S. laws
+
+- **[@williams_modelling_2010]**: BC, PBR approach
+    - "no attempt was made to compare vulnerability to ship strike across species"
+    - No Canadian framework so going with the Potential Biological Removal (PBR)
+calculations under the US Marine Mammal Protection Act (Wade et al., 2008; Williams et al., 2008). As an illustrative
+example, the Potential Biological Removal (PBR)
+calculations under the US Marine Mammal Protection Act
+were conducted using the default guidelines for assessing
+marine mammal stocks in US waters (Wade and Angliss,
+1997), and are described as follows:
+Where Rmax is defined as the maximum theoretical or
+estimated net productivity rate (default value for
+cetaceans=0.04), F as the recovery factor, set to 0.5 for these
+stocks as recommended for depleted stocks and Nmin as the
+20th percentile of a log-normal distribution surrounding an
+a
+
+- **[@vanderhoop_assessment_2013]**: `~/github/consmap/data/**spp_pbr_VanDerHoop2013.xlsx**`
+
+- **[@vanderlaan_vessel_2007]**: regression of vessel speed vs whale lethality
+
+- **[@vanderlaan_probability_2009]**: global estimates of vessels and r whale strikes. "Successful mitigation of vessel–whale encounters requires quantitative estimates of vessel strikes, how strike rates change over time, where strikes are most likely to occur, and options for minimizing strikes."
+
+- **[@vanderhoop_absolute_2012]**: "Following [@vanderlaan_vessel_2007], and the associated collision physics described therein, the lethality, $P_{leth}$, of a vessel strike was determined by the speed of the vessel and the aforementioned author’s logistic function:
+
+$$
+P_{leth} = \frac{1}{1+ exp^{-4.89 + 0.41 * speed}}
+$$
+
+where $speed$ is the vessel-specific speed. Thus, $P_{leth}$ is unique for each vessel and whale intersection, and $P_{leth}i$ represents the probability of a lethal strike for the $i$th vessel and whale intersection ($N_T$) within a given period $T$. Using the lethal probabilities that are unique for each intersection (Eq above), we calculated the average lethal probability ($P_T$) of all intersections ($N_T$) over time $T$ as
+
+$$
+P_T = \frac{P_{surf}}{N_T} \sum_{i=1}^{N_T}{P_{leth}i}
+$$
+
+where $P_{surf}$: probability that the whale was at surface. $P_{surf}=0.20$ based on the average submergence time across all whale behaviors exhibited by tagged right whales (Mate et al. 1992)
+
+- BB: Then measure relative to PBR based on stock / population.
+
+
+# Summary by topic
+
+- PBR
+    - PBR authority [@wade_calculating_1998a] summarized by : $PBR = N_{min} \frac{1}{2} R_{max} F_r$ where:
+        -  $R_{max}$: the maximum theoretical or estimated net productivity rate
+        - $F_r$: recovery factor between 0.1 and 1.0
+        - $N_{min}$: minimum population estimate: $N_{min} = N/exp(0.842 \sqrt{log(1 + CV^2})$ 
+    - [@williams_modelling_2010]: original justification with whales and shipping
+    - [@williams_potential_2008]: more detailed methods
+    - [@lonergan_potential_2011]:
+        - IUCN Red List Criteria
+        - US Marine Mammal Protection Act and PBR
+        - EU Habitats Directive
+        - Canada: 
+        - IWC Revised Management Procedure [@cooke_management_2012]: "formally specified procedure for determining sustainable catch limits for baleen whale populations", see implementation at [iwc.int/rmpbw](https://iwc.int/rmpbw).
+
+- quantitative lethality:
+    - [@fonnesbeck_bayesian_2008]
+    - [@monnahan_ship_2015]
+
+- "qualitative" index approach
+  - [@maxwell_cumulative_2013]
+
+
+## [@maxwell_cumulative_2013]
+
+From supplemental...
+
+> _**Methods**_
+> The vulnerability weight of each stressor was determined through ranking of six measures: (1) stressor frequency, (2) if the impact was direct or indirect, (3) resistance of the species to the stressor, (4) recovery time of an individual from the impact, (5) relative impact on reproduction and (6) relative impact on the population (detailed description in Supplementary Table S4). All vulnerability measures were normalized (scaled between 0 and 1) and summed to obtain a weight for each stressor for each species (Supplementary Table S2; Supplementary Note 1 for summary of each impact).
+
+> **Supplementary Table S4**. Summary of vulnerability measures used to determine the weightings for impact scores across species.
+
+> 1. **Frequency** (0 - 4): What is the frequency of the impact?
+> 1. **Direct/Indirect impact** (0 - 3): What’s the mechanism by which it is affecting the _individual_?
+> 1. **Resistance (Likelihood of mortality)** (0 - 3): How likely is that impact to affect the individual?
+> 1. **Recovery time of individual (years)** (0 - 4): How long does it take the individual to recover from exposure to the impact?
+> 1. **Reproductive Impacts** (0 - 3): What is the level of impact on reproduction of an individual?
+> 1. **Population Effects** (0 - 3): How are the impact distributed across the population?
+
+[TODO: get original summaries of these for described spp. Max possible: `r 4+3+3+4+3+3 `]
+
+> _**Ocean-Based Pollution**_
+> Ocean-based pollution in the form of discharge from ships or large-scale oil spills can impact all predator species but has perhaps the greatest impacts on seabirds111-113. Oiled birds can lose flight capability in addition to wasting fat and muscle tissues, abnormal conditions in the lungs, kidneys and other organs from even small amounts of exposure to oil slicks97,114,115.
+  
+  
+> _**Shipping**_
+> Impacts on marine mammals and sea turtles from shipping occur in the form of ship strikes128,129. Though rare for most species, this impact is of particular concern to even the largest whales that are killed as a result of ship strikes130-132. Studies in the North Atlantic have shown that over 40% of right whale mortalities are attributable to ship strikes133. Seabirds are attracted to ship lights at night and are killed or injured when they strike parts of the ship134, though this has not been well studied in the California Current region.
+
+
+## [@fonnesbeck_bayesian_2008]
+
+
+# References

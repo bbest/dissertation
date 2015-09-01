@@ -2,18 +2,19 @@
 bibliography: dissertation.bib
 csl: csl/apa-single-spaced.csl
 output:
-  word_document:
-    fig_caption: yes
   pdf_document:
     fig_caption: yes
   html_document:
+    fig_caption: yes
+  word_document:
     fig_caption: yes
 ---
 
 # Introduction
 
-```{r caption_setup, echo=FALSE,results='hide'}
-library(captioner) # devtools::install_github('adletaw/captioner')
+```{r caption_setup, echo=FALSE, results='hide', message=F}
+library(captioner) # devtools::install_github('bbest/captioner')
+#load_all('~/github/captioner') # devtools::install_local('~/github/captioner')
 # TODO: for collating, swap this chunk with `bump(fig, 1); bump(tbl, 1)` for all chapters after first
 tbl <- captioner(prefix =  'Table', levels=2, type=c('n','n'))
 fig <- captioner(prefix = 'Figure', levels=2, type=c('n','n'))
@@ -56,11 +57,11 @@ In order to maintain marine biodiversity, we need to effectively describe the di
 
 ![`r fig('marine_conflicts')`](fig/marine_conflicts_redo.png)
 
-Concurrent with a rise in conflicting human uses (see `r fig('marine_conflicts', cite=T)`) has been a rapid decline in overall marine biodiversity and ecosystem services [@worm_impacts_2006; @halpern_global_2008; @worm_rebuilding_2009; @butchart_global_2010].
+Concurrent with a rise in conflicting human uses (see `r fig('marine_conflicts', display='c')`) has been a rapid decline in overall marine biodiversity and ecosystem services [@worm_impacts_2006; @halpern_global_2008; @worm_rebuilding_2009; @butchart_global_2010].
 
 ![`r fig('crowder_2006')`](fig/Crowder2006_fig1_redo.png)
 
-In response, recent calls for holistic management practices, such as ecosystem-based management and marine spatial planning, are encouraging multi-species, multi-sector approaches [@uscommissiononoceanpolicy_ocean_2004; @crowder_resolving_2006; @halpern_managing_2008; @crowder_essential_2008; @douvere_importance_2008; @dahl_marine_2009; @lubchenco_proposed_2010; @foley_guiding_2010] (see `r fig('crowder_2006', cite=T)`). For these applications I’ll be focusing on marine spatial planning of cetaceans, but methods will be transferable to other marine megafauna.
+In response, recent calls for holistic management practices, such as ecosystem-based management and marine spatial planning, are encouraging multi-species, multi-sector approaches [@uscommissiononoceanpolicy_ocean_2004; @crowder_resolving_2006; @halpern_managing_2008; @crowder_essential_2008; @douvere_importance_2008; @dahl_marine_2009; @lubchenco_proposed_2010; @foley_guiding_2010] (see `r fig('crowder_2006', display='c')`). For these applications I’ll be focusing on marine spatial planning of cetaceans, but methods will be transferable to other marine megafauna.
 
 In the US, marine mammals are legally protected through the Marine Mammal Protection Act and 22 are listed as threatened or endangered so are covered by The Endangered Species Act. Human activities that pose threats include: fishing bycatch or prey depletion [@read_looming_2008], ship strikes [@laist_collisions_2001], anthropogenic noise [@weilgart_impacts_2007], pollution of oil or bioaccumulating contaminants [@aguilar_geographical_2002; @oshea_organochlorine_1994; @ross_fireproof_2006], and global climate change [@learmonth_potential_2006; @alter_tertiary_2010]. Relocating potentially harmful human activities away from known cetacean distributions is generally the safest and simplest way to minimize risk [@dolman_comparative_2009; @redfern_techniques_2006].
 
@@ -68,7 +69,7 @@ The current state of marine spatial planning begs several broad questions of dec
 
 ![`r fig('serdp-mapper')`](fig/serdp-mapper_sperm-whale-summer-east_zoom_redo.png)
 
-While much work has been done already to support description of species distributions for planning purposes [@margules_systematic_2007; @pressey_conservation_2007; @elith_species_2009; @pressey_approaches_2009], there is room for improvement in answering the questions above for adopting a marine operational framework. Providing web services makes these data readily available for decision making (see `r fig('serdp-mapper', cite=T)` [^serdp]).
+While much work has been done already to support description of species distributions for planning purposes [@margules_systematic_2007; @pressey_conservation_2007; @elith_species_2009; @pressey_approaches_2009], there is room for improvement in answering the questions above for adopting a marine operational framework. Providing web services makes these data readily available for decision making (see `r fig('serdp-mapper', display='c')` [^serdp]).
 
 [^serdp]: http://seamap.env.duke.edu/search/?app=serdp
 
